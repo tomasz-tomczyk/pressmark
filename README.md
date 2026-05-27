@@ -27,8 +27,10 @@ npm install @pressmark/theme tailwindcss
 ## Quick start (Astro)
 
 ```sh
-npm install @pressmark/astro @pressmark/theme tailwindcss
+npm install @pressmark/astro tailwindcss
 ```
+
+(`@pressmark/theme` comes transitively — no separate install needed.)
 
 ```astro
 ---
