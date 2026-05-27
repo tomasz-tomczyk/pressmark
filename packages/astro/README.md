@@ -5,10 +5,10 @@ Astro components and layouts that render the [@pressmark/theme](https://www.npmj
 ## Install
 
 ```sh
-npm install @pressmark/astro tailwindcss
+npm install @pressmark/astro @pressmark/theme tailwindcss
 ```
 
-`@pressmark/theme` is installed transitively; you don't need to add it to your package.json.
+`@pressmark/theme` is declared as a peer dependency: install it alongside this package. (The theme is published separately so non-Astro consumers can use it standalone — see [@pressmark/theme](https://www.npmjs.com/package/@pressmark/theme).)
 
 In your Tailwind v4 entry CSS, import the theme **and** tell Tailwind to scan this package's components so the `.badge`, `.card`, `.nav-item`, `.panel-label`, `.section-label`, and `.prose-pressmark` utilities get emitted:
 

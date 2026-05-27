@@ -1,6 +1,6 @@
 {
   "name": "@pressmark/astro",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Astro components and layouts for the Pressmark editorial design system.",
   "type": "module",
   "main": "./src/index.ts",
@@ -33,11 +33,9 @@
   },
   "homepage": "https://github.com/tomasz-tomczyk/pressmark#readme",
   "bugs": "https://github.com/tomasz-tomczyk/pressmark/issues",
-  "dependencies": {
-    "@pressmark/theme": "^0.2.0"
-  },
   "peerDependencies": {
-    "astro": "^5.0.0 || ^6.0.0"
+    "astro": "^5.0.0 || ^6.0.0",
+    "@pressmark/theme": "^0.2.0"
   },
   "publishConfig": {
     "access": "public"

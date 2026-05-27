@@ -27,10 +27,10 @@ npm install @pressmark/theme tailwindcss
 ## Quick start (Astro)
 
 ```sh
-npm install @pressmark/astro tailwindcss
+npm install @pressmark/astro @pressmark/theme tailwindcss
 ```
 
-(`@pressmark/theme` comes transitively — no separate install needed.)
+`@pressmark/theme` is a peer dependency — install both. (This lets non-Astro projects use the theme standalone.)
 
 ```astro
 ---
