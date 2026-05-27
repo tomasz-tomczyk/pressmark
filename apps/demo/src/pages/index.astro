@@ -24,7 +24,7 @@ import { BaseLayout } from "@vellum/astro";
 
     <!-- Lead post -->
     <section class="mb-16 grid grid-cols-12 gap-6 items-stretch pl-2">
-      <a href="/post" class="col-span-7 group">
+      <a href={`post`} class="col-span-7 group">
         <div class="aspect-[16/9] rounded-lg overflow-hidden hairline relative">
           <img
             src="https://picsum.photos/seed/desk-notebook-morning-0/880/495"
@@ -39,7 +39,7 @@ import { BaseLayout } from "@vellum/astro";
       <div class="col-span-5 flex flex-col justify-center">
         <div class="panel-label mb-3">May 17 · Essay · 8 min read</div>
         <h2 class="font-display font-light text-2xl md:text-3xl leading-[1.08] text-charcoal tracking-[-0.012em]">
-          <a href="/post" class="hover:text-accent">On designing calm interfaces.</a>
+          <a href={`post`} class="hover:text-accent">On designing calm interfaces.</a>
         </h2>
         <p class="mt-4 text-base leading-relaxed text-charcoal">
           Most software wants more from us than it gives. Here's a quieter approach — one
@@ -48,7 +48,7 @@ import { BaseLayout } from "@vellum/astro";
         <div class="mt-5 flex items-center gap-3 text-xs text-charcoal">
           <span>by T. Tomczyk</span>
           <span class="size-1 rounded-full bg-stone"></span>
-          <a href="/post" class="btn-link">Continue reading →</a>
+          <a href={`post`} class="btn-link">Continue reading →</a>
         </div>
       </div>
     </section>
@@ -73,7 +73,7 @@ import { BaseLayout } from "@vellum/astro";
               <span class="font-mono text-xs text-charcoal w-20 shrink-0 pt-1">{n.date}</span>
               <div class="flex-1">
                 <h4 class="font-display text-xl leading-snug text-charcoal group-hover:text-accent">
-                  <a href="/post">{n.title}</a>
+                  <a href={`post`}>{n.title}</a>
                 </h4>
                 <p class="mt-1.5 text-sm text-charcoal leading-relaxed">{n.excerpt}</p>
               </div>

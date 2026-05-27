@@ -278,9 +278,9 @@ const tableRows = [
     <footer class="mt-10 mb-4 pt-6 border-t border-warm-white flex items-center justify-between text-xs font-mono text-charcoal opacity-60">
       <span>© 2026 · vellum / system</span>
       <div class="flex gap-4">
-        <a href="/" class="hover:text-charcoal">Home</a>
-        <a href="/post" class="hover:text-charcoal">Sample post</a>
-        <a href="/about" class="hover:text-charcoal">About</a>
+        <a href={import.meta.env.BASE_URL} class="hover:text-charcoal">Home</a>
+        <a href={`post`} class="hover:text-charcoal">Sample post</a>
+        <a href={`about`} class="hover:text-charcoal">About</a>
       </div>
     </footer>
   </main>
