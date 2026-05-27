@@ -9,7 +9,7 @@ import {
   PanelLabel,
   Progress,
   SectionLabel,
-} from "@vellum/astro";
+} from "@pressmark/astro";
 
 const tags = ["#design", "#programming", "#notes", "#writing", "#macos", "#productivity", "#books", "#journal"];
 
@@ -22,10 +22,10 @@ const tableRows = [
 ];
 ---
 
-<BaseLayout title="Components — vellum" currentPath={Astro.url.pathname}>
+<BaseLayout title="Components — pressmark" currentPath={Astro.url.pathname}>
   <main class="ml-[260px] px-12 py-10">
     <header class="mb-12">
-      <PanelLabel class="mb-3">vellum / system</PanelLabel>
+      <PanelLabel class="mb-3">pressmark / system</PanelLabel>
       <h1 class="font-display font-light text-3xl md:text-4xl lg:text-5xl leading-[1.04] tracking-[-0.012em] text-charcoal">
         Components
       </h1>
@@ -276,7 +276,7 @@ const tableRows = [
     </section>
 
     <footer class="mt-10 mb-4 pt-6 border-t border-warm-white flex items-center justify-between text-xs font-mono text-charcoal opacity-60">
-      <span>© 2026 · vellum / system</span>
+      <span>© 2026 · pressmark / system</span>
       <div class="flex gap-4">
         <a href={import.meta.env.BASE_URL} class="hover:text-charcoal">Home</a>
         <a href={`post`} class="hover:text-charcoal">Sample post</a>

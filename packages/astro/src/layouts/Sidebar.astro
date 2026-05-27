@@ -5,7 +5,7 @@ type Props = {
 
 const { currentPath = "/" } = Astro.props;
 
-// Astro's base may be "/" or "/vellum/" — normalize to no trailing slash so we can concat cleanly.
+// Astro's base may be "/" or "/pressmark/" — normalize to no trailing slash so we can concat cleanly.
 const base = import.meta.env.BASE_URL.replace(/\/+$/, "");
 const url = (p: string) => (p === "/" ? base + "/" : base + p);
 
@@ -31,7 +31,7 @@ function isActive(href: string): boolean {
 >
   <!-- Wordmark -->
   <a href={url("/")} class="font-display text-3xl tracking-tight text-charcoal block mb-10 leading-none"
-    >/V.</a
+    >/P.</a
   >
 
   <!-- Main nav -->
@@ -100,7 +100,7 @@ function isActive(href: string): boolean {
 
   <!-- Inspirational image -->
   <div class="mt-6 rounded-lg overflow-hidden hairline aspect-[4/3]">
-    <img src="https://picsum.photos/seed/vellum-notebook/440/330" alt="" class="w-full h-full object-cover" />
+    <img src="https://picsum.photos/seed/pressmark-notebook/440/330" alt="" class="w-full h-full object-cover" />
   </div>
 
   <!-- Pull quote -->

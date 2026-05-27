@@ -1,5 +1,5 @@
 {
-  "name": "vellum",
+  "name": "pressmark",
   "version": "0.0.0",
   "private": true,
   "description": "An editorial, paper-bound design system. Tailwind v4 CSS-only + Astro components.",

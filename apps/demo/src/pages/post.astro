@@ -1,6 +1,6 @@
 ---
 import "../styles/main.css";
-import { BaseLayout } from "@vellum/astro";
+import { BaseLayout } from "@pressmark/astro";
 
 const toc = [
   { id: "s1", n: "1.", text: "Clarity over cleverness" },
@@ -12,7 +12,7 @@ const toc = [
 ---
 
 <BaseLayout
-  title="On designing calm interfaces — vellum"
+  title="On designing calm interfaces — pressmark"
   description="Thoughts on creating digital spaces that feel natural, quiet, and unobtrusive."
   currentPath={Astro.url.pathname}
 >
@@ -145,7 +145,7 @@ const toc = [
 
       <hr class="my-8 border-warm-white" />
 
-      <div class="prose-vellum">
+      <div class="prose-pressmark">
         <p class="dropcap">
           The best interfaces don't call attention to themselves. They fade into the
           background, quietly supporting the work that matters. Like a <em>well-designed</em>
@@ -183,7 +183,7 @@ const toc = [
         </p>
       </div>
 
-      <!-- Inline code block — wider than prose-vellum -->
+      <!-- Inline code block — wider than prose-pressmark -->
       <div class="my-7 max-w-[42rem] rounded-lg overflow-hidden bg-warm-white">
         <div class="flex items-center justify-between px-4 py-2 border-b border-stone/40">
           <div class="flex items-center gap-2 font-mono text-xs text-charcoal opacity-70">
@@ -205,7 +205,7 @@ const toc = [
 <span class="opacity-40 select-none mr-3">8</span>&rbrace;</pre>
       </div>
 
-      <div class="prose-vellum">
+      <div class="prose-pressmark">
         <p>Inline code looks like <code>this</code>, or <code>that()</code>.</p>
 
         <h2 id="s4">4. Subtle interactions</h2>
@@ -248,7 +248,7 @@ const toc = [
     </nav>
 
     <footer class="mt-20 mb-4 pt-6 border-t border-warm-white flex items-center justify-between text-xs font-mono text-charcoal opacity-60 max-w-[42rem]">
-      <span>© 2026 · vellum</span>
+      <span>© 2026 · pressmark</span>
       <div class="flex gap-4">
         <a href="#" class="hover:text-charcoal">RSS</a>
         <a href="#" class="hover:text-charcoal">Email</a>

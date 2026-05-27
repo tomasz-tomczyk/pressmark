@@ -1,12 +1,12 @@
 import { z } from "astro:content";
 
 /**
- * Reusable Vellum post-collection schema. Pass to `defineCollection({ schema: postSchema })`.
+ * Reusable Pressmark post-collection schema. Pass to `defineCollection({ schema: postSchema })`.
  *
  * Example:
  *
  *   import { defineCollection } from "astro:content";
- *   import { postSchema } from "@vellum/astro/content/schema";
+ *   import { postSchema } from "@pressmark/astro/content/schema";
  *
  *   export const collections = {
  *     posts: defineCollection({ type: "content", schema: postSchema }),

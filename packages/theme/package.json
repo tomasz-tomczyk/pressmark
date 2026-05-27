@@ -1,16 +1,16 @@
 {
-  "name": "@vellum/theme",
+  "name": "@pressmark/theme",
   "version": "0.1.0",
   "description": "Editorial, paper-bound Tailwind v4 design-system theme. CSS-only, drop-in.",
   "type": "module",
-  "main": "./vellum.css",
-  "style": "./vellum.css",
+  "main": "./pressmark.css",
+  "style": "./pressmark.css",
   "exports": {
-    ".": "./vellum.css",
-    "./vellum.css": "./vellum.css"
+    ".": "./pressmark.css",
+    "./pressmark.css": "./pressmark.css"
   },
   "files": [
-    "vellum.css",
+    "pressmark.css",
     "README.md"
   ],
   "keywords": [
@@ -21,17 +21,17 @@
     "design-system",
     "editorial",
     "css",
-    "vellum"
+    "pressmark"
   ],
   "author": "Tomasz Tomczyk",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tomasz-tomczyk/vellum.git",
+    "url": "git+https://github.com/tomasz-tomczyk/pressmark.git",
     "directory": "packages/theme"
   },
-  "homepage": "https://github.com/tomasz-tomczyk/vellum#readme",
-  "bugs": "https://github.com/tomasz-tomczyk/vellum/issues",
+  "homepage": "https://github.com/tomasz-tomczyk/pressmark#readme",
+  "bugs": "https://github.com/tomasz-tomczyk/pressmark/issues",
   "peerDependencies": {
     "tailwindcss": "^4.0.0"
   },

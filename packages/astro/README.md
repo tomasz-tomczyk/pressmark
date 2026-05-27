@@ -1,26 +1,26 @@
-# @vellum/astro
+# @pressmark/astro
 
-Astro components and layouts that render the [@vellum/theme](https://www.npmjs.com/package/@vellum/theme) classes. Drop them into any Astro v5+ project.
+Astro components and layouts that render the [@pressmark/theme](https://www.npmjs.com/package/@pressmark/theme) classes. Drop them into any Astro v5+ project.
 
 ## Install
 
 ```sh
-npm install @vellum/astro @vellum/theme tailwindcss
+npm install @pressmark/astro @pressmark/theme tailwindcss
 ```
 
 In your Tailwind v4 entry CSS:
 
 ```css
 @import "tailwindcss";
-@import "@vellum/theme";
+@import "@pressmark/theme";
 ```
 
 ## Use
 
 ```astro
 ---
-import BaseLayout from "@vellum/astro/layouts/BaseLayout.astro";
-import { Button, Badge, Card } from "@vellum/astro";
+import BaseLayout from "@pressmark/astro/layouts/BaseLayout.astro";
+import { Button, Badge, Card } from "@pressmark/astro";
 ---
 
 <BaseLayout title="Hello">

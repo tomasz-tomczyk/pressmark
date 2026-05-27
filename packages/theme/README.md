@@ -1,11 +1,11 @@
-# @vellum/theme
+# @pressmark/theme
 
 An editorial, paper-bound Tailwind v4 design-system theme. CSS-only. One file. No build step.
 
 ## Install
 
 ```sh
-npm install @vellum/theme tailwindcss
+npm install @pressmark/theme tailwindcss
 ```
 
 ## Use
@@ -14,7 +14,7 @@ In your Tailwind v4 entry CSS:
 
 ```css
 @import "tailwindcss";
-@import "@vellum/theme";
+@import "@pressmark/theme";
 ```
 
 Load the fonts in your HTML `<head>`:
@@ -25,7 +25,7 @@ Load the fonts in your HTML `<head>`:
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300..700;1,300..700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap">
 ```
 
-That's it. Use any of the Vellum utilities and components alongside vanilla Tailwind.
+That's it. Use any of the Pressmark utilities and components alongside vanilla Tailwind.
 
 ## Palette
 
@@ -44,7 +44,7 @@ All text is `charcoal` except the `accent`. No gradients. No 7th color.
 
 `.btn` / `.btn-primary` / `.btn-secondary` / `.btn-link`, `.badge` / `.badge-mono`,
 `.card`, `.hairline`, `.nav-item`, `.panel-label`, `.section-label`, `.checkbox`,
-`.progress` + `.progress-fill`, `.prose-vellum` + `.dropcap`.
+`.progress` + `.progress-fill`, `.prose-pressmark` + `.dropcap`.
 
 Inline `<code>` gets backticks and a warm-white pill automatically.
 
@@ -54,7 +54,7 @@ Re-declare any token in your own `@theme` block **after** the import:
 
 ```css
 @import "tailwindcss";
-@import "@vellum/theme";
+@import "@pressmark/theme";
 
 @theme {
   --color-accent: #2E5BFF;
@@ -63,7 +63,7 @@ Re-declare any token in your own `@theme` block **after** the import:
 
 ## Astro?
 
-There's a sister package `@vellum/astro` with prop-driven components and layouts
+There's a sister package `@pressmark/astro` with prop-driven components and layouts
 that render these classes. Either is usable standalone.
 
 ## License

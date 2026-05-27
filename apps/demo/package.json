@@ -10,8 +10,8 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@vellum/astro": "workspace:*",
-    "@vellum/theme": "workspace:*",
+    "@pressmark/astro": "workspace:*",
+    "@pressmark/theme": "workspace:*",
     "astro": "^5.0.0",
     "@astrojs/mdx": "^4.0.0",
     "@tailwindcss/vite": "^4.0.0",

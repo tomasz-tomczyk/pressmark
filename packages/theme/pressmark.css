@@ -1,9 +1,9 @@
 /* ============================================================================
- * vellum — an editorial design-system theme for Tailwind v4
+ * pressmark — an editorial design-system theme for Tailwind v4
  * ----------------------------------------------------------------------------
  * Drop-in usage (any Tailwind v4 project):
  *   /@import "tailwindcss";
- *   /@import "./vellum.css";
+ *   /@import "./pressmark.css";
  *
  * Fonts (load in your HTML <head>):
  *   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -243,7 +243,7 @@
  * Long-form reading — apply to article body
  * ============================================================================ */
 @layer components {
-  .prose-vellum {
+  .prose-pressmark {
     font-family: var(--font-display);
     font-weight: 400;
     font-size: 19px;
@@ -252,40 +252,40 @@
     max-width: 38rem;
     font-feature-settings: "kern" 1, "liga" 1, "calt" 1, "onum" 1;
   }
-  .prose-vellum > * + * { margin-top: 1.05em; }
-  .prose-vellum p { margin: 0; }
-  .prose-vellum h2 {
+  .prose-pressmark > * + * { margin-top: 1.05em; }
+  .prose-pressmark p { margin: 0; }
+  .prose-pressmark h2 {
     font-size: 1.55em;
     margin-top: 2em;
     margin-bottom: 0.4em;
     letter-spacing: -0.015em;
   }
-  .prose-vellum h3 {
+  .prose-pressmark h3 {
     font-size: 1.2em;
     margin-top: 1.5em;
     margin-bottom: 0.3em;
   }
-  .prose-vellum a {
+  .prose-pressmark a {
     color: var(--color-accent);
     text-decoration: underline;
     text-decoration-thickness: 1px;
     text-underline-offset: 3px;
     text-decoration-color: var(--color-accent);
   }
-  .prose-vellum a:hover {
+  .prose-pressmark a:hover {
     color: var(--color-charcoal);
     text-decoration-thickness: 2px;
   }
-  .prose-vellum em { font-style: italic; }
-  .prose-vellum strong { font-weight: 600; color: var(--color-charcoal); }
-  .prose-vellum blockquote {
+  .prose-pressmark em { font-style: italic; }
+  .prose-pressmark strong { font-weight: 600; color: var(--color-charcoal); }
+  .prose-pressmark blockquote {
     font-style: italic;
     border-left: 2px solid var(--color-accent);
     padding-left: 1.25em;
     margin: 1.6em 0;
     color: var(--color-charcoal);
   }
-  .prose-vellum hr {
+  .prose-pressmark hr {
     border: 0;
     text-align: center;
     margin: 2.2em 0;
@@ -294,10 +294,10 @@
     font-size: 0.65em;
     letter-spacing: 0.3em;
   }
-  .prose-vellum hr::before { content: "✦   ✦   ✦"; }
-  .prose-vellum ul, .prose-vellum ol { padding-left: 1.5em; }
-  .prose-vellum ul { list-style: none; }
-  .prose-vellum ul li::before {
+  .prose-pressmark hr::before { content: "✦   ✦   ✦"; }
+  .prose-pressmark ul, .prose-pressmark ol { padding-left: 1.5em; }
+  .prose-pressmark ul { list-style: none; }
+  .prose-pressmark ul li::before {
     content: "—";
     color: var(--color-accent);
     margin-left: -1.5em;
@@ -305,7 +305,7 @@
     display: inline-block;
     width: 0.9em;
   }
-  /* prose-vellum inherits the global inline-code style; no override needed. */
+  /* prose-pressmark inherits the global inline-code style; no override needed. */
   /* Custom checkbox — square, stone outline, accent when checked */
   .checkbox {
     appearance: none;
@@ -351,7 +351,7 @@
     transition: width 200ms ease;
   }
 
-  .prose-vellum .dropcap::first-letter {
+  .prose-pressmark .dropcap::first-letter {
     font-family: var(--font-display);
     font-weight: 400;
     float: left;

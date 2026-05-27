@@ -7,7 +7,7 @@ type Props = {
 } & HTMLAttributes<"article">;
 
 const { dropcap = false, class: className, ...rest } = Astro.props as Props;
-const classes = ["prose-vellum", dropcap ? "dropcap" : "", className]
+const classes = ["prose-pressmark", dropcap ? "dropcap" : "", className]
   .filter(Boolean)
   .join(" ");
 ---

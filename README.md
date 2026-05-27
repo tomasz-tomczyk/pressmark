@@ -1,39 +1,39 @@
-# Vellum
+# Pressmark
 
 An editorial, paper-bound design system. Tailwind v4 first, with first-class Astro components.
 
 > Six colors, three fonts, no gradients. Hierarchy comes from typography and space, not decoration.
 
-**[Live demo →](https://tomasz-tomczyk.github.io/vellum/)**
+**[Live demo →](https://tomasz-tomczyk.github.io/pressmark/)**
 
 ## Packages
 
 | Package | Description |
 |---|---|
-| [`@vellum/theme`](./packages/theme) | Tailwind v4 theme — CSS-only, drop-in, one file. |
-| [`@vellum/astro`](./packages/astro) | Astro components & layouts that render the theme classes. |
+| [`@pressmark/theme`](./packages/theme) | Tailwind v4 theme — CSS-only, drop-in, one file. |
+| [`@pressmark/astro`](./packages/astro) | Astro components & layouts that render the theme classes. |
 
 ## Quick start (Tailwind only)
 
 ```sh
-npm install @vellum/theme tailwindcss
+npm install @pressmark/theme tailwindcss
 ```
 
 ```css
 @import "tailwindcss";
-@import "@vellum/theme";
+@import "@pressmark/theme";
 ```
 
 ## Quick start (Astro)
 
 ```sh
-npm install @vellum/astro @vellum/theme tailwindcss
+npm install @pressmark/astro @pressmark/theme tailwindcss
 ```
 
 ```astro
 ---
-import BaseLayout from "@vellum/astro/layouts/BaseLayout.astro";
-import { Button, Card } from "@vellum/astro";
+import BaseLayout from "@pressmark/astro/layouts/BaseLayout.astro";
+import { Button, Card } from "@pressmark/astro";
 ---
 <BaseLayout title="Hello">
   <Card>
@@ -55,7 +55,7 @@ import { Button, Card } from "@vellum/astro";
 
 ## Anti-goals
 
-- **WCAG AA contrast** is not a target. Warm-gray on paper is 2.24:1; accent on paper is 3.37:1; warm-white borders are 1.10:1. If you ship Vellum on a public site, accept this tradeoff or override the relevant tokens.
+- **WCAG AA contrast** is not a target. Warm-gray on paper is 2.24:1; accent on paper is 3.37:1; warm-white borders are 1.10:1. If you ship Pressmark on a public site, accept this tradeoff or override the relevant tokens.
 - **Dark mode** isn't implemented.
 - **Gradients** are banned.
 

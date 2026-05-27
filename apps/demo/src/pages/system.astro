@@ -1,6 +1,6 @@
 ---
 import "../styles/main.css";
-import { BaseLayout } from "@vellum/astro";
+import { BaseLayout } from "@pressmark/astro";
 
 const cal = [
   { d: "28", cls: "opacity-30" }, { d: "29", cls: "opacity-30" }, { d: "30", cls: "opacity-30" },
@@ -24,12 +24,12 @@ const tonesSeeds = ["paper-4", "paper-5", "paper-6", "paper-7"];
 const earthPalette = ["#E05A24", "#ABA49A", "#1F1F1F", "#D9D6CC", "#ABA49A", "#1F1F1F"];
 ---
 
-<BaseLayout title="vellum — design system" currentPath={Astro.url.pathname}>
+<BaseLayout title="pressmark — design system" currentPath={Astro.url.pathname}>
   <main class="ml-[260px] px-12 py-10">
     <!-- top breadcrumb / nav -->
     <header class="flex items-center justify-between mb-6 pl-2">
       <div class="flex items-center gap-3">
-        <span class="panel-label">vellum / themes /</span>
+        <span class="panel-label">pressmark / themes /</span>
         <span class="text-charcoal font-medium text-sm">Light · Editorial</span>
       </div>
       <div class="flex items-center gap-2 text-xs text-warm-gray">
@@ -237,7 +237,7 @@ const earthPalette = ["#E05A24", "#ABA49A", "#1F1F1F", "#D9D6CC", "#ABA49A", "#1
         <blockquote class="font-display text-xl md:text-2xl leading-[1.2] mt-4">
           A quiet place for meaningful work.
         </blockquote>
-        <footer class="mt-4 font-mono text-xs uppercase tracking-[0.12em] text-warm-gray">— Vellum, on intent</footer>
+        <footer class="mt-4 font-mono text-xs uppercase tracking-[0.12em] text-warm-gray">— Pressmark, on intent</footer>
       </section>
 
       <!-- Secondary palette circles -->
@@ -258,7 +258,7 @@ const earthPalette = ["#E05A24", "#ABA49A", "#1F1F1F", "#D9D6CC", "#ABA49A", "#1
     </div>
 
     <footer class="mt-8 mb-2 flex items-center justify-between text-xs text-warm-gray font-mono">
-      <span>vellum / themes / light · editorial</span>
+      <span>pressmark / themes / light · editorial</span>
       <span>Crimson Pro · Inter · IBM Plex Mono</span>
     </footer>
   </main>
