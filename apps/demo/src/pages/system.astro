@@ -1,6 +1,5 @@
 ---
-import "../styles/main.css";
-import { BaseLayout } from "@pressmark/astro";
+import SiteLayout from "../layouts/SiteLayout.astro";
 
 const cal = [
   { d: "28", cls: "opacity-30" }, { d: "29", cls: "opacity-30" }, { d: "30", cls: "opacity-30" },
@@ -24,7 +23,7 @@ const tonesSeeds = ["paper-4", "paper-5", "paper-6", "paper-7"];
 const earthPalette = ["#E05A24", "#ABA49A", "#1F1F1F", "#D9D6CC", "#ABA49A", "#1F1F1F"];
 ---
 
-<BaseLayout title="pressmark — design system" currentPath={Astro.url.pathname}>
+<SiteLayout title="pressmark — design system">
   <main class="ml-[260px] px-12 py-10">
     <!-- top breadcrumb / nav -->
     <header class="flex items-center justify-between mb-6 pl-2">
@@ -262,4 +261,4 @@ const earthPalette = ["#E05A24", "#ABA49A", "#1F1F1F", "#D9D6CC", "#ABA49A", "#1
       <span>Crimson Pro · Inter · IBM Plex Mono</span>
     </footer>
   </main>
-</BaseLayout>
+</SiteLayout>

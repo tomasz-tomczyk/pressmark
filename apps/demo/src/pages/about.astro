@@ -1,6 +1,5 @@
 ---
-import "../styles/main.css";
-import { BaseLayout } from "@pressmark/astro";
+import SiteLayout from "../layouts/SiteLayout.astro";
 
 const palette = [
   { name: "Paper", hex: "#F6F4EE", bg: "#F6F4EE", hairline: true },
@@ -12,7 +11,7 @@ const palette = [
 ];
 ---
 
-<BaseLayout title="About — pressmark" currentPath={Astro.url.pathname}>
+<SiteLayout title="About — pressmark">
   <main class="ml-[260px] px-12 py-10">
     <!-- Hero block: portrait + name -->
     <section class="grid grid-cols-12 gap-10 items-end mb-16 pl-2">
@@ -108,7 +107,7 @@ const palette = [
           </p>
           <form class="flex gap-2">
             <input type="email" placeholder="you@elsewhere.com" aria-label="Email" class="flex-1 h-8 px-2.5 rounded-md hairline bg-paper text-xs placeholder-warm-gray focus:outline-none focus:shadow-[var(--shadow-focus)]" />
-            <button class="btn btn-primary" style="height:2rem;padding:0 0.875rem;font-size:12px">Sign up</button>
+            <button class="btn btn-primary btn-sm">Sign up</button>
           </form>
         </div>
       </aside>
@@ -170,4 +169,4 @@ const palette = [
       </div>
     </footer>
   </main>
-</BaseLayout>
+</SiteLayout>

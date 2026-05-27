@@ -1,13 +1,10 @@
 ---
-import Sidebar from "./Sidebar.astro";
-
 type Props = {
   title: string;
   description?: string;
-  currentPath?: string;
 };
 
-const { title, description, currentPath } = Astro.props as Props;
+const { title, description } = Astro.props as Props;
 ---
 
 <!doctype html>
@@ -24,9 +21,10 @@ const { title, description, currentPath } = Astro.props as Props;
       href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300..700;1,300..700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
+    <slot name="head" />
   </head>
   <body class="min-h-screen">
-    <Sidebar currentPath={currentPath} />
+    <slot name="sidebar" />
     <slot />
   </body>
 </html>

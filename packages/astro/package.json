@@ -8,6 +8,7 @@
     ".": "./src/index.ts",
     "./components": "./src/components/index.ts",
     "./layouts": "./src/layouts/index.ts",
+    "./content/schema": "./src/content/schema.ts",
     "./components/*.astro": "./src/components/*.astro",
     "./layouts/*.astro": "./src/layouts/*.astro"
   },

@@ -208,6 +208,11 @@
     white-space: nowrap;
     text-decoration: none;
   }
+  .btn-sm {
+    height: 2rem;               /* 32px */
+    padding: 0 0.875rem;
+    font-size: 13px;
+  }
   .btn-primary {
     background: var(--color-accent);
     color: var(--color-paper);

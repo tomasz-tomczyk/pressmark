@@ -1,7 +1,6 @@
 ---
-import "../styles/main.css";
+import SiteLayout from "../layouts/SiteLayout.astro";
 import {
-  BaseLayout,
   Badge,
   Button,
   Card,
@@ -22,7 +21,7 @@ const tableRows = [
 ];
 ---
 
-<BaseLayout title="Components — pressmark" currentPath={Astro.url.pathname}>
+<SiteLayout title="Components — pressmark">
   <main class="ml-[260px] px-12 py-10">
     <header class="mb-12">
       <PanelLabel class="mb-3">pressmark / system</PanelLabel>
@@ -284,4 +283,4 @@ const tableRows = [
       </div>
     </footer>
   </main>
-</BaseLayout>
+</SiteLayout>

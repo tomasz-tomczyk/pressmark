@@ -8,32 +8,45 @@ Astro components and layouts that render the [@pressmark/theme](https://www.npmj
 npm install @pressmark/astro @pressmark/theme tailwindcss
 ```
 
-In your Tailwind v4 entry CSS:
+In your Tailwind v4 entry CSS, import the theme **and** tell Tailwind to scan this package's components so the `.badge`, `.card`, `.nav-item`, `.panel-label`, `.section-label`, and `.prose-pressmark` utilities get emitted:
 
 ```css
 @import "tailwindcss";
 @import "@pressmark/theme";
+
+@source "../../node_modules/@pressmark/astro/src/**/*.astro";
 ```
+
+(Adjust the relative path to match where your entry CSS lives. From `apps/<project>/src/styles/main.css`, two levels up reaches `node_modules/`.)
 
 ## Use
 
 ```astro
 ---
-import BaseLayout from "@pressmark/astro/layouts/BaseLayout.astro";
-import { Button, Badge, Card } from "@pressmark/astro";
+import { BaseLayout, Sidebar, Button, Card } from "@pressmark/astro";
+
+const items = [
+  { href: "/", label: "Home" },
+  { href: "/notes", label: "Notes" },
+  { href: "/about", label: "About" },
+];
 ---
 
 <BaseLayout title="Hello">
-  <Card>
-    <h2>A note</h2>
-    <p>With <Badge>tags</Badge> and a <Button variant="primary">button</Button>.</p>
-  </Card>
+  <Sidebar slot="sidebar" brand="/yourname." items={items} currentPath={Astro.url.pathname} />
+
+  <main class="ml-[260px] px-12 py-10">
+    <Card>
+      <h2>A note</h2>
+      <Button variant="primary">Read</Button>
+    </Card>
+  </main>
 </BaseLayout>
 ```
 
 ## Components
 
-- `Button` — `variant: "primary" | "secondary" | "link"`, `as?: "button" | "a"`, `href?`
+- `Button` — `variant?: "primary" | "secondary" | "link"`, `as?: "button" | "a"`, `href?`. Compose with `class="btn-sm"` for a 32 px height variant.
 - `Badge` — `variant?: "default" | "mono"`
 - `Card` — slotted surface
 - `NavItem` — `href`, `active?`, `icon` slot + default slot
@@ -46,8 +59,20 @@ import { Button, Badge, Card } from "@pressmark/astro";
 
 ## Layouts
 
-- `BaseLayout` — `<html>`, font links, sidebar slot, main slot
-- `PostLayout` — three-column with TOC right rail, post frontmatter
+- `BaseLayout` — `<html>` shell with font links and two named slots: `sidebar` and the default slot for main content. No baked-in chrome.
+- `Sidebar` — Editorial-style fixed left sidebar. Takes `items: SidebarItem[]`, optional `brand`, and a default slot for extras (search, theme toggle, image, quote, etc.). `SidebarItem` shape: `{ href, label, icon? }`, where `icon` is raw SVG inner content (paths/rects/circles).
+
+## Content collections
+
+```ts
+// src/content/config.ts
+import { defineCollection } from "astro:content";
+import { postSchema } from "@pressmark/astro/content/schema";
+
+export const collections = {
+  posts: defineCollection({ type: "content", schema: postSchema }),
+};
+```
 
 ## License
 

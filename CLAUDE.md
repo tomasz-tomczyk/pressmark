@@ -106,11 +106,17 @@ Renaming these is a breaking change — bump the major version.
 - **Dark mode** is not implemented.
 - **JS interactivity** is not yet wired (theme toggle, search modal, etc. are static).
 
+## Architectural notes
+
+- `BaseLayout` is intentionally bare: html shell, font links, and two named slots (`sidebar` + default). It does NOT bake in any chrome. Consumers wire their own sidebar via the named slot.
+- `Sidebar` is generic — takes `items: SidebarItem[]`, `brand?`, and a default slot for extras (search, theme toggle, image, quote). `SidebarItem.icon` is raw SVG inner content.
+- The demo wraps `BaseLayout` + a `DemoSidebar` (specific nav items + extras) in `apps/demo/src/layouts/SiteLayout.astro`. Demo pages use `SiteLayout`, not `BaseLayout` directly.
+- `PostLayout` was removed in v0.1.x — the demo's `post.astro` has bespoke right-rail content (custom Quick action items, prev/next nav, footer with attribution) that didn't fit a generic prop API. Consumers writing their own post page can crib from `apps/demo/src/pages/post.astro` as the open-source reference. Re-introduce a refined `PostLayout` in v0.2 based on real consumer demand.
+
 ## Known follow-ups
 
-- `Sidebar.astro` has demo-specific nav items hardcoded (Notes/Journal/Projects/etc.). Should accept `items` as a prop so consumers can use it generically. Tracked in the rebrand commit message.
-- `PostLayout` exists but the demo's `post.astro` uses `BaseLayout` + inline right rail instead — bespoke right-rail content didn't fit `PostLayout`'s prop API.
-- Trusted Publishing setup on npmjs.com (per-package) not yet done; publishes still require OTP.
+- Trusted Publishing on npmjs.com is set up for both packages (validated by manual workflow_dispatch — OIDC auth passed, only blocked on "version already exists"). Future releases via `gh release create` will publish automatically without OTP.
+- The `apps/demo/src/styles/main.css` `@source` to `../../../../packages/astro/src/**/*` is a workspace-relative path. Real consumers must add a separate `@source "../../node_modules/@pressmark/astro/src/**/*.astro"` — documented in the astro README.
 
 ## Tooling notes
 

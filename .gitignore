@@ -6,7 +6,4 @@ dist
 *.log
 .env
 .env.local
-.legacy-html
-.backup
-bun.lock
 package-lock.json

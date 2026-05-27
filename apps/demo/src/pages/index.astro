@@ -1,12 +1,11 @@
 ---
-import "../styles/main.css";
-import { BaseLayout } from "@pressmark/astro";
+import SiteLayout from "../layouts/SiteLayout.astro";
 ---
 
-<BaseLayout
+<SiteLayout
   title="pressmark — a thoughtfully maintained notebook"
   description="Essays on writing, reading, and designing interfaces that don't demand attention."
-  currentPath={Astro.url.pathname}
+ 
 >
   <main class="ml-[260px] px-12 py-10">
     <!-- Greeting -->
@@ -136,7 +135,7 @@ import { BaseLayout } from "@pressmark/astro";
               aria-label="Email address"
               class="flex-1 h-8 px-2.5 rounded-md bg-stone text-xs placeholder-warm-gray focus:outline-none focus:shadow-[var(--shadow-focus)]"
             />
-            <button class="btn btn-primary" style="height:2rem;padding:0 0.875rem;font-size:12px">Sign up</button>
+            <button class="btn btn-primary btn-sm">Sign up</button>
           </form>
         </div>
       </aside>
@@ -178,4 +177,4 @@ import { BaseLayout } from "@pressmark/astro";
       </div>
     </footer>
   </main>
-</BaseLayout>
+</SiteLayout>

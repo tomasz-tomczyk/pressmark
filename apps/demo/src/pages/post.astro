@@ -1,6 +1,5 @@
 ---
-import "../styles/main.css";
-import { BaseLayout } from "@pressmark/astro";
+import SiteLayout from "../layouts/SiteLayout.astro";
 
 const toc = [
   { id: "s1", n: "1.", text: "Clarity over cleverness" },
@@ -11,10 +10,9 @@ const toc = [
 ];
 ---
 
-<BaseLayout
+<SiteLayout
   title="On designing calm interfaces — pressmark"
   description="Thoughts on creating digital spaces that feel natural, quiet, and unobtrusive."
-  currentPath={Astro.url.pathname}
 >
   <!-- Right rail (TOC + actions + metadata + related) -->
   <aside
@@ -255,4 +253,4 @@ const toc = [
       </div>
     </footer>
   </main>
-</BaseLayout>
+</SiteLayout>
