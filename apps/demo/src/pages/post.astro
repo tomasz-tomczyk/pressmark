@@ -1,13 +1,20 @@
 ---
+import type { MarkdownHeading } from "astro";
 import SiteLayout from "../layouts/SiteLayout.astro";
+import { TableOfContents, PostNav } from "@pressmark/astro";
 
-const toc = [
-  { id: "s1", n: "1.", text: "Clarity over cleverness" },
-  { id: "s2", n: "2.", text: "Restraint in visual design" },
-  { id: "s3", n: "3.", text: "Focus on content" },
-  { id: "s4", n: "4.", text: "Subtle interactions" },
-  { id: "s5", n: "5.", text: "Iterate with intention" },
+// Demo post is static HTML (no `render()` output to draw from), so the
+// headings array mirrors this page's actual h2 ids/text by hand.
+const headings: MarkdownHeading[] = [
+  { depth: 2, slug: "s1", text: "Clarity over cleverness" },
+  { depth: 2, slug: "s2", text: "Restraint in visual design" },
+  { depth: 2, slug: "s3", text: "Focus on content" },
+  { depth: 2, slug: "s4", text: "Subtle interactions" },
+  { depth: 2, slug: "s5", text: "Iterate with intention" },
 ];
+
+const prevPost = { href: "#", title: "On forgiving margins." };
+const nextPost = { href: "#", title: "A short letter on small tools." };
 ---
 
 <SiteLayout
@@ -18,25 +25,7 @@ const toc = [
   <aside
     class="fixed top-20 bottom-0 right-0 w-[300px] overflow-y-auto pl-8 pr-8 pt-6 pb-12 hidden xl:block border-l border-warm-white"
   >
-    <section>
-      <h3 class="text-lg text-charcoal mb-3">On this page</h3>
-      <ol class="border-l border-warm-white text-sm">
-        {toc.map((t, i) => (
-          <li>
-            <a
-              href={`#${t.id}`}
-              class={
-                i === 0
-                  ? "block -ml-px border-l-2 border-accent pl-4 py-1.5 text-accent"
-                  : "block pl-4 py-1.5 text-charcoal hover:text-accent"
-              }
-            >
-              {t.n} {t.text}
-            </a>
-          </li>
-        ))}
-      </ol>
-    </section>
+    <TableOfContents headings={headings} />
 
     <hr class="my-6 border-warm-white" />
 
@@ -124,7 +113,7 @@ const toc = [
     </section>
   </aside>
 
-  <main class="ml-[260px] xl:mr-[300px] px-12 py-10">
+  <main class="md:ml-[260px] xl:mr-[300px] px-5 pt-20 pb-10 md:px-12 md:py-10">
     <article>
       <!-- Breadcrumb -->
       <div class="text-sm mb-6">
@@ -234,16 +223,7 @@ const toc = [
       </div>
     </article>
 
-    <nav class="mt-14 flex justify-between gap-8 max-w-[42rem] pt-6 border-t border-warm-white">
-      <a href="#" class="group">
-        <span class="panel-label block mb-1">← Previous</span>
-        <span class="font-display italic text-lg text-charcoal group-hover:text-accent leading-snug">On forgiving margins.</span>
-      </a>
-      <a href="#" class="group text-right">
-        <span class="panel-label block mb-1">Next →</span>
-        <span class="font-display italic text-lg text-charcoal group-hover:text-accent leading-snug">A short letter on small tools.</span>
-      </a>
-    </nav>
+    <PostNav prev={prevPost} next={nextPost} class="mt-14 max-w-[42rem]" />
 
     <footer class="mt-20 mb-4 pt-6 border-t border-warm-white flex items-center justify-between text-xs font-mono text-charcoal opacity-60 max-w-[42rem]">
       <span>© 2026 · pressmark</span>

@@ -6,5 +6,8 @@ export { default as PanelLabel } from "./PanelLabel.astro";
 export { default as SectionLabel } from "./SectionLabel.astro";
 export { default as Hairline } from "./Hairline.astro";
 export { default as Prose } from "./Prose.astro";
+export { default as CodeBlock } from "./CodeBlock.astro";
 export { default as Checkbox } from "./Checkbox.astro";
 export { default as Progress } from "./Progress.astro";
+export { default as TableOfContents } from "./TableOfContents.astro";
+export { default as PostNav } from "./PostNav.astro";

@@ -19,15 +19,19 @@
     },
     "packages/astro": {
       "name": "@pressmark/astro",
-      "version": "0.1.0",
+      "version": "0.3.0",
+      "dependencies": {
+        "unist-util-visit": "^5.0.0",
+      },
       "peerDependencies": {
-        "@pressmark/theme": "^0.1.0",
-        "astro": "^5.0.0",
+        "@pressmark/theme": "^0.3.0",
+        "astro": "^5.0.0 || ^6.0.0",
+        "shiki": "^1.0.0 || ^3.0.0 || ^4.0.0",
       },
     },
     "packages/theme": {
       "name": "@pressmark/theme",
-      "version": "0.1.0",
+      "version": "0.3.0",
       "peerDependencies": {
         "tailwindcss": "^4.0.0",
       },

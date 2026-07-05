@@ -1,0 +1,43 @@
+{
+  "name": "pressmark",
+  "type": "light",
+  "colors": {
+    "editor.background": "#ECE9E2",
+    "editor.foreground": "#1F1F1F",
+    "focusBorder": "#E05A24"
+  },
+  "tokenColors": [
+    {
+      "scope": ["comment", "punctuation.definition.comment"],
+      "settings": { "foreground": "#ABA49A", "fontStyle": "italic" }
+    },
+    {
+      "scope": ["keyword", "storage.type", "storage.modifier", "keyword.control"],
+      "settings": { "foreground": "#E05A24" }
+    },
+    {
+      "scope": ["string", "constant.other.symbol", "markup.raw"],
+      "settings": { "foreground": "#1F1F1F" }
+    },
+    {
+      "scope": ["entity.name.function", "support.function", "meta.function-call"],
+      "settings": { "foreground": "#1F1F1F" }
+    },
+    {
+      "scope": ["variable", "entity.name.variable", "variable.other"],
+      "settings": { "foreground": "#1F1F1F" }
+    },
+    {
+      "scope": ["constant.numeric", "constant.language"],
+      "settings": { "foreground": "#1F1F1F" }
+    },
+    {
+      "scope": ["entity.name.type", "support.type", "entity.name.class"],
+      "settings": { "foreground": "#E05A24" }
+    },
+    {
+      "scope": ["punctuation", "meta.brace"],
+      "settings": { "foreground": "#1F1F1F" }
+    }
+  ]
+}

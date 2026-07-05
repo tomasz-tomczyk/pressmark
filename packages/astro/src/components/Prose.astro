@@ -7,11 +7,8 @@ type Props = {
 } & HTMLAttributes<"article">;
 
 const { dropcap = false, class: className, ...rest } = Astro.props as Props;
-const classes = ["prose-pressmark", dropcap ? "dropcap" : "", className]
-  .filter(Boolean)
-  .join(" ");
 ---
 
-<article class={classes} {...rest}>
+<article class:list={["prose-pressmark", { dropcap }, className]} {...rest}>
   <slot />
 </article>

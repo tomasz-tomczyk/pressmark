@@ -1,0 +1,43 @@
+---
+type Item = { href: string; title: string };
+
+type Props = {
+  prev?: Item;
+  next?: Item;
+  class?: string;
+};
+
+const { prev, next, class: className } = Astro.props as Props;
+
+const labelClass = "panel-label block mb-1";
+const titleClass =
+  "font-display italic text-lg text-charcoal group-hover:text-accent leading-snug";
+---
+
+{
+  (prev || next) && (
+    <nav
+      class:list={[
+        "flex justify-between gap-8 pt-6 border-t border-warm-white",
+        className,
+      ]}
+    >
+      {prev ? (
+        <a href={prev.href} class="group">
+          <span class={labelClass}>← Previous</span>
+          <span class={titleClass}>{prev.title}</span>
+        </a>
+      ) : (
+        <span />
+      )}
+      {next ? (
+        <a href={next.href} class="group text-right">
+          <span class={labelClass}>Next →</span>
+          <span class={titleClass}>{next.title}</span>
+        </a>
+      ) : (
+        <span />
+      )}
+    </nav>
+  )
+}

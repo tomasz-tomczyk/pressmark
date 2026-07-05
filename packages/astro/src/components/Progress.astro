@@ -8,11 +8,10 @@ type Props = {
 
 const { value, class: className, ...rest } = Astro.props as Props;
 const clamped = Math.max(0, Math.min(100, value));
-const classes = ["progress", className].filter(Boolean).join(" ");
 ---
 
 <div
-  class={classes}
+  class:list={["progress", className]}
   role="progressbar"
   aria-valuenow={clamped}
   aria-valuemin={0}

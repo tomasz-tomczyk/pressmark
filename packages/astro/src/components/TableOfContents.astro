@@ -1,0 +1,75 @@
+---
+import type { MarkdownHeading } from "astro";
+
+type Props = {
+  /** Astro's `headings` from `render()` — filtered to h2 internally. */
+  headings: MarkdownHeading[];
+  title?: string;
+  class?: string;
+};
+
+const { headings, title = "On this page", class: className } = Astro.props as Props;
+
+const items = headings.filter((h) => h.depth === 2);
+---
+
+{
+  items.length > 0 && (
+    <nav class:list={["toc", className]} aria-label={title}>
+      <h3 class="text-lg text-charcoal mb-3">{title}</h3>
+      <ol class="border-l border-warm-white text-lg">
+        {items.map((h, i) => (
+          <li>
+            <a
+              href={`#${h.slug}`}
+              data-toc-link={h.slug}
+              class="toc-link block pl-4 py-1.5 text-charcoal hover:text-accent"
+            >
+              {i + 1}. {h.text}
+            </a>
+          </li>
+        ))}
+      </ol>
+    </nav>
+  )
+}
+
+<script>
+  // Progressive enhancement: highlight the ToC link for the section in view.
+  // Without JS, links still jump to their anchors.
+  const links = new Map<string, HTMLAnchorElement>();
+  document
+    .querySelectorAll<HTMLAnchorElement>("a[data-toc-link]")
+    .forEach((a) => links.set(a.dataset.tocLink!, a));
+
+  function setActive(slug: string | null) {
+    links.forEach((a, s) => {
+      const on = s === slug;
+      a.classList.toggle("-ml-px", on);
+      a.classList.toggle("border-l-2", on);
+      a.classList.toggle("border-accent", on);
+      a.classList.toggle("text-accent", on);
+      a.classList.toggle("text-charcoal", !on);
+    });
+  }
+
+  const headings = Array.from(links.keys())
+    .map((slug) => document.getElementById(slug))
+    .filter((el): el is HTMLElement => el !== null);
+
+  if (headings.length) {
+    setActive(headings[0].id);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort(
+            (a, b) => a.boundingClientRect.top - b.boundingClientRect.top,
+          );
+        if (visible.length) setActive(visible[0].target.id);
+      },
+      { rootMargin: "0px 0px -70% 0px", threshold: 0 },
+    );
+    headings.forEach((h) => observer.observe(h));
+  }
+</script>

@@ -1,16 +1,18 @@
 {
   "name": "@pressmark/theme",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Editorial, paper-bound Tailwind v4 design-system theme. CSS-only, drop-in.",
   "type": "module",
   "main": "./pressmark.css",
   "style": "./pressmark.css",
   "exports": {
     ".": "./pressmark.css",
-    "./pressmark.css": "./pressmark.css"
+    "./pressmark.css": "./pressmark.css",
+    "./shiki.json": "./shiki.json"
   },
   "files": [
     "pressmark.css",
+    "shiki.json",
     "README.md"
   ],
   "keywords": [

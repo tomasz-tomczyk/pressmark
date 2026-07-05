@@ -8,9 +8,8 @@ type Props = {
 
 const { variant = "default", class: className, ...rest } = Astro.props as Props;
 const base = variant === "mono" ? "badge-mono" : "badge";
-const classes = [base, className].filter(Boolean).join(" ");
 ---
 
-<span class={classes} {...rest}>
+<span class:list={[base, className]} {...rest}>
   <slot />
 </span>

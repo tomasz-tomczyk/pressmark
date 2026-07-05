@@ -7,7 +7,7 @@ import SiteLayout from "../layouts/SiteLayout.astro";
   description="Essays on writing, reading, and designing interfaces that don't demand attention."
  
 >
-  <main class="ml-[260px] px-12 py-10">
+  <main class="md:ml-[260px] px-5 pt-20 pb-10 md:px-12 md:py-10">
     <!-- Greeting -->
     <section class="mb-14 pl-2 max-w-[42rem]">
       <div class="panel-label mb-3">May 2026 · Vol. III</div>
@@ -22,8 +22,8 @@ import SiteLayout from "../layouts/SiteLayout.astro";
     </section>
 
     <!-- Lead post -->
-    <section class="mb-16 grid grid-cols-12 gap-6 items-stretch pl-2">
-      <a href={`post`} class="col-span-7 group">
+    <section class="mb-16 grid grid-cols-1 md:grid-cols-12 gap-6 items-stretch pl-2">
+      <a href={`post`} class="md:col-span-7 group">
         <div class="aspect-[16/9] rounded-lg overflow-hidden hairline relative">
           <img
             src="https://picsum.photos/seed/desk-notebook-morning-0/880/495"
@@ -35,7 +35,7 @@ import SiteLayout from "../layouts/SiteLayout.astro";
           </div>
         </div>
       </a>
-      <div class="col-span-5 flex flex-col justify-center">
+      <div class="md:col-span-5 flex flex-col justify-center">
         <div class="panel-label mb-3">May 17 · Essay · 8 min read</div>
         <h2 class="font-display font-light text-2xl md:text-3xl leading-[1.08] text-charcoal tracking-[-0.012em]">
           <a href={`post`} class="hover:text-accent">On designing calm interfaces.</a>
@@ -53,8 +53,8 @@ import SiteLayout from "../layouts/SiteLayout.astro";
     </section>
 
     <!-- Recent notes list + sidebar -->
-    <section class="grid grid-cols-12 gap-8 mb-16 pl-2">
-      <div class="col-span-8">
+    <section class="grid grid-cols-1 md:grid-cols-12 gap-8 mb-16 pl-2">
+      <div class="md:col-span-8">
         <div class="flex items-baseline justify-between mb-5 border-b border-warm-white pb-2">
           <h3 class="font-display text-xl text-charcoal">Recent notes</h3>
           <a href="#" class="panel-label hover:text-charcoal">archive →</a>
@@ -88,7 +88,7 @@ import SiteLayout from "../layouts/SiteLayout.astro";
       </div>
 
       <!-- Sidebar -->
-      <aside class="col-span-4 space-y-8 pt-1">
+      <aside class="md:col-span-4 space-y-8 pt-1">
         <div>
           <h4 class="panel-label mb-3">Archive</h4>
           <ul class="space-y-1.5 text-sm">
@@ -147,7 +147,7 @@ import SiteLayout from "../layouts/SiteLayout.astro";
         <h3 class="font-display text-xl text-charcoal">Currently reading</h3>
         <span class="panel-label">May 2026</span>
       </div>
-      <div class="grid grid-cols-5 gap-4">
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
         {[
           { seed: "writing-journal-1", title: "Walks with<br>Robert Walser", author: "Carl Seelig", status: "on hand", titleColor: "text-stone" },
           { seed: "library-book-2", title: "The Shape<br>of a Pocket", author: "John Berger", status: "in progress", titleColor: "text-paper" },

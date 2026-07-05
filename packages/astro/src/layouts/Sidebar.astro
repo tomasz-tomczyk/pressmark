@@ -12,6 +12,10 @@ type Props = {
   items?: SidebarItem[];
   currentPath?: string;
   class?: string;
+  /** Dim the desktop sidebar as the reader scrolls into the page (e.g. articles).
+      Restores on hover/focus. Mobile top bar is unaffected. Needs JS; degrades
+      to always-visible without it. */
+  fadeOnScroll?: boolean;
 };
 
 const {
@@ -20,6 +24,7 @@ const {
   items = [],
   currentPath = "/",
   class: className = "",
+  fadeOnScroll = false,
 } = Astro.props as Props;
 
 // Respect Astro's base path so library consumers at any base work.
@@ -49,9 +54,44 @@ function isActive(href: string): boolean {
 }
 ---
 
+<!-- Mobile: static top bar (no JS). Brand + inline nav; slot content is desktop-only. -->
+<header
+  class="md:hidden fixed top-0 inset-x-0 z-30 flex items-center justify-between gap-4 h-14 px-5 bg-paper border-b border-warm-white"
+>
+  {brand && (
+    <a
+      href={withBase(brandHref)}
+      class="shrink-0 font-display text-2xl tracking-tight text-charcoal leading-none"
+    >
+      {brand}
+    </a>
+  )}
+
+  {items.length > 0 && (
+    <nav class="nav-scroll flex items-center gap-1 min-w-0 -mr-3 overflow-x-auto text-lg">
+      {items.map((item) => {
+        const active = isActive(item.href);
+        return (
+          <a
+            href={withBase(item.href)}
+            class:list={[
+              "flex items-center shrink-0 min-h-11 px-3 rounded-md text-charcoal hover:bg-warm-white",
+              active && "font-medium text-accent",
+            ]}
+            aria-current={active ? "page" : undefined}
+          >
+            {item.label}
+          </a>
+        );
+      })}
+    </nav>
+  )}
+</header>
+
 <aside
   class:list={[
-    "fixed top-12 bottom-0 left-0 w-[260px] pb-6 px-5 z-20 overflow-y-auto border-r border-warm-white",
+    "hidden md:block fixed top-12 bottom-0 left-0 w-[260px] pb-6 px-5 z-20 overflow-y-auto overflow-x-hidden border-r border-warm-white",
+    fadeOnScroll && "sidebar-fade-on-scroll",
     className,
   ]}
 >
@@ -65,7 +105,7 @@ function isActive(href: string): boolean {
   )}
 
   {items.length > 0 && (
-    <nav class="space-y-0.5 text-sm">
+    <nav class="space-y-0.5">
       {items.map((item) => {
         const active = isActive(item.href);
         return (

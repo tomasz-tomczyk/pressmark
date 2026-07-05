@@ -58,6 +58,8 @@ const items = [
 - `Prose` — long-form article wrapper, `dropcap?: boolean`
 - `Checkbox` — styled checkbox input
 - `Progress` — `value: number` (0–100)
+- `TableOfContents` — `headings: MarkdownHeading[]` (Astro's `render()` output, filtered to h2 internally), `title?`. Progressive-enhancement scroll-spy via `IntersectionObserver`; links still jump to anchors without JS.
+- `PostNav` — `prev?: { href, title }`, `next?: { href, title }`. Renders nothing if both are omitted; a missing neighbour renders an empty placeholder to keep the flex layout balanced.
 
 ## Layouts
 

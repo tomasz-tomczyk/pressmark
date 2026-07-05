@@ -18,7 +18,7 @@ const { title, description } = Astro.props as Props;
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300..700;1,300..700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300..700;1,300..700&family=DM+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
     <slot name="head" />
@@ -26,5 +26,82 @@ const { title, description } = Astro.props as Props;
   <body class="min-h-screen">
     <slot name="sidebar" />
     <slot />
+
+    <script>
+      // Progressive enhancement: wire up code-block copy buttons. The buttons
+      // are rendered `hidden` server-side so no-JS pages show no broken control;
+      // we reveal them here and attach the clipboard handler. Mirrors the
+      // TableOfContents scroll-spy pattern (DS-owned inline script).
+      const buttons = document.querySelectorAll<HTMLButtonElement>(
+        "button[data-pressmark-copy]",
+      );
+
+      // Shiki renders one `.line` span per line (the rehype pipeline strips the
+      // `\n` text nodes between them), so textContent would collapse the code
+      // onto one line. Join the `.line` spans with newlines to preserve breaks
+      // and indentation; fall back to the raw textContent for non-Shiki bodies.
+      function extractCode(body: Element): string {
+        const lines = body.querySelectorAll(".line");
+        if (lines.length) {
+          return Array.from(lines)
+            .map((line) => line.textContent ?? "")
+            .join("\n");
+        }
+        return (body.textContent ?? "").replace(/\n$/, "");
+      }
+
+      buttons.forEach((button) => {
+        if (!navigator.clipboard) return; // no clipboard API → leave hidden
+        button.hidden = false;
+
+        let resetTimer: ReturnType<typeof setTimeout> | undefined;
+
+        button.addEventListener("click", async () => {
+          const figure = button.closest(".code-block");
+          const body = figure?.querySelector(".code-block-body");
+          if (!body) return;
+
+          try {
+            await navigator.clipboard.writeText(extractCode(body));
+          } catch {
+            return;
+          }
+
+          button.setAttribute("data-copied", "");
+          button.setAttribute("aria-label", "Copied");
+          clearTimeout(resetTimer);
+          resetTimer = setTimeout(() => {
+            button.removeAttribute("data-copied");
+            button.setAttribute("aria-label", "Copy code");
+          }, 1500);
+        });
+      });
+    </script>
+
+    <script>
+      // Progressive enhancement: dim any .sidebar-fade-on-scroll element once
+      // the reader scrolls into the article, so the nav recedes while reading.
+      // Hover/focus-within restore full opacity via CSS (:hover beats .is-faded).
+      // Without JS the class never gains .is-faded, so the nav stays visible.
+      const faders = document.querySelectorAll<HTMLElement>(
+        ".sidebar-fade-on-scroll",
+      );
+      if (faders.length) {
+        const THRESHOLD = 280; // px scrolled before the nav starts to dim
+        let ticking = false;
+        const apply = () => {
+          const faded = window.scrollY > THRESHOLD;
+          faders.forEach((el) => el.classList.toggle("is-faded", faded));
+          ticking = false;
+        };
+        const onScroll = () => {
+          if (ticking) return;
+          ticking = true;
+          requestAnimationFrame(apply);
+        };
+        apply();
+        window.addEventListener("scroll", onScroll, { passive: true });
+      }
+    </script>
   </body>
 </html>

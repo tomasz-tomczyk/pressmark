@@ -8,7 +8,7 @@ An editorial, paper-bound design system. Two published npm packages plus an Astr
 |---|---|
 | Repo | https://github.com/tomasz-tomczyk/pressmark |
 | Demo | https://tomasz-tomczyk.github.io/pressmark/ |
-| `@pressmark/theme` | Tailwind v4 CSS-only theme — single file, drop-in, no JS |
+| `@pressmark/theme` | Tailwind v4 theme — single CSS file, drop-in; a few components layer in minimal progressive-enhancement JS |
 | `@pressmark/astro` | Astro v5 components & layouts that render the theme classes |
 
 Originally called "Vellum" — the user may still refer to it that way colloquially. The published name is "Pressmark" because npm reserved `@vellum` and several other editorial nouns (see `~/.claude/projects/-Users-tomasztomczyk-Server-side/memory/project_pressmark_naming.md`).
@@ -47,9 +47,11 @@ bun install                # install all workspace deps
 bun run dev                # demo at http://localhost:4321
 bun run build              # static build into apps/demo/dist/
 
-# Publishing (manual, until Trusted Publishing is set up on npmjs.com)
-npm publish --workspace=@pressmark/theme --otp=XXXXXX
-npm publish --workspace=@pressmark/astro --otp=XXXXXX
+# Publishing — Trusted Publishing (OIDC) via GitHub Actions, no OTP.
+# Bump both package.json versions, commit, then cut a release:
+gh release create v0.3.0 --title "v0.3.0" --notes "..."   # → .github/workflows/publish.yml publishes BOTH
+# Or publish one package manually:
+gh workflow run publish.yml -f package=theme   # theme | astro | both
 ```
 
 The root scripts use `bun --filter=demo run <script>` — note the explicit `run`; without it, bun interprets `build`/`dev` as its own bundler subcommand.
@@ -77,10 +79,9 @@ These are user-enforced rules. Re-deriving them ourselves doesn't fly.
 - **All text is `charcoal`** except links/CTAs in `accent`.
 - `warm-gray` is **reserved for the smallest mono captions** (`panel-label`, dataset codes). Don't use it for body copy or muted text — that's a Skill DON'T trap.
 
-### Fonts — three only
-- **Crimson Pro** (display, variable, 300–700)
-- **Inter** (sans, 400/500/600/700)
-- **IBM Plex Mono** (mono, 400/500/600)
+### Fonts — two only
+- **Crimson Pro** (display + UI/body, variable, 300–700) — the whole UI is serif; there is no separate sans typeface (no `--font-sans` token). Everything uses `--font-display`. Type scale: prose/article body **21px**; all UI text **18px** (base body, nav, buttons, descriptions, ToC, metadata). Serif reads optically smaller than a sans. Reading column is 46rem; `.wide-media` breaks media out to 54rem.
+- **DM Mono** (mono, 400/500) — used for both inline code and code blocks, and for tiny mono captions. Note: max weight is 500 (no 600/700); heavier weights synthesise.
 
 The Google Fonts URL is baked into `BaseLayout.astro` head.
 
@@ -89,7 +90,9 @@ The Google Fonts URL is baked into `BaseLayout.astro` head.
 - **Image placeholders**: `https://picsum.photos/seed/{name}/{w}/{h}` with stable seeds. NEVER `source.unsplash.com` (deprecated). NEVER gradient `<div>`s.
 - **No arbitrary Tailwind sizes** like `text-[13px]`. Use the built-in scale (`text-xs/sm/base/lg/...`). Inline code is `0.8em`, baked into the theme.
 - **Badges/tags/pills**: `warm-white` bg, `charcoal` text, **no border**. Pre-built `.badge` / `.badge-mono` utilities — use them, don't repeat the class string.
-- **Page layout**: 260px fixed left sidebar at `top-12 bottom-0`, right border `warm-white`. Main is `<main class="ml-[260px] px-12 py-10">`. Post page adds `xl:mr-[300px]` for the right rail. All pages full-width, left-anchored — no `mx-auto` centered max-width.
+- **Page layout**: 260px fixed left sidebar at `top-12 bottom-0`, right border `warm-white`. Main is `<main class="ml-[260px] px-12 py-10">`. Post page adds `xl:mr-[300px]` for the right rail.
+  - **Content pages (post/list/home) use a centered column**: `.prose-pressmark` caps at 46rem; the opt-in `.wide-media` variant (`.prose-pressmark.wide-media` in `pressmark.css`) centers a 54rem container via CSS grid and lets media — images, code blocks, tables — break out from the 46rem text measure to the full 54rem. List/home pages mirror the same centered column so content doesn't shift horizontally when navigating list ↔ post.
+  - **Other surfaces stay left-anchored** — no `mx-auto` centered max-width outside the content column above. Don't centered-column-ify chrome (sidebar, nav, non-editorial utility pages) without a specific reason.
 
 ### CSS classes published as API
 - `.btn` / `.btn-primary` / `.btn-secondary` / `.btn-link`
@@ -104,7 +107,7 @@ Renaming these is a breaking change — bump the major version.
 
 - **WCAG 2.1 AA contrast** is NOT a target. warm-gray on paper is 2.24:1, accent on paper is 3.37:1, warm-white borders are 1.10:1. We tested a high-contrast AA variant; user rejected it as aesthetically wrong for the brand. Consumers shipping on public sites are warned in the README.
 - **Dark mode** is not implemented.
-- **JS interactivity** is not yet wired (theme toggle, search modal, etc. are static).
+- **JS interactivity** — pressmark now ships minimal, progressive-enhancement JS where a feature genuinely needs it (first case: `TableOfContents` scroll-spy via `IntersectionObserver`). Rule: components MUST degrade gracefully without JS (e.g. ToC links still jump to anchors). Heavier interactivity (theme toggle, search modal) remains static/unbuilt.
 
 ## Architectural notes
 

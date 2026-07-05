@@ -1,6 +1,6 @@
 {
   "name": "@pressmark/astro",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "description": "Astro components and layouts for the Pressmark editorial design system.",
   "type": "module",
   "main": "./src/index.ts",
@@ -9,6 +9,7 @@
     "./components": "./src/components/index.ts",
     "./layouts": "./src/layouts/index.ts",
     "./content/schema": "./src/content/schema.ts",
+    "./rehype/pressmark-code-blocks": "./src/rehype/pressmark-code-blocks.ts",
     "./components/*.astro": "./src/components/*.astro",
     "./layouts/*.astro": "./src/layouts/*.astro"
   },
@@ -35,7 +36,11 @@
   "bugs": "https://github.com/tomasz-tomczyk/pressmark/issues",
   "peerDependencies": {
     "astro": "^5.0.0 || ^6.0.0",
-    "@pressmark/theme": "^0.2.0"
+    "@pressmark/theme": "^0.3.0",
+    "shiki": "^1.0.0 || ^3.0.0 || ^4.0.0"
+  },
+  "dependencies": {
+    "unist-util-visit": "^5.0.0"
   },
   "publishConfig": {
     "access": "public"

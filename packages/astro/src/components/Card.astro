@@ -7,9 +7,8 @@ type Props = {
 } & HTMLAttributes<"div">;
 
 const { class: className, as: Tag = "div", ...rest } = Astro.props as Props;
-const classes = ["card", className].filter(Boolean).join(" ");
 ---
 
-<Tag class={classes} {...rest}>
+<Tag class:list={["card", className]} {...rest}>
   <slot />
 </Tag>

@@ -28,17 +28,15 @@ const variantClass =
     : variant === "secondary"
       ? "btn btn-secondary"
       : "btn btn-primary";
-
-const classes = [variantClass, className].filter(Boolean).join(" ");
 ---
 
 {
   Tag === "a" ? (
-    <a class={classes} href={href} {...(rest as HTMLAttributes<"a">)}>
+    <a class:list={[variantClass, className]} href={href} {...(rest as HTMLAttributes<"a">)}>
       <slot />
     </a>
   ) : (
-    <button class={classes} type={type ?? "button"} {...(rest as HTMLAttributes<"button">)}>
+    <button class:list={[variantClass, className]} type={type ?? "button"} {...(rest as HTMLAttributes<"button">)}>
       <slot />
     </button>
   )

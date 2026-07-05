@@ -8,19 +8,11 @@ type Props = {
 } & HTMLAttributes<"a">;
 
 const { href, active = false, class: className, ...rest } = Astro.props as Props;
-
-const classes = [
-  "nav-item",
-  active ? "font-medium" : "",
-  className,
-]
-  .filter(Boolean)
-  .join(" ");
 ---
 
 <a
   href={href}
-  class={classes}
+  class:list={["nav-item", { "font-medium": active }, className]}
   aria-current={active ? "page" : undefined}
   {...rest}
 >

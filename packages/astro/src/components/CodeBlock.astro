@@ -1,0 +1,93 @@
+---
+import pressmarkShiki from "@pressmark/theme/shiki.json";
+
+type Props = {
+  /** Header label, e.g. "Example: Markdown in practice" */
+  title?: string;
+  /** Language id shown in the header, e.g. "js" or "elixir" */
+  lang?: string;
+  /** Source code to highlight. Prefer this over the default slot in MDX. */
+  code?: string;
+  class?: string;
+};
+
+const { title, lang, code, class: className } = Astro.props as Props;
+
+let highlighted: string | undefined;
+if (code && lang) {
+  const { codeToHtml } = await import("shiki");
+  highlighted = await codeToHtml(code.trim(), {
+    lang,
+    theme: pressmarkShiki,
+  });
+}
+
+---
+
+<figure class:list={["code-block", className]}>
+  <figcaption class="code-block-header">
+    <div class="code-block-title">
+      {title && (
+        <>
+          <svg
+            width="12"
+            height="12"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            aria-hidden="true"
+          >
+            <path d="M5 4h11l3 3v13H5z" />
+            <path d="M16 4v3h3" />
+          </svg>
+          {title}
+        </>
+      )}
+    </div>
+    <div class="code-block-actions">
+      {lang && <span class="code-block-lang">{lang}</span>}
+      {/* Hidden until the BaseLayout script wires it up (progressive enhancement). */}
+      <button
+        type="button"
+        class="code-block-copy"
+        data-pressmark-copy
+        aria-label="Copy code"
+        hidden
+      >
+        <svg
+          class="code-block-copy-icon"
+          width="13"
+          height="13"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.7"
+          aria-hidden="true"
+        >
+          <rect x="9" y="9" width="11" height="11" rx="1.5" />
+          <path d="M5 15V5a1 1 0 0 1 1-1h10" />
+        </svg>
+        <svg
+          class="code-block-copy-check"
+          width="13"
+          height="13"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.7"
+          aria-hidden="true"
+        >
+          <path d="M20 6 9 17l-5-5" />
+        </svg>
+      </button>
+    </div>
+  </figcaption>
+  {
+    highlighted ? (
+      <div class="code-block-body code-block-shiki" set:html={highlighted} />
+    ) : (
+      <pre class="code-block-body"><code><slot /></code></pre>
+    )
+  }
+</figure>
