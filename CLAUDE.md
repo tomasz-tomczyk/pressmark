@@ -107,7 +107,13 @@ The exception is narrow, in the same way the gradient exception is:
   A colour can pass against the page and vanish inside a snippet.
 - Keywords and types keep `accent`; comments keep `muted`; punctuation is
   derived (`color-mix` of ink into raised) rather than taking a fourth token.
-- Four is the ceiling. A fifth needs the same argument made again.
+- Four is the ceiling. A fifth needs the same argument made again — and check
+  the grammar can reach it first. Elixir gives plain locals (`res`, `depth`) no
+  scope at all: they are bare `source.elixir`, so no theme can colour them, ours
+  or github-light's. Parameters are reachable only via `meta.function`, which is
+  what `code-variable` targets. Before concluding the highlighter is weak, dump
+  the scopes: `hl.codeToTokens(src, { lang, theme, includeExplanation: true })`
+  and print the leaf scope per token.
 - **Hues are spread deliberately**: accent 40, string 155, variable 205,
   number 250, function 335 — smallest gap 45 deg, chroma 0.11-0.14 against the
   accent's 0.179. Tune in OKLCH. Two colours can differ in hex and be
