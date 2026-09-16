@@ -2,13 +2,30 @@
 type Props = {
   title: string;
   description?: string;
+  /**
+   * Extra attributes for the <html> element.
+   *
+   * The escape hatch for consumers that re-point theme roles per page: the
+   * tokens are plain custom properties, so setting them here cascades to
+   * everything, chrome included.
+   *
+   *   htmlAttrs={{ style: "--color-accent:#4a9eff", "data-post": "oban" }}
+   */
+  htmlAttrs?: Record<string, string | undefined>;
+  /** Extra classes for <body>. */
+  bodyClass?: string;
 };
 
-const { title, description } = Astro.props as Props;
+const {
+  title,
+  description,
+  htmlAttrs = {},
+  bodyClass = "",
+} = Astro.props as Props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" {...htmlAttrs}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -23,7 +40,7 @@ const { title, description } = Astro.props as Props;
     />
     <slot name="head" />
   </head>
-  <body class="min-h-screen">
+  <body class:list={["min-h-screen", bodyClass]}>
     <slot name="sidebar" />
     <slot />
 

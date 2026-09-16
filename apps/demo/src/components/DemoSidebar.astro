@@ -58,19 +58,19 @@ const items: SidebarItem[] = [
 
 <Sidebar brand="/P." items={items} currentPath={currentPath}>
   <!-- Search -->
-  <div class="mt-7 flex items-center gap-2 h-9 px-3 rounded-md bg-warm-white text-sm">
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="text-charcoal opacity-60"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
-    <input class="flex-1 bg-transparent focus:outline-none text-charcoal placeholder-warm-gray" placeholder="Search" aria-label="Search" />
-    <kbd class="font-mono text-xs text-charcoal opacity-60 tracking-tight">⌘K</kbd>
+  <div class="mt-7 flex items-center gap-2 h-9 px-3 rounded-md bg-raised text-sm">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="text-ink opacity-60"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+    <input class="flex-1 bg-transparent focus:outline-none text-ink placeholder-muted" placeholder="Search" aria-label="Search" />
+    <kbd class="font-mono text-xs text-ink opacity-60 tracking-tight">⌘K</kbd>
   </div>
 
   <!-- Theme toggle -->
-  <div class="mt-3 grid grid-cols-2 gap-1 p-1 rounded-md bg-warm-white">
-    <button class="rounded-[5px] py-1.5 flex items-center justify-center gap-1.5 text-xs bg-paper text-charcoal font-medium shadow-[var(--shadow-paper)]" aria-pressed="true">
+  <div class="mt-3 grid grid-cols-2 gap-1 p-1 rounded-md bg-raised">
+    <button class="rounded-[5px] py-1.5 flex items-center justify-center gap-1.5 text-xs bg-surface text-ink font-medium shadow-[var(--shadow-soft)]" aria-pressed="true">
       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6l1.4 1.4M17 17l1.4 1.4M5.6 18.4 7 17M17 7l1.4-1.4"/></svg>
       Light
     </button>
-    <button class="rounded-[5px] py-1.5 flex items-center justify-center gap-1.5 text-xs text-charcoal opacity-60" aria-pressed="false">
+    <button class="rounded-[5px] py-1.5 flex items-center justify-center gap-1.5 text-xs text-ink opacity-60" aria-pressed="false">
       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
       Dark
     </button>
@@ -82,8 +82,8 @@ const items: SidebarItem[] = [
   </div>
 
   <!-- Pull quote -->
-  <blockquote class="mt-6 pl-3 border-l-2 border-accent font-display text-base leading-snug text-charcoal">
+  <blockquote class="mt-6 pl-3 border-l-2 border-accent font-display text-base leading-snug text-ink">
     Simplicity is not the absence of clutter, but the presence of purpose.
-    <footer class="mt-2 font-mono text-xs not-italic text-charcoal tracking-[0.04em]">— John Maeda</footer>
+    <footer class="mt-2 font-mono text-xs not-italic text-ink tracking-[0.04em]">— John Maeda</footer>
   </blockquote>
 </Sidebar>

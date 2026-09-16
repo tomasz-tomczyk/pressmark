@@ -25,10 +25,10 @@ const tableRows = [
   <main class="md:ml-[260px] px-5 pt-20 pb-10 md:px-12 md:py-10">
     <header class="mb-12">
       <PanelLabel class="mb-3">pressmark / system</PanelLabel>
-      <h1 class="font-display font-light text-3xl md:text-4xl lg:text-5xl leading-[1.04] tracking-[-0.012em] text-charcoal">
+      <h1 class="font-display font-light text-3xl md:text-4xl lg:text-5xl leading-[1.04] tracking-[-0.012em] text-ink">
         Components
       </h1>
-      <p class="mt-3 font-display italic text-base md:text-lg lg:text-xl text-charcoal max-w-[36rem]">
+      <p class="mt-3 font-display italic text-base md:text-lg lg:text-xl text-ink max-w-[36rem]">
         Every reusable piece, in one place. Everything below uses only the six palette colors.
       </p>
     </header>
@@ -43,7 +43,7 @@ const tableRows = [
       </div>
     </section>
 
-    <hr class="border-warm-white mb-14" />
+    <hr class="border-raised mb-14" />
 
     <!-- Tags -->
     <section class="mb-14">
@@ -52,59 +52,59 @@ const tableRows = [
         {tags.map((t) => (
           <a class="badge" href="#">{t}</a>
         ))}
-        <button class="badge text-warm-gray hover:text-charcoal" aria-label="Add tag">+</button>
+        <button class="badge text-muted hover:text-ink" aria-label="Add tag">+</button>
       </div>
     </section>
 
-    <hr class="border-warm-white mb-14" />
+    <hr class="border-raised mb-14" />
 
     <!-- Inline code -->
     <section class="mb-14">
       <SectionLabel class="mb-5">Inline code</SectionLabel>
-      <p class="text-sm text-charcoal max-w-[36rem]">
+      <p class="text-sm text-ink max-w-[36rem]">
         Inline code looks like <code>this</code>, or <code>that()</code>. Use it for short
         identifiers, file names, or short snippets — anything that should read as
         <em>literally code</em> inside flowing text.
       </p>
     </section>
 
-    <hr class="border-warm-white mb-14" />
+    <hr class="border-raised mb-14" />
 
     <!-- Form elements -->
     <section class="mb-14">
       <SectionLabel class="mb-5">Form elements</SectionLabel>
       <div class="space-y-3 max-w-md">
-        <label class="flex items-center gap-2.5 hairline rounded-lg px-3.5 py-2.5 bg-paper focus-within:shadow-[var(--shadow-focus)]">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="text-charcoal opacity-60 shrink-0"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
-          <input type="text" class="flex-1 bg-transparent focus:outline-none text-sm text-charcoal placeholder-warm-gray" placeholder="Search notes…" />
+        <label class="flex items-center gap-2.5 hairline rounded-lg px-3.5 py-2.5 bg-surface focus-within:shadow-[var(--shadow-focus)]">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="text-ink opacity-60 shrink-0"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+          <input type="text" class="flex-1 bg-transparent focus:outline-none text-sm text-ink placeholder-muted" placeholder="Search notes…" />
         </label>
         <textarea
-          class="hairline rounded-lg px-3.5 py-2.5 bg-paper w-full text-sm text-charcoal placeholder-warm-gray focus:outline-none focus:shadow-[var(--shadow-focus)] resize-y min-h-[6.5rem]"
+          class="hairline rounded-lg px-3.5 py-2.5 bg-surface w-full text-sm text-ink placeholder-muted focus:outline-none focus:shadow-[var(--shadow-focus)] resize-y min-h-[6.5rem]"
           placeholder="Write something down…"
         ></textarea>
       </div>
     </section>
 
-    <hr class="border-warm-white mb-14" />
+    <hr class="border-raised mb-14" />
 
     <!-- 4-col row: Metadata, Divider, Progress, Quote -->
     <section class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-10 mb-14">
       <div>
         <SectionLabel class="mb-5">Metadata</SectionLabel>
         <ul class="space-y-2.5 text-sm">
-          <li class="flex items-center gap-3 text-charcoal">
+          <li class="flex items-center gap-3 text-ink">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="opacity-70 shrink-0"><rect x="3" y="5" width="18" height="16" rx="1.5"/><path d="M3 9h18M8 3v4M16 3v4"/></svg>
             May 18, 2026
           </li>
-          <li class="flex items-center gap-3 text-charcoal">
+          <li class="flex items-center gap-3 text-ink">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="opacity-70 shrink-0"><path d="M3 7a1 1 0 0 1 1-1h5l2 2h8a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"/></svg>
             Notes
           </li>
-          <li class="flex items-center gap-3 text-charcoal">
+          <li class="flex items-center gap-3 text-ink">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="opacity-70 shrink-0"><circle cx="12" cy="12" r="9"/><path d="M12 7v6l4 2"/></svg>
             5 min read
           </li>
-          <li class="flex items-center gap-3 text-charcoal font-mono text-sm">
+          <li class="flex items-center gap-3 text-ink font-mono text-sm">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="opacity-70 shrink-0"><circle cx="12" cy="12" r="9"/></svg>
             #design  #writing
           </li>
@@ -114,16 +114,16 @@ const tableRows = [
       <div>
         <SectionLabel class="mb-5">Divider style</SectionLabel>
         <div class="space-y-6">
-          <hr class="border-warm-white" />
-          <div class="flex items-center gap-3 text-warm-gray">
-            <span class="flex-1 border-t border-warm-white"></span>
+          <hr class="border-raised" />
+          <div class="flex items-center gap-3 text-muted">
+            <span class="flex-1 border-t border-raised"></span>
             <span class="font-mono text-xs">—</span>
-            <span class="flex-1 border-t border-warm-white"></span>
+            <span class="flex-1 border-t border-raised"></span>
           </div>
-          <div class="flex items-center gap-3 text-warm-gray">
-            <span class="flex-1 border-t border-warm-white"></span>
+          <div class="flex items-center gap-3 text-muted">
+            <span class="flex-1 border-t border-raised"></span>
             <span class="font-mono text-xs">//</span>
-            <span class="flex-1 border-t border-warm-white"></span>
+            <span class="flex-1 border-t border-raised"></span>
           </div>
         </div>
       </div>
@@ -132,8 +132,8 @@ const tableRows = [
         <SectionLabel class="mb-5">Progress / reading</SectionLabel>
         <div>
           <div class="flex items-center justify-between mb-2 text-sm">
-            <span class="text-charcoal">Reading Progress</span>
-            <span class="font-mono text-xs text-charcoal opacity-60">45%</span>
+            <span class="text-ink">Reading Progress</span>
+            <span class="font-mono text-xs text-ink opacity-60">45%</span>
           </div>
           <Progress value={45} />
         </div>
@@ -141,14 +141,14 @@ const tableRows = [
 
       <div>
         <SectionLabel class="mb-5">Quote / callout</SectionLabel>
-        <blockquote class="border-l-2 border-accent pl-4 font-display italic text-lg leading-snug text-charcoal">
+        <blockquote class="border-l-2 border-accent pl-4 font-display italic text-lg leading-snug text-ink">
           The details are not the details. They make the design.
-          <footer class="mt-3 font-mono text-xs not-italic text-charcoal tracking-[0.04em]">— Charles Eames</footer>
+          <footer class="mt-3 font-mono text-xs not-italic text-ink tracking-[0.04em]">— Charles Eames</footer>
         </blockquote>
       </div>
     </section>
 
-    <hr class="border-warm-white mb-14" />
+    <hr class="border-raised mb-14" />
 
     <!-- Table + Lists -->
     <section class="grid grid-cols-1 lg:grid-cols-2 gap-10 mb-14">
@@ -156,39 +156,39 @@ const tableRows = [
         <SectionLabel class="mb-5">Table example</SectionLabel>
         <table class="w-full text-sm">
           <thead>
-            <tr class="border-b border-warm-white">
-              <th class="text-left font-medium text-charcoal opacity-70 py-2.5 pl-1 pr-2">Title</th>
-              <th class="text-left font-medium text-charcoal opacity-70 py-2.5 pr-2">Type</th>
-              <th class="text-left font-medium text-charcoal opacity-70 py-2.5">Updated</th>
+            <tr class="border-b border-raised">
+              <th class="text-left font-medium text-ink opacity-70 py-2.5 pl-1 pr-2">Title</th>
+              <th class="text-left font-medium text-ink opacity-70 py-2.5 pr-2">Type</th>
+              <th class="text-left font-medium text-ink opacity-70 py-2.5">Updated</th>
             </tr>
           </thead>
-          <tbody class="divide-y divide-warm-white">
+          <tbody class="divide-y divide-raised">
             {tableRows.map((r) => (
-              <tr class="hover:bg-warm-white/40">
-                <td class="py-2.5 pl-1 pr-2 text-charcoal flex items-center gap-2.5">
+              <tr class="hover:bg-raised/40">
+                <td class="py-2.5 pl-1 pr-2 text-ink flex items-center gap-2.5">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="opacity-70 shrink-0"><rect x="4" y="4" width="16" height="16" rx="1.5"/><path d="M4 8h16M9 4v4"/></svg>
                   {r.title}
                 </td>
-                <td class="py-2.5 pr-2 text-charcoal opacity-70">{r.type}</td>
-                <td class="py-2.5 text-charcoal opacity-70 font-mono text-sm">{r.date}</td>
+                <td class="py-2.5 pr-2 text-ink opacity-70">{r.type}</td>
+                <td class="py-2.5 text-ink opacity-70 font-mono text-sm">{r.date}</td>
               </tr>
             ))}
           </tbody>
         </table>
-        <div class="flex items-center justify-end gap-4 mt-4 font-mono text-xs text-charcoal opacity-70">
+        <div class="flex items-center justify-end gap-4 mt-4 font-mono text-xs text-ink opacity-70">
           <span>1–5 of 12</span>
           <div class="flex items-center gap-1">
-            <button class="size-6 grid place-items-center rounded hover:bg-warm-white" aria-label="Previous"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m15 6-6 6 6 6"/></svg></button>
-            <span class="size-6 grid place-items-center text-charcoal">1</span>
-            <button class="size-6 grid place-items-center rounded hover:bg-warm-white" aria-label="Next"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m9 6 6 6-6 6"/></svg></button>
-            <button class="size-6 grid place-items-center rounded hover:bg-warm-white" aria-label="Last"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m13 6 6 6-6 6M7 6l6 6-6 6"/></svg></button>
+            <button class="size-6 grid place-items-center rounded hover:bg-raised" aria-label="Previous"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m15 6-6 6 6 6"/></svg></button>
+            <span class="size-6 grid place-items-center text-ink">1</span>
+            <button class="size-6 grid place-items-center rounded hover:bg-raised" aria-label="Next"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m9 6 6 6-6 6"/></svg></button>
+            <button class="size-6 grid place-items-center rounded hover:bg-raised" aria-label="Last"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m13 6 6 6-6 6M7 6l6 6-6 6"/></svg></button>
           </div>
         </div>
       </div>
 
       <div>
         <SectionLabel class="mb-5">List item variants</SectionLabel>
-        <ul class="space-y-4 text-sm text-charcoal">
+        <ul class="space-y-4 text-sm text-ink">
           <li class="flex items-center gap-3">
             <Checkbox id="li-1" />
             <label for="li-1">A simple unchecked item</label>
@@ -202,7 +202,7 @@ const tableRows = [
             <label for="li-3">Another task to focus on</label>
           </li>
           <li class="flex items-center gap-3 pl-8 relative">
-            <span class="absolute left-3 top-1/2 -translate-y-1/2 w-3 border-t border-stone"></span>
+            <span class="absolute left-3 top-1/2 -translate-y-1/2 w-3 border-t border-line"></span>
             <Checkbox id="li-4" />
             <label for="li-4">A nested item example</label>
           </li>
@@ -214,7 +214,7 @@ const tableRows = [
       </div>
     </section>
 
-    <hr class="border-warm-white mb-14" />
+    <hr class="border-raised mb-14" />
 
     <!-- Card examples -->
     <section class="mb-20">
@@ -224,14 +224,14 @@ const tableRows = [
       </div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         <Card as="article" class="p-5 flex flex-col gap-4">
-          <div class="flex items-start justify-between text-xs font-mono text-charcoal opacity-60">
+          <div class="flex items-start justify-between text-xs font-mono text-ink opacity-60">
             <span>May 18, 2026 <span class="mx-1 opacity-50">·</span> Notes</span>
-            <button aria-label="Bookmark" class="text-charcoal opacity-70 hover:opacity-100">
+            <button aria-label="Bookmark" class="text-ink opacity-70 hover:opacity-100">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h10v18l-5-3-5 3z"/></svg>
             </button>
           </div>
-          <h3 class="font-display text-2xl leading-tight text-charcoal">On Designing Calm Interfaces</h3>
-          <p class="text-sm text-charcoal opacity-80 leading-relaxed">Thoughts on creating digital spaces that feel natural, quiet, and unobtrusive.</p>
+          <h3 class="font-display text-2xl leading-tight text-ink">On Designing Calm Interfaces</h3>
+          <p class="text-sm text-ink opacity-80 leading-relaxed">Thoughts on creating digital spaces that feel natural, quiet, and unobtrusive.</p>
           <div class="flex flex-wrap gap-1.5">
             <Badge>#design</Badge>
           </div>
@@ -241,28 +241,28 @@ const tableRows = [
         </Card>
 
         <Card as="article" class="p-5 flex flex-col gap-4">
-          <div class="flex items-start justify-between text-xs font-mono text-charcoal opacity-60">
+          <div class="flex items-start justify-between text-xs font-mono text-ink opacity-60">
             <span>May 11, 2026 <span class="mx-1 opacity-50">·</span> Journal</span>
-            <button aria-label="Bookmark" class="text-charcoal opacity-70 hover:opacity-100">
+            <button aria-label="Bookmark" class="text-ink opacity-70 hover:opacity-100">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h10v18l-5-3-5 3z"/></svg>
             </button>
           </div>
-          <h3 class="font-display text-2xl leading-tight text-charcoal">Building a Second Brain with Markdown</h3>
-          <p class="text-sm text-charcoal opacity-80 leading-relaxed">How simple text files and good structure scale with your thinking.</p>
+          <h3 class="font-display text-2xl leading-tight text-ink">Building a Second Brain with Markdown</h3>
+          <p class="text-sm text-ink opacity-80 leading-relaxed">How simple text files and good structure scale with your thinking.</p>
           <div class="flex flex-wrap gap-1.5">
             <Badge>#productivity</Badge>
           </div>
         </Card>
 
         <Card as="article" class="p-5 flex flex-col gap-4">
-          <div class="flex items-start justify-between text-xs font-mono text-charcoal opacity-60">
+          <div class="flex items-start justify-between text-xs font-mono text-ink opacity-60">
             <span>May 2, 2026 <span class="mx-1 opacity-50">·</span> Notes</span>
-            <button aria-label="Bookmark" class="text-charcoal opacity-70 hover:opacity-100">
+            <button aria-label="Bookmark" class="text-ink opacity-70 hover:opacity-100">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h10v18l-5-3-5 3z"/></svg>
             </button>
           </div>
-          <h3 class="font-display text-2xl leading-tight text-charcoal">macOS Keyboard Shortcuts I Actually Use</h3>
-          <p class="text-sm text-charcoal opacity-80 leading-relaxed">A collection of shortcuts that make my everyday workflow smoother.</p>
+          <h3 class="font-display text-2xl leading-tight text-ink">macOS Keyboard Shortcuts I Actually Use</h3>
+          <p class="text-sm text-ink opacity-80 leading-relaxed">A collection of shortcuts that make my everyday workflow smoother.</p>
           <div class="flex flex-wrap gap-1.5">
             <Badge>#macos</Badge>
             <Badge>#shortcuts</Badge>
@@ -274,12 +274,12 @@ const tableRows = [
       </div>
     </section>
 
-    <footer class="mt-10 mb-4 pt-6 border-t border-warm-white flex items-center justify-between text-xs font-mono text-charcoal opacity-60">
+    <footer class="mt-10 mb-4 pt-6 border-t border-raised flex items-center justify-between text-xs font-mono text-ink opacity-60">
       <span>© 2026 · pressmark / system</span>
       <div class="flex gap-4">
-        <a href={import.meta.env.BASE_URL} class="hover:text-charcoal">Home</a>
-        <a href={`post`} class="hover:text-charcoal">Sample post</a>
-        <a href={`about`} class="hover:text-charcoal">About</a>
+        <a href={import.meta.env.BASE_URL} class="hover:text-ink">Home</a>
+        <a href={`post`} class="hover:text-ink">Sample post</a>
+        <a href={`about`} class="hover:text-ink">About</a>
       </div>
     </footer>
   </main>

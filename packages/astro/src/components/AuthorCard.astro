@@ -1,0 +1,172 @@
+---
+/**
+ * AuthorCard — avatar, name, short bio, and a row of links.
+ *
+ * Written once in site config and rendered on every article, so it takes its
+ * content entirely through props.
+ *
+ *   rail   — stacked, for a narrow side column
+ *   inline — avatar beside the text, for an article byline or footer; the
+ *            eyebrow joins the name on one line rather than sitting above it
+ *
+ * With no `avatar`, it draws a lettered placeholder from the name rather than
+ * a stock face — honest about being a placeholder, and stable across renders.
+ */
+
+export type AuthorLink = {
+  label: string;
+  href: string;
+  /** Raw SVG inner content, rendered inside a 24×24 viewBox. */
+  icon?: string;
+  /**
+   * How the icon is drawn. Brand glyphs are usually single filled paths;
+   * line icons are stroked. Defaults to stroke.
+   */
+  iconStyle?: "stroke" | "fill";
+};
+
+type Props = {
+  name: string;
+  avatar?: string;
+  bio?: string;
+  links?: AuthorLink[];
+  variant?: "rail" | "inline";
+  /** Small label above the name, e.g. "Written by". */
+  eyebrow?: string;
+  class?: string;
+};
+
+const {
+  name,
+  avatar,
+  bio,
+  links = [],
+  variant = "rail",
+  eyebrow,
+  class: className = "",
+} = Astro.props as Props;
+
+const inline = variant === "inline";
+
+/** "Tomasz Tomczyk" -> "TT"; falls back to the first character. */
+const initials =
+  name
+    .split(/\s+/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((part) => part[0]?.toUpperCase() ?? "")
+    .join("") || name[0]?.toUpperCase() || "?";
+
+const avatarSize = inline ? "size-14" : "size-16";
+---
+
+<div
+  class:list={[
+    "author-card",
+    inline ? "flex items-start gap-4" : "flex flex-col items-start gap-3",
+    className,
+  ]}
+>
+  {avatar ? (
+    <img
+      src={avatar}
+      alt=""
+      width="64"
+      height="64"
+      loading="lazy"
+      decoding="async"
+      class:list={["rounded-full object-cover shrink-0 bg-raised", avatarSize]}
+    />
+  ) : (
+    <div
+      class:list={[
+        "avatar-placeholder rounded-full shrink-0 grid place-items-center bg-raised border border-line",
+        avatarSize,
+      ]}
+      aria-hidden="true"
+      title="Avatar placeholder"
+    >
+      <span class="font-display text-ink/70 text-xl leading-none tracking-wide">
+        {initials}
+      </span>
+    </div>
+  )}
+
+  <div class="min-w-0">
+    {/* Inline puts the label and the name on one line in one face — the
+        byline reads as a sentence. Rail stacks it, where the column is narrow. */}
+    {inline ? (
+      <p class="font-display text-lg text-ink leading-snug">
+        {eyebrow && <span>{eyebrow} </span>}{name}
+      </p>
+    ) : (
+      <>
+        {eyebrow && <p class="meta">{eyebrow}</p>}
+        <p class="font-display text-lg text-ink leading-snug">{name}</p>
+      </>
+    )}
+
+    {bio && <p class="mt-1 text-ink/85 leading-relaxed">{bio}</p>}
+
+    {links.length > 0 && (
+      <ul class="flex flex-wrap items-center gap-4 mt-3 list-none p-0 m-0">
+        {links.map((link) => (
+          <li>
+            <a
+              href={link.href}
+              class="author-link inline-flex items-center gap-1.5 no-underline"
+              rel={link.href.startsWith("http") ? "me noopener" : undefined}
+              target={link.href.startsWith("http") ? "_blank" : undefined}
+            >
+              {link.icon ? (
+                <>
+                  {link.iconStyle === "fill" ? (
+                    <svg
+                      width="18"
+                      height="18"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      class="shrink-0"
+                      aria-hidden="true"
+                      set:html={link.icon}
+                    />
+                  ) : (
+                    <svg
+                      width="18"
+                      height="18"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.6"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="shrink-0"
+                      aria-hidden="true"
+                      set:html={link.icon}
+                    />
+                  )}
+                  <span class="sr-only">{link.label}</span>
+                </>
+              ) : (
+                <span>{link.label}</span>
+              )}
+            </a>
+          </li>
+        ))}
+      </ul>
+    )}
+  </div>
+</div>
+
+<style>
+  /* Matches the link convention: accent on hover, never a filled background.
+     Icons sit at the same grey as .meta — at full ink a row of brand glyphs
+     reads as loud as the name above it, which is not the hierarchy. */
+  .author-card :global(.author-link) {
+    color: color-mix(in srgb, var(--color-ink) 68%, var(--color-surface));
+    transition: color 140ms ease;
+  }
+  .author-card :global(.author-link:hover) {
+    color: var(--color-accent);
+  }
+</style>

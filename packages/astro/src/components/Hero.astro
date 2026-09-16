@@ -1,0 +1,242 @@
+---
+/**
+ * Hero — the header artwork for an article.
+ *
+ * Deliberately unopinionated about the picture: photo, line drawing, diagram
+ * and painting all render the same. Pressmark owns the frame, the bleed and the
+ * caption; the consumer owns the image.
+ *
+ * Two shapes:
+ *   figure — a framed image in the flow, artwork and text stacked (default)
+ *   banner — the image becomes a backdrop and the default slot sits on top of
+ *            it, so the title and tags read over the artwork
+ *
+ * The image is the page's LCP element by default — eager, high fetch priority,
+ * async decoding.
+ */
+
+/** Either a plain URL or the `ImageMetadata` object from astro:assets. */
+export type HeroSource = string | { src: string; width?: number; height?: number };
+
+type Props = {
+  src: HeroSource;
+  /** Describe the image. Pass "" only if it is purely decorative. */
+  alt: string;
+  variant?: "figure" | "banner";
+  /** CSS aspect-ratio for the frame, e.g. "16/9", "21/9", "3/2". Figure only. */
+  aspect?: string;
+  /**
+   * How far the image breaks out of the reading column:
+   *   column — stays at the 46rem text measure
+   *   wide   — 54rem, matching .wide-media
+   *   full   — edge to edge
+   */
+  bleed?: "column" | "wide" | "full";
+  caption?: string;
+  /** Where to anchor the image when it's cropped, e.g. "center", "50% 30%". */
+  position?: string;
+  /**
+   * Banner only. How the overlaid text is made legible against the artwork.
+   *
+   *   flat     — one even wash of `surface` over the whole image. Safe
+   *              everywhere, but dims parts of the picture carrying no text.
+   *   panel    — the text sits on a solid block of `surface`, like a caption
+   *              card pasted onto a print. The image stays at full strength.
+   *   gradient — opaque behind the text, clear at the far edge.
+   *              REQUIRES a consumer that permits gradients. Pressmark's own
+   *              rule bans them, so this is never the default here.
+   */
+  scrimStyle?: "flat" | "panel" | "gradient";
+  /** Banner only. Strength of the flat/gradient scrim, 0–1. Unused by `panel`. */
+  scrim?: number;
+  /** Banner only. Minimum height of the backdrop area. */
+  minHeight?: string;
+  /**
+   * Banner only. Shadow behind the overlaid text, for legibility over busy
+   * artwork. Lets the scrim sit lighter, so more of the picture survives.
+   */
+  textShadow?: boolean;
+  /** Set false for artwork below the fold, so it doesn't compete for bandwidth. */
+  priority?: boolean;
+  class?: string;
+};
+
+const {
+  src,
+  alt,
+  variant = "figure",
+  aspect = "16/9",
+  bleed = "wide",
+  caption,
+  position = "center",
+  scrimStyle = "flat",
+  scrim = 0.45,
+  minHeight = "26rem",
+  textShadow = true,
+  priority = true,
+  class: className = "",
+} = Astro.props as Props;
+
+const url = typeof src === "string" ? src : src.src;
+const width = typeof src === "string" ? undefined : src.width;
+const height = typeof src === "string" ? undefined : src.height;
+
+const bleedClass = {
+  column: "max-w-[46rem]",
+  wide: "max-w-[54rem]",
+  full: "max-w-none",
+}[bleed];
+
+const loading = priority ? "eager" : "lazy";
+const fetchPriority = priority ? "high" : "auto";
+
+/**
+ * Stops for the gradient scrim, derived from `scrim`.
+ *
+ * `scrim` sets the strength behind the text; the far side always reaches fully
+ * clear. Encoding it in the stops — rather than putting a fixed gradient under
+ * a second `opacity` — is what makes the falloff visible: otherwise the whole
+ * layer scales together and it just reads as a slightly uneven flat wash.
+ *
+ * Clears by 72%, which is past the right edge of a centred 46rem column on a
+ * typical banner. Text laid out further right needs a higher `scrim`.
+ */
+const mix = (pct: number) =>
+  `color-mix(in srgb, var(--color-surface) ${Math.round(pct * 100)}%, transparent)`;
+
+const peak = Math.min(1, scrim * 1.95); // behind the text
+const scrimGradient = [
+  `${mix(peak)} 0%`,
+  `${mix(peak * 0.88)} 30%`,
+  `${mix(peak * 0.45)} 55%`,
+  `transparent 72%`,
+].join(", ");
+---
+
+{variant === "banner" ? (
+  <div
+    class:list={["hero-banner relative isolate w-full overflow-hidden", className]}
+    style={`min-height:${minHeight};`}
+  >
+    <img
+      src={url}
+      alt={alt}
+      width={width}
+      height={height}
+      loading={loading}
+      fetchpriority={fetchPriority}
+      decoding="async"
+      class="absolute inset-0 -z-20 w-full h-full object-cover"
+      style={`object-position:${position};`}
+    />
+
+    {scrimStyle === "flat" && (
+      <div
+        class="absolute inset-0 -z-10"
+        style={`background:var(--color-surface); opacity:${scrim};`}
+        aria-hidden="true"
+      />
+    )}
+
+    {scrimStyle === "gradient" && (
+      <div
+        class="absolute inset-0 -z-10"
+        style={`background:linear-gradient(to right, ${scrimGradient});`}
+        aria-hidden="true"
+      />
+    )}
+
+    <div
+      class:list={[
+        "relative",
+        textShadow && scrimStyle !== "panel" && "hero-banner-text",
+        scrimStyle === "panel" && "hero-panel-wrap",
+      ]}
+    >
+      {scrimStyle === "panel" ? (
+        <div class="hero-panel"><slot /></div>
+      ) : (
+        <slot />
+      )}
+    </div>
+  </div>
+) : (
+  <figure class:list={["hero mx-auto w-full", bleedClass, className]}>
+    <div class="hero-frame overflow-hidden bg-raised" style={`aspect-ratio: ${aspect};`}>
+      <img
+        src={url}
+        alt={alt}
+        width={width}
+        height={height}
+        loading={loading}
+        fetchpriority={fetchPriority}
+        decoding="async"
+        class="w-full h-full object-cover"
+        style={`object-position:${position};`}
+      />
+    </div>
+
+    {caption && <figcaption class="meta mt-3">{caption}</figcaption>}
+  </figure>
+)}
+
+<style>
+  /* Square corners at full bleed — a radius reads as a mistake edge-to-edge. */
+  .hero :global(.hero-frame) {
+    border-radius: var(--radius-lg);
+  }
+  .hero.max-w-none :global(.hero-frame) {
+    border-radius: 0;
+  }
+
+  /* The banner butts against the nav above it, so it carries only a lower rule. */
+  .hero-banner {
+    border-bottom: 1px solid var(--color-line);
+  }
+
+  /* Legibility over artwork. The shadow is drawn in `surface`, which is always
+     the opposite polarity to `ink` — dark behind light text, light behind dark
+     text — so it holds up in any palette without naming a colour.
+     A tight shadow for edge definition plus a wide one for separation; not a
+     gradient, so the no-gradient rule stands. */
+  .hero-banner-text :global(h1),
+  .hero-banner-text :global(p),
+  .hero-banner-text :global(a) {
+    text-shadow:
+      0 1px 2px color-mix(in srgb, var(--color-surface) 92%, transparent),
+      0 2px 14px color-mix(in srgb, var(--color-surface) 72%, transparent);
+  }
+
+  /* The text sits on solid stock instead of on the photograph — a caption card
+     pasted onto a print. No wash at all, so the image stays untouched. */
+  .hero-panel-wrap {
+    display: flex;
+    align-items: center;
+    min-height: inherit;
+  }
+  .hero-panel {
+    background: var(--color-surface);
+    border-right: 1px solid var(--color-line);
+    width: 100%;
+    max-width: 62ch;
+  }
+  @media (max-width: 48rem) {
+    /* Too narrow to sit the panel beside the image — let it span instead. */
+    .hero-panel {
+      max-width: none;
+      border-right: 0;
+    }
+  }
+
+  /* `.meta` is deliberately low-contrast for a plain surface; over artwork that
+     drops below legible, so it goes to full ink inside a banner. */
+  .hero-banner-text :global(.meta) {
+    color: var(--color-ink);
+  }
+
+  /* Badges carry their own background, so a shadow on them just smears. */
+  .hero-banner-text :global(.badge),
+  .hero-banner-text :global(.badge-mono) {
+    text-shadow: none;
+  }
+</style>

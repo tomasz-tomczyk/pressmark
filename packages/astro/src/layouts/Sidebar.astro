@@ -1,10 +1,7 @@
 ---
-export type SidebarItem = {
-  href: string;
-  label: string;
-  /** Raw SVG inner content (paths, rects, circles). Rendered inside a 16×16 viewBox=0 0 24 24 wrapper. */
-  icon?: string;
-};
+import { withBase, isActive as isActiveHref, type NavItem } from "../lib/nav.ts";
+
+export type SidebarItem = NavItem;
 
 type Props = {
   brand?: string;
@@ -27,41 +24,17 @@ const {
   fadeOnScroll = false,
 } = Astro.props as Props;
 
-// Respect Astro's base path so library consumers at any base work.
-const base = import.meta.env.BASE_URL.replace(/\/+$/, "");
-const withBase = (p: string): string => {
-  if (!p) return p;
-  if (p.startsWith("http") || p.startsWith("#")) return p;
-  if (p === "/") return base + "/";
-  if (p.startsWith("/")) return base + p;
-  return p;
-};
-
-function norm(p: string): string {
-  if (!p) return "";
-  const withoutBase = base ? p.replace(new RegExp("^" + base), "") : p;
-  const noHash = withoutBase.split("#")[0] ?? "";
-  return noHash.replace(/\/+$/, "").replace(/^\/+/, "");
-}
-
-const here = norm(currentPath);
-
-function isActive(href: string): boolean {
-  if (href.startsWith("#") || href.startsWith("http")) return false;
-  const target = norm(href);
-  if (target === "" && (here === "" || here === "index")) return true;
-  return here === target;
-}
+const isActive = (href: string): boolean => isActiveHref(href, currentPath);
 ---
 
 <!-- Mobile: static top bar (no JS). Brand + inline nav; slot content is desktop-only. -->
 <header
-  class="md:hidden fixed top-0 inset-x-0 z-30 flex items-center justify-between gap-4 h-14 px-5 bg-paper border-b border-warm-white"
+  class="md:hidden fixed top-0 inset-x-0 z-30 flex items-center justify-between gap-4 h-14 px-5 bg-surface border-b border-raised"
 >
   {brand && (
     <a
       href={withBase(brandHref)}
-      class="shrink-0 font-display text-2xl tracking-tight text-charcoal leading-none"
+      class="shrink-0 font-display text-2xl tracking-tight text-ink leading-none"
     >
       {brand}
     </a>
@@ -75,7 +48,8 @@ function isActive(href: string): boolean {
           <a
             href={withBase(item.href)}
             class:list={[
-              "flex items-center shrink-0 min-h-11 px-3 rounded-md text-charcoal hover:bg-warm-white",
+              "flex items-center shrink-0 min-h-11 px-3 text-ink no-underline transition-colors",
+              "hover:text-accent hover:underline hover:decoration-1 hover:underline-offset-4",
               active && "font-medium text-accent",
             ]}
             aria-current={active ? "page" : undefined}
@@ -90,7 +64,7 @@ function isActive(href: string): boolean {
 
 <aside
   class:list={[
-    "hidden md:block fixed top-12 bottom-0 left-0 w-[260px] pb-6 px-5 z-20 overflow-y-auto overflow-x-hidden border-r border-warm-white",
+    "hidden md:block fixed top-12 bottom-0 left-0 w-[260px] pb-6 px-5 z-20 overflow-y-auto overflow-x-hidden border-r border-raised",
     fadeOnScroll && "sidebar-fade-on-scroll",
     className,
   ]}
@@ -98,7 +72,7 @@ function isActive(href: string): boolean {
   {brand && (
     <a
       href={withBase(brandHref)}
-      class="font-display text-3xl tracking-tight text-charcoal block mb-10 leading-none"
+      class="font-display text-3xl tracking-tight text-ink block mb-10 leading-none"
     >
       {brand}
     </a>

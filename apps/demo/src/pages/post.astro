@@ -23,35 +23,35 @@ const nextPost = { href: "#", title: "A short letter on small tools." };
 >
   <!-- Right rail (TOC + actions + metadata + related) -->
   <aside
-    class="fixed top-20 bottom-0 right-0 w-[300px] overflow-y-auto pl-8 pr-8 pt-6 pb-12 hidden xl:block border-l border-warm-white"
+    class="fixed top-20 bottom-0 right-0 w-[300px] overflow-y-auto pl-8 pr-8 pt-6 pb-12 hidden xl:block border-l border-raised"
   >
     <TableOfContents headings={headings} />
 
-    <hr class="my-6 border-warm-white" />
+    <hr class="my-6 border-raised" />
 
     <section>
-      <h3 class="text-lg text-charcoal mb-3">Quick actions</h3>
+      <h3 class="text-lg text-ink mb-3">Quick actions</h3>
       <ul class="space-y-3 text-sm">
         <li>
-          <a href="#" class="flex items-center gap-3 text-charcoal hover:text-accent">
+          <a href="#" class="flex items-center gap-3 text-ink hover:text-accent">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="opacity-70"><path d="M7 3h10v18l-5-3-5 3z"/></svg>
             Add to Reading List
           </a>
         </li>
         <li>
-          <a href="#" class="flex items-center gap-3 text-charcoal hover:text-accent">
+          <a href="#" class="flex items-center gap-3 text-ink hover:text-accent">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="opacity-70"><path d="M10 14a4 4 0 0 0 4 0l3-3a4 4 0 1 0-5.6-5.6L9.8 7m-1.4 3-3 3a4 4 0 1 0 5.6 5.6l1.6-1.6"/></svg>
             Copy link to note
           </a>
         </li>
         <li>
-          <a href="#" class="flex items-center gap-3 text-charcoal hover:text-accent">
+          <a href="#" class="flex items-center gap-3 text-ink hover:text-accent">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="opacity-70"><path d="M5 3h11l3 3v15H5z"/><path d="M16 3v3h3"/><path d="M8 13l3 3 5-5"/></svg>
             Export as Markdown
           </a>
         </li>
         <li>
-          <a href="#" class="flex items-center gap-3 text-charcoal hover:text-accent">
+          <a href="#" class="flex items-center gap-3 text-ink hover:text-accent">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="opacity-70"><path d="M6 9V3h12v6"/><rect x="4" y="9" width="16" height="9" rx="1"/><path d="M7 14h10v7H7z"/></svg>
             Print this note
           </a>
@@ -59,38 +59,38 @@ const nextPost = { href: "#", title: "A short letter on small tools." };
       </ul>
     </section>
 
-    <hr class="my-6 border-warm-white" />
+    <hr class="my-6 border-raised" />
 
     <section>
-      <h3 class="text-lg text-charcoal mb-3">Metadata</h3>
+      <h3 class="text-lg text-ink mb-3">Metadata</h3>
       <ul class="space-y-2 text-sm">
-        <li class="flex items-center gap-3 text-charcoal">
+        <li class="flex items-center gap-3 text-ink">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="opacity-70"><rect x="3" y="5" width="18" height="16" rx="1.5"/><path d="M3 9h18M8 3v4M16 3v4"/></svg>
           May 17, 2026
         </li>
-        <li class="flex items-center gap-3 text-charcoal">
+        <li class="flex items-center gap-3 text-ink">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="opacity-70"><circle cx="12" cy="12" r="9"/><path d="M12 7v6l4 2"/></svg>
           8 min read
         </li>
-        <li class="flex items-center gap-3 text-charcoal">
+        <li class="flex items-center gap-3 text-ink">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="opacity-70"><path d="M3 7a1 1 0 0 1 1-1h5l2 2h8a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"/></svg>
           Notes
         </li>
-        <li class="flex items-center gap-3 text-charcoal">
+        <li class="flex items-center gap-3 text-ink">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="opacity-70"><path d="M3 7a1 1 0 0 1 1-1h5l2 2h8a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"/></svg>
           Design
         </li>
-        <li class="flex items-center gap-3 text-charcoal">
+        <li class="flex items-center gap-3 text-ink">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="opacity-70"><path d="M20 11 11 2H4v7l9 9z"/><circle cx="7.5" cy="7.5" r=".9" fill="currentColor"/></svg>
           #design  #interfaces
         </li>
       </ul>
     </section>
 
-    <hr class="my-6 border-warm-white" />
+    <hr class="my-6 border-raised" />
 
     <section>
-      <h3 class="text-lg text-charcoal mb-3">Related notes</h3>
+      <h3 class="text-lg text-ink mb-3">Related notes</h3>
       <ul class="space-y-4">
         {[
           { seed: "related-1", title: "Building a Second Brain with Markdown", date: "May 11, 2026" },
@@ -103,8 +103,8 @@ const nextPost = { href: "#", title: "A short letter on small tools." };
                 <img src={`https://picsum.photos/seed/${r.seed}/96/96`} alt="" class="w-full h-full object-cover" />
               </div>
               <div class="min-w-0">
-                <div class="font-display text-sm leading-tight text-charcoal group-hover:text-accent">{r.title}</div>
-                <div class="text-xs text-charcoal opacity-50 mt-1 font-mono">{r.date}</div>
+                <div class="font-display text-sm leading-tight text-ink group-hover:text-accent">{r.title}</div>
+                <div class="text-xs text-ink opacity-50 mt-1 font-mono">{r.date}</div>
               </div>
             </a>
           </li>
@@ -117,20 +117,20 @@ const nextPost = { href: "#", title: "A short letter on small tools." };
     <article>
       <!-- Breadcrumb -->
       <div class="text-sm mb-6">
-        <a href={import.meta.env.BASE_URL} class="text-accent hover:text-charcoal">Notes</a>
-        <span class="mx-1 text-charcoal opacity-50">/</span>
-        <a href="#" class="text-accent hover:text-charcoal">Design</a>
+        <a href={import.meta.env.BASE_URL} class="text-accent hover:text-ink">Notes</a>
+        <span class="mx-1 text-ink opacity-50">/</span>
+        <a href="#" class="text-accent hover:text-ink">Design</a>
       </div>
 
-      <h1 class="font-display font-normal text-4xl md:text-5xl lg:text-6xl leading-[1.04] text-charcoal">
+      <h1 class="font-display font-normal text-4xl md:text-5xl lg:text-6xl leading-[1.04] text-ink">
         On Designing Calm Interfaces
       </h1>
 
-      <p class="mt-4 text-base leading-relaxed text-charcoal max-w-[36rem]">
+      <p class="mt-4 text-base leading-relaxed text-ink max-w-[36rem]">
         Thoughts on creating digital spaces that feel natural,<br />quiet, and unobtrusive.
       </p>
 
-      <hr class="my-8 border-warm-white" />
+      <hr class="my-8 border-raised" />
 
       <div class="prose-pressmark">
         <p class="dropcap">
@@ -149,7 +149,7 @@ const nextPost = { href: "#", title: "A short letter on small tools." };
         </p>
         <blockquote>
           Make it as simple as possible, but not simpler.
-          <footer style="margin-top:0.6em;font-family:var(--font-mono);font-size:0.65em;font-style:normal;letter-spacing:0.04em;color:var(--color-charcoal);opacity:0.7;">— Albert Einstein</footer>
+          <footer style="margin-top:0.6em;font-family:var(--font-mono);font-size:0.65em;font-style:normal;letter-spacing:0.04em;color:var(--color-ink);opacity:0.7;">— Albert Einstein</footer>
         </blockquote>
 
         <h2 id="s2">2. Restraint in visual design</h2>
@@ -171,22 +171,22 @@ const nextPost = { href: "#", title: "A short letter on small tools." };
       </div>
 
       <!-- Inline code block — wider than prose-pressmark -->
-      <div class="my-7 max-w-[42rem] rounded-lg overflow-hidden bg-warm-white">
-        <div class="flex items-center justify-between px-4 py-2 border-b border-stone/40">
-          <div class="flex items-center gap-2 font-mono text-xs text-charcoal opacity-70">
+      <div class="my-7 max-w-[42rem] rounded-lg overflow-hidden bg-raised">
+        <div class="flex items-center justify-between px-4 py-2 border-b border-line/40">
+          <div class="flex items-center gap-2 font-mono text-xs text-ink opacity-70">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 4h11l3 3v13H5z"/><path d="M16 4v3h3"/></svg>
             Example: Markdown in practice
           </div>
-          <div class="flex items-center gap-3 font-mono text-xs text-charcoal opacity-60">
+          <div class="flex items-center gap-3 font-mono text-xs text-ink opacity-60">
             <span>js</span>
             <button aria-label="Copy code" class="hover:opacity-100"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="9" y="9" width="11" height="11" rx="1.5"/><path d="M5 15V5a1 1 0 0 1 1-1h10"/></svg></button>
           </div>
         </div>
-<pre class="font-mono text-sm leading-[1.7] px-4 py-3 text-charcoal overflow-x-auto"><span class="opacity-40 select-none mr-3">1</span><span class="text-accent">function</span> <span class="text-charcoal">writeNote</span>(note) &lbrace;
+<pre class="font-mono text-sm leading-[1.7] px-4 py-3 text-ink overflow-x-auto"><span class="opacity-40 select-none mr-3">1</span><span class="text-accent">function</span> <span class="text-ink">writeNote</span>(note) &lbrace;
 <span class="opacity-40 select-none mr-3">2</span>  <span class="text-accent">const</span> entry = &lbrace;
-<span class="opacity-40 select-none mr-3">3</span>    id: <span class="text-charcoal">Date</span>.<span class="opacity-70">now</span>(),
+<span class="opacity-40 select-none mr-3">3</span>    id: <span class="text-ink">Date</span>.<span class="opacity-70">now</span>(),
 <span class="opacity-40 select-none mr-3">4</span>    content: note,
-<span class="opacity-40 select-none mr-3">5</span>    created: <span class="text-accent">new</span> <span class="text-charcoal">Date</span>(),
+<span class="opacity-40 select-none mr-3">5</span>    created: <span class="text-accent">new</span> <span class="text-ink">Date</span>(),
 <span class="opacity-40 select-none mr-3">6</span>  &rbrace;;
 <span class="opacity-40 select-none mr-3">7</span>  <span class="opacity-70">save</span>(entry);
 <span class="opacity-40 select-none mr-3">8</span>&rbrace;</pre>
@@ -217,19 +217,19 @@ const nextPost = { href: "#", title: "A short letter on small tools." };
         </p>
       </div>
 
-      <div class="mt-12 pt-6 border-t border-warm-white max-w-[42rem] flex items-center justify-between text-xs font-mono text-charcoal opacity-60">
+      <div class="mt-12 pt-6 border-t border-raised max-w-[42rem] flex items-center justify-between text-xs font-mono text-ink opacity-60">
         <span>— Warsaw, May 17, 2026</span>
-        <span>Filed under <a href="#" class="text-accent hover:text-charcoal">design</a> · <a href="#" class="text-accent hover:text-charcoal">interfaces</a></span>
+        <span>Filed under <a href="#" class="text-accent hover:text-ink">design</a> · <a href="#" class="text-accent hover:text-ink">interfaces</a></span>
       </div>
     </article>
 
     <PostNav prev={prevPost} next={nextPost} class="mt-14 max-w-[42rem]" />
 
-    <footer class="mt-20 mb-4 pt-6 border-t border-warm-white flex items-center justify-between text-xs font-mono text-charcoal opacity-60 max-w-[42rem]">
+    <footer class="mt-20 mb-4 pt-6 border-t border-raised flex items-center justify-between text-xs font-mono text-ink opacity-60 max-w-[42rem]">
       <span>© 2026 · pressmark</span>
       <div class="flex gap-4">
-        <a href="#" class="hover:text-charcoal">RSS</a>
-        <a href="#" class="hover:text-charcoal">Email</a>
+        <a href="#" class="hover:text-ink">RSS</a>
+        <a href="#" class="hover:text-ink">Email</a>
       </div>
     </footer>
   </main>

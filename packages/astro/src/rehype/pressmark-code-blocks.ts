@@ -114,11 +114,70 @@ export function remarkPressmarkCodeTitles() {
 }
 
 /**
+ * Shiki resolves a theme to literal hex values and writes them into inline
+ * `style` attributes at build time. That makes highlighted code the one part of
+ * a page that ignores the theme roles — re-point `--color-surface` for a dark
+ * article and the prose follows while the code block stays light.
+ *
+ * Pressmark's Shiki theme is built from four roles and nothing else, so the
+ * hexes map cleanly back to the custom properties they came from. Rewriting
+ * them here means code follows whatever the roles are set to — including an
+ * accent this theme has never seen.
+ *
+ * Consumers using their own Shiki theme pass their own map.
+ */
+export const PRESSMARK_SHIKI_TOKEN_MAP: Record<string, string> = {
+  "#ECE9E2": "var(--color-raised)", // editor.background
+  "#1F1F1F": "var(--color-ink)", // editor.foreground, variables
+  "#ABA49A": "var(--color-muted)", // comments
+  "#E05A24": "var(--color-accent)", // keywords, types
+  "#007E46": "var(--color-code-string)", // strings, symbols, raw markup
+  "#913F82": "var(--color-code-function)", // function names and calls
+  "#0465AF": "var(--color-code-number)", // numerics, language constants
+  "#007481": "var(--color-code-variable)", // function parameters
+  // Punctuation and operators recede rather than taking a role of their own.
+  "#6B6B6B": "color-mix(in oklab, var(--color-ink) 60%, var(--color-raised))",
+};
+
+/**
+ * EVERY hex in `shiki.json` must appear above. Shiki bakes them into inline
+ * styles at build time, so an unmapped colour is a literal that ignores the
+ * theme — the block renders cream-on-cream inside a dark post, silently, with
+ * no build error. Change one file and you change both.
+ */
+
+export type CodeBlockOptions = {
+  /** Hex (any case) -> CSS value. Defaults to PRESSMARK_SHIKI_TOKEN_MAP. */
+  tokenColorMap?: Record<string, string>;
+};
+
+/** Replace every mapped hex in an inline style string with its role variable. */
+function mapStyleColors(style: string, map: Map<string, string>): string {
+  return style.replace(/#[0-9a-fA-F]{3,8}\b/g, (hex) => {
+    const full =
+      hex.length === 4
+        ? "#" +
+          hex
+            .slice(1)
+            .split("")
+            .map((c) => c + c)
+            .join("")
+        : hex;
+    return map.get(full.toUpperCase()) ?? hex;
+  });
+}
+
+/**
  * Wraps Shiki `<pre class="astro-code">` output in the pressmark `.code-block` frame
  * so Markdown fences match the demo's CodeBlock styling (header + lang label).
  */
-export function rehypePressmarkCodeBlocks() {
+export function rehypePressmarkCodeBlocks(options: CodeBlockOptions = {}) {
   let titleIndex = 0;
+  const colorMap = new Map(
+    Object.entries(options.tokenColorMap ?? PRESSMARK_SHIKI_TOKEN_MAP).map(
+      ([hex, value]) => [hex.toUpperCase(), value],
+    ),
+  );
 
   return (tree: Root, file: VFile) => {
     const titles = (file.data[TITLES_KEY] as Array<string | null> | undefined) ?? [];
@@ -163,6 +222,17 @@ export function rehypePressmarkCodeBlocks() {
 
       parent.children[index] = figure;
     });
+
+    // Re-point Shiki's baked hexes at the theme roles, so highlighted code
+    // themes with the rest of the page rather than staying on the values the
+    // theme was compiled with.
+    if (colorMap.size) {
+      visit(tree, "element", (node) => {
+        const style = node.properties?.style;
+        if (typeof style !== "string" || !style.includes("#")) return;
+        node.properties = { ...node.properties, style: mapStyleColors(style, colorMap) };
+      });
+    }
 
     // Shiki leaves `\n` text nodes between `.line` spans — they double line height
     visit(tree, "element", (node) => {

@@ -18,15 +18,15 @@ const palette = [
       <div class="col-span-4">
         <div class="aspect-[4/5] rounded-md overflow-hidden hairline relative">
           <img src="https://picsum.photos/seed/studio-workspace-0/400/500" alt="" class="block w-full h-full object-cover" />
-          <span class="absolute bottom-3 left-3 panel-label" style="color: var(--color-paper);">portrait</span>
+          <span class="absolute bottom-3 left-3 panel-label" style="color: var(--color-surface);">portrait</span>
         </div>
       </div>
       <div class="col-span-8">
         <div class="panel-label mb-4">About the notebook</div>
-        <h1 class="font-display font-light text-4xl md:text-5xl lg:text-6xl leading-[1.02] tracking-[-0.018em] text-charcoal">
+        <h1 class="font-display font-light text-4xl md:text-5xl lg:text-6xl leading-[1.02] tracking-[-0.018em] text-ink">
           T. Tomczyk
         </h1>
-        <p class="mt-4 font-display italic text-xl md:text-2xl leading-snug text-warm-gray max-w-[34rem]">
+        <p class="mt-4 font-display italic text-xl md:text-2xl leading-snug text-muted max-w-[34rem]">
           Writes here about designing things, slowly. Mostly software, sometimes paper.
         </p>
       </div>
@@ -81,32 +81,32 @@ const palette = [
         <div>
           <h4 class="panel-label mb-3">Currently</h4>
           <ul class="space-y-2 text-sm">
-            <li class="flex gap-3"><span class="font-mono text-xs text-warm-gray w-10 shrink-0 pt-0.5 uppercase">Work</span><span class="text-charcoal">A small CLI for marginal notes</span></li>
-            <li class="flex gap-3"><span class="font-mono text-xs text-warm-gray w-10 shrink-0 pt-0.5 uppercase">Read</span><span class="text-charcoal">Walks with Robert Walser · Berger's <em>Shape of a Pocket</em></span></li>
-            <li class="flex gap-3"><span class="font-mono text-xs text-warm-gray w-10 shrink-0 pt-0.5 uppercase">Hear</span><span class="text-charcoal">Arvo Pärt · Tabula Rasa, on repeat</span></li>
-            <li class="flex gap-3"><span class="font-mono text-xs text-warm-gray w-10 shrink-0 pt-0.5 uppercase">Place</span><span class="text-charcoal">Warsaw, mostly</span></li>
-            <li class="flex gap-3"><span class="font-mono text-xs text-warm-gray w-10 shrink-0 pt-0.5 uppercase">Mood</span><span class="text-charcoal">Tentatively hopeful</span></li>
+            <li class="flex gap-3"><span class="font-mono text-xs text-muted w-10 shrink-0 pt-0.5 uppercase">Work</span><span class="text-ink">A small CLI for marginal notes</span></li>
+            <li class="flex gap-3"><span class="font-mono text-xs text-muted w-10 shrink-0 pt-0.5 uppercase">Read</span><span class="text-ink">Walks with Robert Walser · Berger's <em>Shape of a Pocket</em></span></li>
+            <li class="flex gap-3"><span class="font-mono text-xs text-muted w-10 shrink-0 pt-0.5 uppercase">Hear</span><span class="text-ink">Arvo Pärt · Tabula Rasa, on repeat</span></li>
+            <li class="flex gap-3"><span class="font-mono text-xs text-muted w-10 shrink-0 pt-0.5 uppercase">Place</span><span class="text-ink">Warsaw, mostly</span></li>
+            <li class="flex gap-3"><span class="font-mono text-xs text-muted w-10 shrink-0 pt-0.5 uppercase">Mood</span><span class="text-ink">Tentatively hopeful</span></li>
           </ul>
-          <p class="mt-3 text-xs font-mono text-warm-gray">Last updated May 21, 2026.</p>
+          <p class="mt-3 text-xs font-mono text-muted">Last updated May 21, 2026.</p>
         </div>
 
         <div>
           <h4 class="panel-label mb-3">Elsewhere</h4>
           <ul class="space-y-1.5 text-sm">
-            <li class="flex justify-between"><a href="#" class="text-charcoal hover:text-accent">Email</a><span class="font-mono text-xs text-warm-gray">me@tomasztomczyk.com</span></li>
-            <li class="flex justify-between"><a href="#" class="text-charcoal hover:text-accent">GitHub</a><span class="font-mono text-xs text-warm-gray">@tomekt</span></li>
-            <li class="flex justify-between"><a href="#" class="text-charcoal hover:text-accent">Mastodon</a><span class="font-mono text-xs text-warm-gray">@t@hachyderm</span></li>
-            <li class="flex justify-between"><a href="#" class="text-charcoal hover:text-accent">RSS</a><span class="font-mono text-xs text-warm-gray">/feed.xml</span></li>
+            <li class="flex justify-between"><a href="#" class="text-ink hover:text-accent">Email</a><span class="font-mono text-xs text-muted">me@tomasztomczyk.com</span></li>
+            <li class="flex justify-between"><a href="#" class="text-ink hover:text-accent">GitHub</a><span class="font-mono text-xs text-muted">@tomekt</span></li>
+            <li class="flex justify-between"><a href="#" class="text-ink hover:text-accent">Mastodon</a><span class="font-mono text-xs text-muted">@t@hachyderm</span></li>
+            <li class="flex justify-between"><a href="#" class="text-ink hover:text-accent">RSS</a><span class="font-mono text-xs text-muted">/feed.xml</span></li>
           </ul>
         </div>
 
         <div class="card p-4">
           <h4 class="panel-label mb-2">Letters</h4>
-          <p class="text-xs text-charcoal mb-3 leading-relaxed">
+          <p class="text-xs text-ink mb-3 leading-relaxed">
             One short letter on the last Sunday of each month. Easy in, easy out.
           </p>
           <form class="flex gap-2">
-            <input type="email" placeholder="you@elsewhere.com" aria-label="Email" class="flex-1 h-8 px-2.5 rounded-md hairline bg-paper text-xs placeholder-warm-gray focus:outline-none focus:shadow-[var(--shadow-focus)]" />
+            <input type="email" placeholder="you@elsewhere.com" aria-label="Email" class="flex-1 h-8 px-2.5 rounded-md hairline bg-surface text-xs placeholder-muted focus:outline-none focus:shadow-[var(--shadow-focus)]" />
             <button class="btn btn-primary btn-sm">Sign up</button>
           </form>
         </div>
@@ -114,33 +114,33 @@ const palette = [
     </section>
 
     <!-- Colophon -->
-    <section class="mb-20 pl-2 pt-10 border-t border-warm-white">
-      <h3 class="font-display text-2xl mb-6 text-charcoal">Colophon</h3>
+    <section class="mb-20 pl-2 pt-10 border-t border-raised">
+      <h3 class="font-display text-2xl mb-6 text-ink">Colophon</h3>
       <div class="grid grid-cols-12 gap-8">
         <dl class="col-span-8 grid grid-cols-2 gap-x-8 gap-y-4 text-sm">
           <div>
             <dt class="panel-label mb-1">Typography</dt>
-            <dd class="text-charcoal">Crimson Pro · DM Mono</dd>
+            <dd class="text-ink">Crimson Pro · DM Mono</dd>
           </div>
           <div>
             <dt class="panel-label mb-1">Palette</dt>
-            <dd class="text-charcoal">Six colors. Paper. Warm white. Stone. Warm gray. Charcoal. Accent.</dd>
+            <dd class="text-ink">Six colors. Paper. Warm white. Stone. Warm gray. Charcoal. Accent.</dd>
           </div>
           <div>
             <dt class="panel-label mb-1">Built with</dt>
-            <dd class="text-charcoal">Tailwind v4 · Astro · static HTML</dd>
+            <dd class="text-ink">Tailwind v4 · Astro · static HTML</dd>
           </div>
           <div>
             <dt class="panel-label mb-1">Hosted</dt>
-            <dd class="text-charcoal">Somewhere quiet. Updated by hand.</dd>
+            <dd class="text-ink">Somewhere quiet. Updated by hand.</dd>
           </div>
           <div>
             <dt class="panel-label mb-1">License</dt>
-            <dd class="text-charcoal">CC BY-NC 4.0 · words are mine, ideas are everyone's</dd>
+            <dd class="text-ink">CC BY-NC 4.0 · words are mine, ideas are everyone's</dd>
           </div>
           <div>
             <dt class="panel-label mb-1">Privacy</dt>
-            <dd class="text-charcoal">No analytics. No cookies. No tracking. No newsletter pop-ups.</dd>
+            <dd class="text-ink">No analytics. No cookies. No tracking. No newsletter pop-ups.</dd>
           </div>
         </dl>
 
@@ -150,22 +150,22 @@ const palette = [
             {palette.map((c) => (
               <li class="flex items-center gap-3 text-xs">
                 <span class={`size-4 rounded-full ${c.hairline ? "hairline" : ""}`} style={`background:${c.bg}`}></span>
-                <span class="text-charcoal flex-1">{c.name}</span>
-                <span class="font-mono text-xs text-warm-gray">{c.hex}</span>
+                <span class="text-ink flex-1">{c.name}</span>
+                <span class="font-mono text-xs text-muted">{c.hex}</span>
               </li>
             ))}
           </ul>
-          <p class="mt-3 text-xs font-mono text-warm-gray">* warm-white pending confirmation</p>
+          <p class="mt-3 text-xs font-mono text-muted">* raised pending confirmation</p>
         </div>
       </div>
     </section>
 
-    <footer class="mt-10 mb-4 pl-2 pt-6 border-t border-warm-white flex items-center justify-between text-xs font-mono text-warm-gray">
+    <footer class="mt-10 mb-4 pl-2 pt-6 border-t border-raised flex items-center justify-between text-xs font-mono text-muted">
       <span>© 2026 · pressmark · maintained in Warsaw</span>
       <div class="flex gap-4">
-        <a href="#" class="hover:text-charcoal">RSS</a>
-        <a href="#" class="hover:text-charcoal">Email</a>
-        <a href={`system`} class="hover:text-charcoal">Colophon</a>
+        <a href="#" class="hover:text-ink">RSS</a>
+        <a href="#" class="hover:text-ink">Email</a>
+        <a href={`system`} class="hover:text-ink">Colophon</a>
       </div>
     </footer>
   </main>

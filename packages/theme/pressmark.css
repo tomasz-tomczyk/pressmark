@@ -13,23 +13,54 @@
  *       &family=DM+Mono:wght@400;500
  *       &display=swap" rel="stylesheet">
  *
- * Tokens are intentionally minimal — six colors, two fonts.
- * To override the accent or fonts, re-declare them in your own @theme block
- * AFTER importing this file.
+ * ---------------------------------------------------------------------------
+ * Tokens name ROLES, not appearances.
+ *
+ * Pressmark ships exactly one palette — six colours, two typefaces, light.
+ * Nothing here is themed, and there is no dark mode; that is deliberate.
+ * What changed in 0.4.0 is that components no longer hardcode hex values,
+ * so a consumer can re-point any role by redeclaring the custom property.
+ *
+ * Because these are emitted as real CSS custom properties (plain `@theme`,
+ * not `@theme inline`), utilities compile to `var(--color-*)` and a consumer
+ * can override a role at runtime on any element — including <html>:
+ *
+ *   <html style="--color-accent:#4a9eff">
+ *
+ * Overriding is the consumer's business. Pressmark itself stays one look.
  * ============================================================================ */
 
 @theme {
-  /* ---------- Type ---------- */
+  /* ---------- Type: two faces, three roles ----------
+     display and body are the same face by default; they are separate tokens
+     so a consumer can set a different heading face without touching prose. */
   --font-display: "Crimson Pro", "Iowan Old Style", Georgia, serif;
+  --font-body:    "Crimson Pro", "Iowan Old Style", Georgia, serif;
   --font-mono:    "DM Mono", ui-monospace, "SF Mono", Menlo, monospace;
 
-  /* ---------- The palette: six colors. No others. ---------- */
-  --color-paper:       #F6F4EE;  /* main background                   */
-  --color-warm-white:  #ECE9E2;  /* secondary surface, badges, soft borders */
-  --color-stone:       #D9D6CC;  /* borders, dividers, soft surfaces  */
-  --color-warm-gray:   #ABA49A;  /* small mono annotations only       */
-  --color-charcoal:    #1F1F1F;  /* primary text, dark surfaces       */
-  --color-accent:      #E05A24;  /* the one accent                    */
+  /* ---------- The palette: six roles. No others. ----------
+     Never introduce a seventh. Compose from these six. For "muted text",
+     drop hierarchy with size/weight rather than adding a grey. */
+  --color-surface: #F6F4EE;  /* page background                          */
+  --color-raised:  #ECE9E2;  /* cards, badges, code bg, soft borders     */
+  --color-line:    #D9D6CC;  /* dividers, hairlines                      */
+  --color-muted:   #ABA49A;  /* TINY MONO CAPTIONS ONLY — not body copy  */
+  --color-ink:     #1F1F1F;  /* primary text, dark surfaces              */
+  --color-accent:  #E05A24;  /* the one accent — links, CTAs, rules      */
+
+  /* ---------- Syntax roles: code blocks only. ----------
+     The one exception to "six roles, no others", and it is narrow: these may
+     colour syntax tokens inside a code block and nothing else. Never use them
+     for UI, text, borders or icons — reach for the six above.
+
+     They are drawn on --color-raised (the code background), not on --surface,
+     which is what their contrast is judged against. Keywords and types keep
+     --color-accent; comments keep --color-muted; punctuation is derived from
+     ink rather than taking a token of its own. */
+  --color-code-string:   #007E46;  /* strings, symbols, raw markup  4.25:1 */
+  --color-code-function: #913F82;  /* function names and calls      5.35:1 */
+  --color-code-number:   #0465AF;  /* numerics, language constants  4.97:1 */
+  --color-code-variable: #007481;  /* function parameters           4.54:1 */
 
   /* ---------- Radius ---------- */
   --radius-sm:  0.375rem;
@@ -37,8 +68,8 @@
   --radius-lg:  0.875rem;
   --radius-2xl: 1.75rem;
 
-  /* ---------- Shadow (charcoal-tinted, subtle) ---------- */
-  --shadow-paper: 0 1px 0 rgb(255 255 255 / 0.7) inset,
+  /* ---------- Shadow (ink-tinted, subtle) ---------- */
+  --shadow-soft:  0 1px 0 rgb(255 255 255 / 0.7) inset,
                   0 1px 2px rgb(31 31 31 / 0.04),
                   0 6px 18px rgb(31 31 31 / 0.04);
   --shadow-lift:  0 1px 0 rgb(255 255 255 / 0.8) inset,
@@ -58,9 +89,9 @@
     font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
   }
   body {
-    background: var(--color-paper);
-    color: var(--color-charcoal);
-    font-family: var(--font-display);
+    background: var(--color-surface);
+    color: var(--color-ink);
+    font-family: var(--font-body);
     font-size: 18px;
     line-height: 1.55;
   }
@@ -68,7 +99,7 @@
     font-family: var(--font-display);
     font-weight: 400;
     letter-spacing: -0.005em;
-    color: var(--color-charcoal);
+    color: var(--color-ink);
     line-height: 1.1;
     font-feature-settings: "kern" 1, "liga" 1, "calt" 1, "onum" 1;
   }
@@ -78,18 +109,18 @@
   }
   ::selection {
     background: var(--color-accent);
-    color: var(--color-paper);
+    color: var(--color-surface);
   }
 
-  /* Inline code — warm-white pill with literal backticks visible.
+  /* Inline code — raised pill with literal backticks visible.
      `pre code` is excluded so large code blocks keep their own styling. */
   :where(:not(pre)) > code {
-    background: var(--color-warm-white);
+    background: var(--color-raised);
     padding: 0.1em 0.4em;
     border-radius: 0.25em;
     font-family: var(--font-mono);
     font-size: 0.8em;
-    color: var(--color-charcoal);
+    color: var(--color-ink);
   }
   :where(:not(pre)) > code::before,
   :where(:not(pre)) > code::after {
@@ -102,23 +133,23 @@
  * Utilities — small, opinionated additions to vanilla Tailwind
  * ============================================================================ */
 
-/* hairline — single-pixel border in warm-white. Soft by default. */
+/* hairline — single-pixel border in raised. Soft by default. */
 @utility hairline {
-  border: 1px solid var(--color-warm-white);
+  border: 1px solid var(--color-raised);
 }
 
 /* card — the canonical raised surface */
 @utility card {
-  background: var(--color-paper);
-  border: 1px solid var(--color-warm-white);
+  background: var(--color-surface);
+  border: 1px solid var(--color-raised);
   border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-paper);
+  box-shadow: var(--shadow-soft);
 }
 
-/* badge — soft-rounded tag. Warm-white bg, charcoal text, no border. */
+/* badge — soft-rounded tag. Warm-white bg, ink text, no border. */
 @utility badge {
-  background: var(--color-warm-white);
-  color: var(--color-charcoal);
+  background: var(--color-raised);
+  color: var(--color-ink);
   border-radius: 0.5rem;       /* 8px — soft, not pill */
   font-size: 18px;             /* serif floor — no Crimson Pro below 18px */
   font-weight: 500;
@@ -130,10 +161,30 @@
   white-space: nowrap;
 }
 
+/* badge-meta — badge shape at the .meta type step (13px mono), for a tag chip
+   sitting in a metadata row, where the 18px serif badge towers over the date
+   beside it. Colour is INHERITED, not set, so the chip can sit inside a link
+   and pick up its hover; give it a colour from the parent (usually `.meta`). */
+@utility badge-meta {
+  background: var(--color-raised);
+  color: inherit;
+  border-radius: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  padding: 0.3rem 0.6rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
 /* badge-mono — same shape, monospace style */
 @utility badge-mono {
-  background: var(--color-warm-white);
-  color: var(--color-charcoal);
+  background: var(--color-raised);
+  color: var(--color-ink);
   border-radius: 0.5rem;
   font-family: var(--font-mono);
   font-size: 11px;
@@ -155,11 +206,18 @@
   height: 2.25rem;          /* h-9 */
   padding: 0 0.5rem;
   border-radius: 0.375rem;   /* rounded-md */
-  color: var(--color-charcoal);
-  transition: background 140ms ease;
+  color: var(--color-ink);
+  transition: color 140ms ease;
   font-size: 18px;
   text-decoration: none;
-  &:hover { background: var(--color-warm-white); }
+  /* Nav links behave like links, not buttons — they pick up the accent and an
+     underline on hover, matching links in prose rather than filling a pill. */
+  &:hover {
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 4px;
+  }
 }
 
 /* panel-label — eyebrow / tiny mono caption (the 11px mono-caps step) */
@@ -169,9 +227,9 @@
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.11em;
-  /* Unified small-mono grey — see .meta. warm-gray (#ABA49A) is only 2.24:1 on
-     paper, too faint for small text; charcoal @68% gives 5.46:1. */
-  color: color-mix(in srgb, var(--color-charcoal) 68%, var(--color-paper));
+  /* Unified small-mono grey — see .meta. muted (#ABA49A) is only 2.24:1 on
+     paper, too faint for small text; ink @68% gives 5.46:1. */
+  color: color-mix(in srgb, var(--color-ink) 68%, var(--color-surface));
 }
 
 /* meta — the 13px mono metadata step: dates, reading time, counts, labels.
@@ -181,7 +239,21 @@
   font-size: 13px;
   font-weight: 400;
   letter-spacing: 0.01em;
-  color: color-mix(in srgb, var(--color-charcoal) 68%, var(--color-paper));
+  color: color-mix(in srgb, var(--color-ink) 68%, var(--color-surface));
+}
+
+/* dek — the standfirst under a title (a.k.a. subtitle, standfirst, lede).
+   Sits BETWEEN display and reading size: 26px against a 48px h1 and 21px prose.
+   Using the 18px UI size here inverts the hierarchy — the subtitle ends up
+   smaller than the body text it introduces. Weight drops to 300 so the extra
+   size reads as scale rather than emphasis. */
+@utility dek {
+  font-family: var(--font-body);
+  font-size: 26px;
+  font-weight: 300;
+  line-height: 1.42;
+  color: var(--color-ink);
+  text-wrap: pretty;
 }
 
 /* section-label — accent-colored display heading for component groups */
@@ -206,7 +278,7 @@
     height: 2.5rem;             /* 40px */
     padding: 0 1.25rem;
     border-radius: 0.5rem;      /* 8px — matches badge */
-    font-family: var(--font-display);
+    font-family: var(--font-body);
     font-size: 18px;
     font-weight: 500;
     line-height: 1;
@@ -223,15 +295,15 @@
   }
   .btn-primary {
     background: var(--color-accent);
-    color: var(--color-paper);
+    color: var(--color-surface);
   }
-  .btn-primary:hover { background: var(--color-charcoal); }
+  .btn-primary:hover { background: var(--color-ink); }
 
   .btn-secondary {
-    background: var(--color-warm-white);
-    color: var(--color-charcoal);
+    background: var(--color-raised);
+    color: var(--color-ink);
   }
-  .btn-secondary:hover { background: var(--color-stone); }
+  .btn-secondary:hover { background: var(--color-line); }
 
   /* Tertiary — text-only "ghost" link with optional trailing arrow */
   .btn-link {
@@ -240,7 +312,7 @@
     gap: 0.4rem;
     background: transparent;
     color: var(--color-accent);
-    font-family: var(--font-display);
+    font-family: var(--font-body);
     font-size: 18px;
     font-weight: 500;
     padding: 0;
@@ -249,7 +321,7 @@
     text-decoration: none;
     transition: color 140ms ease;
   }
-  .btn-link:hover { color: var(--color-charcoal); }
+  .btn-link:hover { color: var(--color-ink); }
 }
 
 /* ============================================================================
@@ -257,11 +329,11 @@
  * ============================================================================ */
 @layer components {
   .prose-pressmark {
-    font-family: var(--font-display);
+    font-family: var(--font-body);
     font-weight: 400;
     font-size: 21px;
     line-height: 1.62;
-    color: var(--color-charcoal);
+    color: var(--color-ink);
     max-width: 46rem;
     font-feature-settings: "kern" 1, "liga" 1, "calt" 1, "onum" 1;
   }
@@ -297,12 +369,14 @@
     margin-inline: auto;
   }
   .prose-pressmark h2 {
+    font-family: var(--font-display);
     font-size: 1.55em;
     margin-top: 2em;
     margin-bottom: 0.4em;
     letter-spacing: -0.015em;
   }
   .prose-pressmark h3 {
+    font-family: var(--font-display);
     font-size: 1.2em;
     margin-top: 1.5em;
     margin-bottom: 0.3em;
@@ -315,23 +389,27 @@
     text-decoration-color: var(--color-accent);
   }
   .prose-pressmark a:hover {
-    color: var(--color-charcoal);
+    /* Stay on the accent and lift it, instead of dropping to ink. Mixing
+       toward white reads as "brighter" on a dark surface and as "lighter" on
+       a light one; the thicker underline carries the state either way. */
+    color: color-mix(in srgb, var(--color-accent) 80%, white);
+    text-decoration-color: color-mix(in srgb, var(--color-accent) 80%, white);
     text-decoration-thickness: 2px;
   }
   .prose-pressmark em { font-style: italic; }
-  .prose-pressmark strong { font-weight: 600; color: var(--color-charcoal); }
+  .prose-pressmark strong { font-weight: 600; color: var(--color-ink); }
   .prose-pressmark blockquote {
     font-style: italic;
     border-left: 2px solid var(--color-accent);
     padding-left: 1.25em;
     margin: 1.6em 0;
-    color: var(--color-charcoal);
+    color: var(--color-ink);
   }
   .prose-pressmark hr {
     border: 0;
     text-align: center;
     margin: 2.2em 0;
-    color: var(--color-warm-gray);
+    color: var(--color-muted);
     font-family: var(--font-mono);
     font-size: 0.65em;
     letter-spacing: 0.3em;
@@ -340,12 +418,19 @@
   .prose-pressmark ul, .prose-pressmark ol { padding-left: 1.5em; }
   .prose-pressmark ul { list-style: none; }
   .prose-pressmark ul li::before {
-    content: "—";
-    color: var(--color-accent);
+    content: "\2022";
+    /* A marker, not a highlight. The accent pulled the eye to every bullet
+       instead of to the text, so it recedes to a derived ink tint — no new
+       token, and it re-points with the theme like everything else. */
+    color: color-mix(in oklab, var(--color-ink) 55%, var(--color-surface));
     margin-left: -1.5em;
     margin-right: 0.6em;
     display: inline-block;
     width: 0.9em;
+    /* The box is sized for the em-dash this used to be. A bullet does not fill
+       it, so centre the glyph — left-aligned it opens a gap and the text stops
+       reading as attached to its marker. The hanging indent is unchanged. */
+    text-align: center;
   }
   .prose-pressmark ol { list-style: decimal; }
   .prose-pressmark img {
@@ -372,8 +457,8 @@
     line-height: 1.5;
   }
   .prose-pressmark pre:not(.astro-code) {
-    background: var(--color-warm-white);
-    color: var(--color-charcoal);
+    background: var(--color-raised);
+    color: var(--color-ink);
   }
   .prose-pressmark pre code {
     background: none;
@@ -394,18 +479,18 @@
     max-width: 42rem;
     border-radius: var(--radius-lg);
     overflow: hidden;
-    background: var(--color-warm-white);
+    background: var(--color-raised);
   }
   .code-block-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0.5rem 1rem;
-    border-bottom: 1px solid color-mix(in srgb, var(--color-stone) 40%, transparent);
+    border-bottom: 1px solid color-mix(in srgb, var(--color-line) 40%, transparent);
     font-family: var(--font-mono);
     font-size: 0.75rem;
     letter-spacing: 0.02em;
-    color: var(--color-charcoal);
+    color: var(--color-ink);
     opacity: 0.6;
   }
   .code-block-title {
@@ -477,7 +562,7 @@
     font-family: var(--font-mono);
     font-size: 0.875rem;
     line-height: 1.5;
-    color: var(--color-charcoal);
+    color: var(--color-ink);
     background: transparent;
     border-radius: 0;
     white-space: normal;
@@ -523,7 +608,7 @@
     width: 2rem;
     margin-right: 0.75rem;
     text-align: right;
-    color: var(--color-charcoal);
+    color: var(--color-ink);
     opacity: 0.4;
     user-select: none;
   }
@@ -551,7 +636,7 @@
     width: 2rem;
     margin-right: 0.75rem;
     text-align: right;
-    color: var(--color-charcoal);
+    color: var(--color-ink);
     opacity: 0.4;
     user-select: none;
   }
@@ -561,9 +646,9 @@
     -webkit-appearance: none;
     width: 18px;
     height: 18px;
-    border: 1.5px solid var(--color-stone);
+    border: 1.5px solid var(--color-line);
     border-radius: 4px;
-    background: var(--color-paper);
+    background: var(--color-surface);
     cursor: pointer;
     display: inline-block;
     flex-shrink: 0;
@@ -571,7 +656,7 @@
     transition: border-color 120ms ease;
     vertical-align: middle;
   }
-  .checkbox:hover { border-color: var(--color-warm-gray); }
+  .checkbox:hover { border-color: var(--color-muted); }
   .checkbox:checked { border-color: var(--color-accent); }
   .checkbox:checked::after {
     content: '';
@@ -586,11 +671,11 @@
   }
   .checkbox:disabled { cursor: not-allowed; opacity: 0.5; }
 
-  /* Progress bar — warm-white track, accent fill */
+  /* Progress bar — raised track, accent fill */
   .progress {
     height: 6px;
     border-radius: 9999px;
-    background: var(--color-warm-white);
+    background: var(--color-raised);
     overflow: hidden;
   }
   .progress > .progress-fill {

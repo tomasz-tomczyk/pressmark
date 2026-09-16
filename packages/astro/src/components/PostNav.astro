@@ -11,14 +11,14 @@ const { prev, next, class: className } = Astro.props as Props;
 
 const labelClass = "panel-label block mb-1";
 const titleClass =
-  "font-display italic text-lg text-charcoal group-hover:text-accent leading-snug";
+  "font-display italic text-lg text-ink group-hover:text-accent leading-snug";
 ---
 
 {
   (prev || next) && (
     <nav
       class:list={[
-        "flex justify-between gap-8 pt-6 border-t border-warm-white",
+        "flex justify-between gap-8 pt-6 border-t border-raised",
         className,
       ]}
     >

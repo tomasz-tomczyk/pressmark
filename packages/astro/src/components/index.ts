@@ -11,3 +11,7 @@ export { default as Checkbox } from "./Checkbox.astro";
 export { default as Progress } from "./Progress.astro";
 export { default as TableOfContents } from "./TableOfContents.astro";
 export { default as PostNav } from "./PostNav.astro";
+export { default as Hero } from "./Hero.astro";
+export type { HeroSource } from "./Hero.astro";
+export { default as AuthorCard } from "./AuthorCard.astro";
+export type { AuthorLink } from "./AuthorCard.astro";

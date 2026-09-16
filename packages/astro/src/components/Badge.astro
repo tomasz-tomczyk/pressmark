@@ -2,12 +2,13 @@
 import type { HTMLAttributes } from "astro/types";
 
 type Props = {
-  variant?: "default" | "mono";
+  variant?: "default" | "mono" | "meta";
   class?: string;
 } & HTMLAttributes<"span">;
 
 const { variant = "default", class: className, ...rest } = Astro.props as Props;
-const base = variant === "mono" ? "badge-mono" : "badge";
+const base =
+  variant === "mono" ? "badge-mono" : variant === "meta" ? "badge-meta" : "badge";
 ---
 
 <span class:list={[base, className]} {...rest}>

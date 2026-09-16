@@ -32,13 +32,13 @@ That's it. Use any of the Pressmark utilities and components alongside vanilla T
 | Token | Hex | Role |
 |---|---|---|
 | `paper` | `#F6F4EE` | main background |
-| `warm-white` | `#ECE9E2` | soft surfaces, badges, borders |
+| `raised` | `#ECE9E2` | soft surfaces, badges, borders |
 | `stone` | `#D9D6CC` | dividers, soft surfaces |
-| `warm-gray` | `#ABA49A` | tiny mono captions only |
-| `charcoal` | `#1F1F1F` | primary text, dark surfaces |
+| `muted` | `#ABA49A` | tiny mono captions only |
+| `ink` | `#1F1F1F` | primary text, dark surfaces |
 | `accent` | `#E05A24` | the one accent |
 
-All text is `charcoal` except the `accent`. No gradients. No 7th color.
+All text is `ink` except the `accent`. No gradients. No 7th color.
 
 ## Components
 
@@ -46,7 +46,7 @@ All text is `charcoal` except the `accent`. No gradients. No 7th color.
 `.card`, `.hairline`, `.nav-item`, `.panel-label`, `.section-label`, `.checkbox`,
 `.progress` + `.progress-fill`, `.prose-pressmark` + `.dropcap`.
 
-Inline `<code>` gets backticks and a warm-white pill automatically.
+Inline `<code>` gets backticks and a raised pill automatically.
 
 ## Override
 

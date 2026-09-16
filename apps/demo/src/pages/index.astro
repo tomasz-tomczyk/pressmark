@@ -11,10 +11,10 @@ import SiteLayout from "../layouts/SiteLayout.astro";
     <!-- Greeting -->
     <section class="mb-14 pl-2 max-w-[42rem]">
       <div class="panel-label mb-3">May 2026 · Vol. III</div>
-      <h1 class="font-display font-light text-4xl md:text-5xl lg:text-6xl leading-[1.04] text-charcoal tracking-[-0.015em]">
+      <h1 class="font-display font-light text-4xl md:text-5xl lg:text-6xl leading-[1.04] text-ink tracking-[-0.015em]">
         A thoughtfully maintained<br />personal notebook.
       </h1>
-      <p class="mt-6 text-base leading-relaxed text-charcoal max-w-[36rem]">
+      <p class="mt-6 text-base leading-relaxed text-ink max-w-[36rem]">
         Essays on writing, reading, and designing interfaces that don't demand attention.
         Updated when there's something worth saying — about once a fortnight, with longer
         pieces between seasons.
@@ -31,22 +31,22 @@ import SiteLayout from "../layouts/SiteLayout.astro";
             class="block w-full h-full object-cover"
           />
           <div class="absolute inset-0 flex items-end p-5">
-            <span class="badge-mono bg-warm-white/90">Lead essay</span>
+            <span class="badge-mono bg-raised/90">Lead essay</span>
           </div>
         </div>
       </a>
       <div class="md:col-span-5 flex flex-col justify-center">
         <div class="panel-label mb-3">May 17 · Essay · 8 min read</div>
-        <h2 class="font-display font-light text-2xl md:text-3xl leading-[1.08] text-charcoal tracking-[-0.012em]">
+        <h2 class="font-display font-light text-2xl md:text-3xl leading-[1.08] text-ink tracking-[-0.012em]">
           <a href={`post`} class="hover:text-accent">On designing calm interfaces.</a>
         </h2>
-        <p class="mt-4 text-base leading-relaxed text-charcoal">
+        <p class="mt-4 text-base leading-relaxed text-ink">
           Most software wants more from us than it gives. Here's a quieter approach — one
           that earns its place on screen by saying less, and only when asked.
         </p>
-        <div class="mt-5 flex items-center gap-3 text-xs text-charcoal">
+        <div class="mt-5 flex items-center gap-3 text-xs text-ink">
           <span>by T. Tomczyk</span>
-          <span class="size-1 rounded-full bg-stone"></span>
+          <span class="size-1 rounded-full bg-line"></span>
           <a href={`post`} class="btn-link">Continue reading →</a>
         </div>
       </div>
@@ -55,12 +55,12 @@ import SiteLayout from "../layouts/SiteLayout.astro";
     <!-- Recent notes list + sidebar -->
     <section class="grid grid-cols-1 md:grid-cols-12 gap-8 mb-16 pl-2">
       <div class="md:col-span-8">
-        <div class="flex items-baseline justify-between mb-5 border-b border-warm-white pb-2">
-          <h3 class="font-display text-xl text-charcoal">Recent notes</h3>
-          <a href="#" class="panel-label hover:text-charcoal">archive →</a>
+        <div class="flex items-baseline justify-between mb-5 border-b border-raised pb-2">
+          <h3 class="font-display text-xl text-ink">Recent notes</h3>
+          <a href="#" class="panel-label hover:text-ink">archive →</a>
         </div>
 
-        <ul class="divide-y divide-warm-white">
+        <ul class="divide-y divide-raised">
           {[
             { date: "May 12", title: "On forgiving margins.", excerpt: "Why I leave more white space than the grid says I should, and what changes when I do.", tag: "design", read: "6 min" },
             { date: "May 06", title: "Building a second brain with Markdown.", excerpt: "After two years of trying every PKM app I could install, I came back to plain text. Here's the system that finally stuck.", tag: "writing", read: "11 min" },
@@ -69,14 +69,14 @@ import SiteLayout from "../layouts/SiteLayout.astro";
             { date: "Apr 04", title: "The cost of caring about typography.", excerpt: "It's not the time, exactly. It's the way every other page begins to disappoint you.", tag: "design", read: "7 min" },
           ].map((n) => (
             <li class="py-5 flex gap-5 items-baseline group">
-              <span class="font-mono text-xs text-charcoal w-20 shrink-0 pt-1">{n.date}</span>
+              <span class="font-mono text-xs text-ink w-20 shrink-0 pt-1">{n.date}</span>
               <div class="flex-1">
-                <h4 class="font-display text-xl leading-snug text-charcoal group-hover:text-accent">
+                <h4 class="font-display text-xl leading-snug text-ink group-hover:text-accent">
                   <a href={`post`}>{n.title}</a>
                 </h4>
-                <p class="mt-1.5 text-sm text-charcoal leading-relaxed">{n.excerpt}</p>
+                <p class="mt-1.5 text-sm text-ink leading-relaxed">{n.excerpt}</p>
               </div>
-              <div class="hidden md:flex items-center gap-1.5 text-xs font-mono text-charcoal">
+              <div class="hidden md:flex items-center gap-1.5 text-xs font-mono text-ink">
                 <span class="badge">{n.tag}</span>
                 <span>{n.read}</span>
               </div>
@@ -84,7 +84,7 @@ import SiteLayout from "../layouts/SiteLayout.astro";
           ))}
         </ul>
 
-        <a href="#" class="mt-6 inline-block panel-label hover:text-charcoal">see all 142 notes →</a>
+        <a href="#" class="mt-6 inline-block panel-label hover:text-ink">see all 142 notes →</a>
       </div>
 
       <!-- Sidebar -->
@@ -92,20 +92,20 @@ import SiteLayout from "../layouts/SiteLayout.astro";
         <div>
           <h4 class="panel-label mb-3">Archive</h4>
           <ul class="space-y-1.5 text-sm">
-            <li class="flex justify-between"><a href="#" class="text-charcoal hover:text-accent">2026</a><span class="font-mono text-xs text-charcoal">19</span></li>
-            <li class="flex justify-between"><a href="#" class="text-charcoal hover:text-accent">2025</a><span class="font-mono text-xs text-charcoal">47</span></li>
-            <li class="flex justify-between"><a href="#" class="text-charcoal hover:text-accent">2024</a><span class="font-mono text-xs text-charcoal">52</span></li>
-            <li class="flex justify-between"><a href="#" class="text-charcoal hover:text-accent">2023</a><span class="font-mono text-xs text-charcoal">24</span></li>
+            <li class="flex justify-between"><a href="#" class="text-ink hover:text-accent">2026</a><span class="font-mono text-xs text-ink">19</span></li>
+            <li class="flex justify-between"><a href="#" class="text-ink hover:text-accent">2025</a><span class="font-mono text-xs text-ink">47</span></li>
+            <li class="flex justify-between"><a href="#" class="text-ink hover:text-accent">2024</a><span class="font-mono text-xs text-ink">52</span></li>
+            <li class="flex justify-between"><a href="#" class="text-ink hover:text-accent">2023</a><span class="font-mono text-xs text-ink">24</span></li>
           </ul>
         </div>
 
         <div>
           <h4 class="panel-label mb-3">Collections</h4>
           <ul class="space-y-1.5 text-sm">
-            <li><a href="#" class="text-charcoal hover:text-accent">Field notebook · 2026</a></li>
-            <li><a href="#" class="text-charcoal hover:text-accent">On designing things</a></li>
-            <li><a href="#" class="text-charcoal hover:text-accent">Slow reading</a></li>
-            <li><a href="#" class="text-charcoal hover:text-accent">Letters home</a></li>
+            <li><a href="#" class="text-ink hover:text-accent">Field notebook · 2026</a></li>
+            <li><a href="#" class="text-ink hover:text-accent">On designing things</a></li>
+            <li><a href="#" class="text-ink hover:text-accent">Slow reading</a></li>
+            <li><a href="#" class="text-ink hover:text-accent">Letters home</a></li>
           </ul>
         </div>
 
@@ -116,8 +116,8 @@ import SiteLayout from "../layouts/SiteLayout.astro";
               ["design", 36], ["writing", 28], ["reading", 22],
               ["field notes", 18], ["typography", 12], ["tools", 9],
             ].map(([t, n]) => (
-              <a class="badge hover:bg-stone/50" href="#">
-                {t} <span class="font-mono text-charcoal opacity-50">{n}</span>
+              <a class="badge hover:bg-line/50" href="#">
+                {t} <span class="font-mono text-ink opacity-50">{n}</span>
               </a>
             ))}
           </div>
@@ -125,7 +125,7 @@ import SiteLayout from "../layouts/SiteLayout.astro";
 
         <div class="card p-4">
           <h4 class="panel-label mb-2">Newsletter</h4>
-          <p class="text-xs text-charcoal mb-3 leading-relaxed">
+          <p class="text-xs text-ink mb-3 leading-relaxed">
             A short letter on the last Sunday of each month. No tracking, easy to leave.
           </p>
           <form class="flex gap-2">
@@ -133,7 +133,7 @@ import SiteLayout from "../layouts/SiteLayout.astro";
               type="email"
               placeholder="you@elsewhere.com"
               aria-label="Email address"
-              class="flex-1 h-8 px-2.5 rounded-md bg-stone text-xs placeholder-warm-gray focus:outline-none focus:shadow-[var(--shadow-focus)]"
+              class="flex-1 h-8 px-2.5 rounded-md bg-line text-xs placeholder-muted focus:outline-none focus:shadow-[var(--shadow-focus)]"
             />
             <button class="btn btn-primary btn-sm">Sign up</button>
           </form>
@@ -143,37 +143,37 @@ import SiteLayout from "../layouts/SiteLayout.astro";
 
     <!-- Reading shelf -->
     <section id="reading" class="mb-16 pl-2">
-      <div class="flex items-baseline justify-between mb-5 border-b border-warm-white pb-2">
-        <h3 class="font-display text-xl text-charcoal">Currently reading</h3>
+      <div class="flex items-baseline justify-between mb-5 border-b border-raised pb-2">
+        <h3 class="font-display text-xl text-ink">Currently reading</h3>
         <span class="panel-label">May 2026</span>
       </div>
       <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
         {[
-          { seed: "writing-journal-1", title: "Walks with<br>Robert Walser", author: "Carl Seelig", status: "on hand", titleColor: "text-stone" },
-          { seed: "library-book-2", title: "The Shape<br>of a Pocket", author: "John Berger", status: "in progress", titleColor: "text-paper" },
-          { seed: "typewriter-paper-3", title: "Letters to a<br>Young Poet", author: "R. M. Rilke", status: "rereading", titleColor: "text-charcoal", authorColor: "text-charcoal" },
-          { seed: "book-leather-4", title: "Four Thousand<br>Weeks", author: "O. Burkeman", status: "on hand", titleColor: "text-paper", authorColor: "text-stone" },
-          { seed: "book-cover-5", title: "The<br>Notebooks", author: "L. Wittgenstein", status: "to start", titleColor: "text-charcoal", authorColor: "text-warm-gray" },
+          { seed: "writing-journal-1", title: "Walks with<br>Robert Walser", author: "Carl Seelig", status: "on hand", titleColor: "text-line" },
+          { seed: "library-book-2", title: "The Shape<br>of a Pocket", author: "John Berger", status: "in progress", titleColor: "text-surface" },
+          { seed: "typewriter-paper-3", title: "Letters to a<br>Young Poet", author: "R. M. Rilke", status: "rereading", titleColor: "text-ink", authorColor: "text-ink" },
+          { seed: "book-leather-4", title: "Four Thousand<br>Weeks", author: "O. Burkeman", status: "on hand", titleColor: "text-surface", authorColor: "text-line" },
+          { seed: "book-cover-5", title: "The<br>Notebooks", author: "L. Wittgenstein", status: "to start", titleColor: "text-ink", authorColor: "text-muted" },
         ].map((b) => (
           <a class="group" href="#">
-            <div class="aspect-[2/3] rounded-sm shadow-[var(--shadow-paper)] hairline relative overflow-hidden">
+            <div class="aspect-[2/3] rounded-sm shadow-[var(--shadow-soft)] hairline relative overflow-hidden">
               <img src={`https://picsum.photos/seed/${b.seed}/400/600`} alt="" class="block w-full h-full object-cover" />
               <div class={`absolute inset-x-3 top-5 font-display text-sm leading-tight ${b.titleColor}`} set:html={b.title} />
               <div class={`absolute inset-x-3 bottom-4 font-mono text-xs uppercase tracking-[0.15em] ${b.authorColor ?? "text-accent"}`}>{b.author}</div>
             </div>
-            <div class="mt-2 text-xs text-charcoal">{b.status}</div>
+            <div class="mt-2 text-xs text-ink">{b.status}</div>
           </a>
         ))}
       </div>
     </section>
 
     <!-- Footer -->
-    <footer class="mt-20 mb-4 pl-2 pt-6 border-t border-warm-white flex items-center justify-between text-xs font-mono text-charcoal">
+    <footer class="mt-20 mb-4 pl-2 pt-6 border-t border-raised flex items-center justify-between text-xs font-mono text-ink">
       <span>© 2026 · pressmark · maintained in Warsaw</span>
       <div class="flex gap-4">
-        <a href="#" class="hover:text-charcoal">RSS</a>
-        <a href="#" class="hover:text-charcoal">Email</a>
-        <a href="#" class="hover:text-charcoal">Colophon</a>
+        <a href="#" class="hover:text-ink">RSS</a>
+        <a href="#" class="hover:text-ink">Email</a>
+        <a href="#" class="hover:text-ink">Colophon</a>
       </div>
     </footer>
   </main>

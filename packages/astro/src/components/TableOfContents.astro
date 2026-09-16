@@ -16,14 +16,14 @@ const items = headings.filter((h) => h.depth === 2);
 {
   items.length > 0 && (
     <nav class:list={["toc", className]} aria-label={title}>
-      <h3 class="text-lg text-charcoal mb-3">{title}</h3>
-      <ol class="border-l border-warm-white text-lg">
+      <h3 class="text-lg text-ink mb-3">{title}</h3>
+      <ol class="border-l border-raised text-lg">
         {items.map((h, i) => (
           <li>
             <a
               href={`#${h.slug}`}
               data-toc-link={h.slug}
-              class="toc-link block pl-4 py-1.5 text-charcoal hover:text-accent"
+              class="toc-link block pl-4 py-1.5 text-ink hover:text-accent"
             >
               {i + 1}. {h.text}
             </a>
@@ -49,7 +49,7 @@ const items = headings.filter((h) => h.depth === 2);
       a.classList.toggle("border-l-2", on);
       a.classList.toggle("border-accent", on);
       a.classList.toggle("text-accent", on);
-      a.classList.toggle("text-charcoal", !on);
+      a.classList.toggle("text-ink", !on);
     });
   }
 
