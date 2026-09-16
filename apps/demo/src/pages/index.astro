@@ -14,7 +14,7 @@ import SiteLayout from "../layouts/SiteLayout.astro";
       <h1 class="font-display font-light text-4xl md:text-5xl lg:text-6xl leading-[1.04] text-ink tracking-[-0.015em]">
         A thoughtfully maintained<br />personal notebook.
       </h1>
-      <p class="mt-6 text-base leading-relaxed text-ink max-w-[36rem]">
+      <p class="dek mt-6 max-w-[36rem]">
         Essays on writing, reading, and designing interfaces that don't demand attention.
         Updated when there's something worth saying — about once a fortnight, with longer
         pieces between seasons.
@@ -40,7 +40,7 @@ import SiteLayout from "../layouts/SiteLayout.astro";
         <h2 class="font-display font-light text-2xl md:text-3xl leading-[1.08] text-ink tracking-[-0.012em]">
           <a href={`post`} class="hover:text-accent">On designing calm interfaces.</a>
         </h2>
-        <p class="mt-4 text-base leading-relaxed text-ink">
+        <p class="dek mt-4">
           Most software wants more from us than it gives. Here's a quieter approach — one
           that earns its place on screen by saying less, and only when asked.
         </p>
@@ -69,14 +69,14 @@ import SiteLayout from "../layouts/SiteLayout.astro";
             { date: "Apr 04", title: "The cost of caring about typography.", excerpt: "It's not the time, exactly. It's the way every other page begins to disappoint you.", tag: "design", read: "7 min" },
           ].map((n) => (
             <li class="py-5 flex gap-5 items-baseline group">
-              <span class="font-mono text-xs text-ink w-20 shrink-0 pt-1">{n.date}</span>
+              <span class="meta w-20 shrink-0 pt-1">{n.date}</span>
               <div class="flex-1">
                 <h4 class="font-display text-xl leading-snug text-ink group-hover:text-accent">
                   <a href={`post`}>{n.title}</a>
                 </h4>
                 <p class="mt-1.5 text-sm text-ink leading-relaxed">{n.excerpt}</p>
               </div>
-              <div class="hidden md:flex items-center gap-1.5 text-xs font-mono text-ink">
+              <div class="hidden md:flex items-center gap-1.5 meta text-ink">
                 <span class="badge">{n.tag}</span>
                 <span>{n.read}</span>
               </div>
@@ -92,10 +92,10 @@ import SiteLayout from "../layouts/SiteLayout.astro";
         <div>
           <h4 class="panel-label mb-3">Archive</h4>
           <ul class="space-y-1.5 text-sm">
-            <li class="flex justify-between"><a href="#" class="text-ink hover:text-accent">2026</a><span class="font-mono text-xs text-ink">19</span></li>
-            <li class="flex justify-between"><a href="#" class="text-ink hover:text-accent">2025</a><span class="font-mono text-xs text-ink">47</span></li>
-            <li class="flex justify-between"><a href="#" class="text-ink hover:text-accent">2024</a><span class="font-mono text-xs text-ink">52</span></li>
-            <li class="flex justify-between"><a href="#" class="text-ink hover:text-accent">2023</a><span class="font-mono text-xs text-ink">24</span></li>
+            <li class="flex justify-between"><a href="#" class="text-ink hover:text-accent">2026</a><span class="meta">19</span></li>
+            <li class="flex justify-between"><a href="#" class="text-ink hover:text-accent">2025</a><span class="meta">47</span></li>
+            <li class="flex justify-between"><a href="#" class="text-ink hover:text-accent">2024</a><span class="meta">52</span></li>
+            <li class="flex justify-between"><a href="#" class="text-ink hover:text-accent">2023</a><span class="meta">24</span></li>
           </ul>
         </div>
 
@@ -159,7 +159,7 @@ import SiteLayout from "../layouts/SiteLayout.astro";
             <div class="aspect-[2/3] rounded-sm shadow-[var(--shadow-soft)] hairline relative overflow-hidden">
               <img src={`https://picsum.photos/seed/${b.seed}/400/600`} alt="" class="block w-full h-full object-cover" />
               <div class={`absolute inset-x-3 top-5 font-display text-sm leading-tight ${b.titleColor}`} set:html={b.title} />
-              <div class={`absolute inset-x-3 bottom-4 font-mono text-xs uppercase tracking-[0.15em] ${b.authorColor ?? "text-accent"}`}>{b.author}</div>
+              <div class={`absolute inset-x-3 bottom-4 meta uppercase tracking-[0.15em] ${b.authorColor ?? "text-accent"}`}>{b.author}</div>
             </div>
             <div class="mt-2 text-xs text-ink">{b.status}</div>
           </a>
@@ -168,7 +168,7 @@ import SiteLayout from "../layouts/SiteLayout.astro";
     </section>
 
     <!-- Footer -->
-    <footer class="mt-20 mb-4 pl-2 pt-6 border-t border-raised flex items-center justify-between text-xs font-mono text-ink">
+    <footer class="mt-20 mb-4 pl-2 pt-6 border-t border-raised flex items-center justify-between meta text-ink">
       <span>© 2026 · pressmark · maintained in Warsaw</span>
       <div class="flex gap-4">
         <a href="#" class="hover:text-ink">RSS</a>

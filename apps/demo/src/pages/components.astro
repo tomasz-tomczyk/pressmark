@@ -117,12 +117,12 @@ const tableRows = [
           <hr class="border-raised" />
           <div class="flex items-center gap-3 text-muted">
             <span class="flex-1 border-t border-raised"></span>
-            <span class="font-mono text-xs">—</span>
+            <span class="meta">—</span>
             <span class="flex-1 border-t border-raised"></span>
           </div>
           <div class="flex items-center gap-3 text-muted">
             <span class="flex-1 border-t border-raised"></span>
-            <span class="font-mono text-xs">//</span>
+            <span class="meta">//</span>
             <span class="flex-1 border-t border-raised"></span>
           </div>
         </div>
@@ -133,7 +133,7 @@ const tableRows = [
         <div>
           <div class="flex items-center justify-between mb-2 text-sm">
             <span class="text-ink">Reading Progress</span>
-            <span class="font-mono text-xs text-ink opacity-60">45%</span>
+            <span class="meta opacity-60">45%</span>
           </div>
           <Progress value={45} />
         </div>
@@ -143,7 +143,7 @@ const tableRows = [
         <SectionLabel class="mb-5">Quote / callout</SectionLabel>
         <blockquote class="border-l-2 border-accent pl-4 font-display italic text-lg leading-snug text-ink">
           The details are not the details. They make the design.
-          <footer class="mt-3 font-mono text-xs not-italic text-ink tracking-[0.04em]">— Charles Eames</footer>
+          <footer class="mt-3 meta not-italic text-ink tracking-[0.04em]">— Charles Eames</footer>
         </blockquote>
       </div>
     </section>
@@ -175,7 +175,7 @@ const tableRows = [
             ))}
           </tbody>
         </table>
-        <div class="flex items-center justify-end gap-4 mt-4 font-mono text-xs text-ink opacity-70">
+        <div class="flex items-center justify-end gap-4 mt-4 meta opacity-70">
           <span>1–5 of 12</span>
           <div class="flex items-center gap-1">
             <button class="size-6 grid place-items-center rounded hover:bg-raised" aria-label="Previous"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m15 6-6 6 6 6"/></svg></button>
@@ -224,7 +224,7 @@ const tableRows = [
       </div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         <Card as="article" class="p-5 flex flex-col gap-4">
-          <div class="flex items-start justify-between text-xs font-mono text-ink opacity-60">
+          <div class="flex items-start justify-between meta text-ink opacity-60">
             <span>May 18, 2026 <span class="mx-1 opacity-50">·</span> Notes</span>
             <button aria-label="Bookmark" class="text-ink opacity-70 hover:opacity-100">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h10v18l-5-3-5 3z"/></svg>
@@ -241,7 +241,7 @@ const tableRows = [
         </Card>
 
         <Card as="article" class="p-5 flex flex-col gap-4">
-          <div class="flex items-start justify-between text-xs font-mono text-ink opacity-60">
+          <div class="flex items-start justify-between meta text-ink opacity-60">
             <span>May 11, 2026 <span class="mx-1 opacity-50">·</span> Journal</span>
             <button aria-label="Bookmark" class="text-ink opacity-70 hover:opacity-100">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h10v18l-5-3-5 3z"/></svg>
@@ -255,7 +255,7 @@ const tableRows = [
         </Card>
 
         <Card as="article" class="p-5 flex flex-col gap-4">
-          <div class="flex items-start justify-between text-xs font-mono text-ink opacity-60">
+          <div class="flex items-start justify-between meta text-ink opacity-60">
             <span>May 2, 2026 <span class="mx-1 opacity-50">·</span> Notes</span>
             <button aria-label="Bookmark" class="text-ink opacity-70 hover:opacity-100">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h10v18l-5-3-5 3z"/></svg>
@@ -274,7 +274,7 @@ const tableRows = [
       </div>
     </section>
 
-    <footer class="mt-10 mb-4 pt-6 border-t border-raised flex items-center justify-between text-xs font-mono text-ink opacity-60">
+    <footer class="mt-10 mb-4 pt-6 border-t border-raised flex items-center justify-between meta text-ink opacity-60">
       <span>© 2026 · pressmark / system</span>
       <div class="flex gap-4">
         <a href={import.meta.env.BASE_URL} class="hover:text-ink">Home</a>

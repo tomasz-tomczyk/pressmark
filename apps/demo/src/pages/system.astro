@@ -61,7 +61,7 @@ const earthPalette = ["#E05A24", "#ABA49A", "#1F1F1F", "#D9D6CC", "#ABA49A", "#1
       <section class="col-span-3 card p-5">
         <div class="flex items-center justify-between mb-4">
           <span class="panel-label">Color theory</span>
-          <span class="text-xs text-muted font-mono">07 ↕</span>
+          <span class="meta">07 ↕</span>
         </div>
         <div class="grid grid-cols-5 gap-2">
           <div class="aspect-square rounded-full" style="background:#F6F4EE; box-shadow: inset 0 0 0 1px #D9D6CC;" title="paper #F6F4EE"></div>
@@ -70,7 +70,7 @@ const earthPalette = ["#E05A24", "#ABA49A", "#1F1F1F", "#D9D6CC", "#ABA49A", "#1
           <div class="aspect-square rounded-full" style="background:#ABA49A;" title="muted #ABA49A"></div>
           <div class="aspect-square rounded-full" style="background:#E05A24;" title="accent #E05A24"></div>
         </div>
-        <ul class="mt-4 space-y-1.5 text-xs text-muted font-mono">
+        <ul class="mt-4 space-y-1.5 meta">
           <li class="flex justify-between"><span>paper</span><span>#F6F4EE</span></li>
           <li class="flex justify-between"><span>warm white</span><span>#ECE9E2</span></li>
           <li class="flex justify-between"><span>stone</span><span>#D9D6CC</span></li>
@@ -83,7 +83,7 @@ const earthPalette = ["#E05A24", "#ABA49A", "#1F1F1F", "#D9D6CC", "#ABA49A", "#1
       <section class="col-span-2 card p-5 flex flex-col">
         <span class="panel-label mb-3">Typography</span>
         <div class="flex-1 grid grid-rows-[auto_1fr_auto]">
-          <div class="text-xs text-muted font-mono mb-1">Crimson Pro</div>
+          <div class="meta mb-1">Crimson Pro</div>
           <div class="font-display text-6xl md:text-7xl lg:text-8xl leading-[0.9] text-ink tracking-[-0.02em]">Aa</div>
           <div class="mt-2 flex items-end justify-between gap-2">
             <div class="font-mono text-lg text-accent tracking-tight">DM Mono</div>
@@ -105,7 +105,7 @@ const earthPalette = ["#E05A24", "#ABA49A", "#1F1F1F", "#D9D6CC", "#ABA49A", "#1
                 <img src={`https://picsum.photos/seed/${c.seed}/400/300`} alt="" class="block w-full h-full object-cover" />
               </div>
               <div class="p-3">
-                <div class="text-xs text-muted font-mono uppercase tracking-wider">{c.date}</div>
+                <div class="meta uppercase tracking-wider">{c.date}</div>
                 <h4 class="font-display text-base leading-tight mt-1.5">{c.title}</h4>
               </div>
             </article>
@@ -117,7 +117,7 @@ const earthPalette = ["#E05A24", "#ABA49A", "#1F1F1F", "#D9D6CC", "#ABA49A", "#1
       <section class="col-span-5 card p-5">
         <div class="flex items-center justify-between mb-4">
           <span class="panel-label">UI Components</span>
-          <span class="text-xs text-muted font-mono">12 →</span>
+          <span class="meta">12 →</span>
         </div>
 
         <div class="space-y-3">
@@ -153,7 +153,7 @@ const earthPalette = ["#E05A24", "#ABA49A", "#1F1F1F", "#D9D6CC", "#ABA49A", "#1
       <section class="col-span-5 card p-5">
         <div class="flex items-center justify-between mb-3">
           <span class="panel-label">Tones &amp; Themes</span>
-          <span class="text-xs text-muted font-mono">earth · paper · ink</span>
+          <span class="meta">earth · paper · ink</span>
         </div>
         <div class="grid grid-cols-4 gap-2">
           {tonesSeeds.map((s) => (
@@ -168,7 +168,7 @@ const earthPalette = ["#E05A24", "#ABA49A", "#1F1F1F", "#D9D6CC", "#ABA49A", "#1
       <section class="col-span-3 card p-5">
         <div class="flex items-center justify-between mb-3">
           <span class="panel-label">Schedule</span>
-          <span class="text-xs text-muted font-mono">May</span>
+          <span class="meta">May</span>
         </div>
         <div class="grid grid-cols-7 gap-1 text-xs text-center text-muted font-mono">
           <span>S</span><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span>
@@ -216,9 +216,9 @@ const earthPalette = ["#E05A24", "#ABA49A", "#1F1F1F", "#D9D6CC", "#ABA49A", "#1
             <span class="size-2.5 rounded-full" style="background:#ABA49A"></span>
             <span class="size-2.5 rounded-full" style="background:#D9D6CC"></span>
           </div>
-          <span class="font-mono text-xs text-muted">theme.config.css</span>
+          <span class="meta">theme.config.css</span>
         </div>
-<pre class="font-mono text-xs leading-[1.7] px-4 py-3 text-line overflow-x-auto"><span style="color:#ABA49A">/* paper · ink · clay */</span>
+<pre class="meta leading-[1.7] px-4 py-3 text-line overflow-x-auto"><span style="color:#ABA49A">/* paper · ink · clay */</span>
 <span style="color:#E05A24">@theme</span> &lbrace;
   <span style="color:#ABA49A">--color-surface</span>:      <span style="color:#E05A24">#F6F4EE</span>;
   <span style="color:#ABA49A">--color-ink</span>:   <span style="color:#E05A24">#1F1F1F</span>;
@@ -236,27 +236,27 @@ const earthPalette = ["#E05A24", "#ABA49A", "#1F1F1F", "#D9D6CC", "#ABA49A", "#1
         <blockquote class="font-display text-xl md:text-2xl leading-[1.2] mt-4">
           A quiet place for meaningful work.
         </blockquote>
-        <footer class="mt-4 font-mono text-xs uppercase tracking-[0.12em] text-muted">— Pressmark, on intent</footer>
+        <footer class="mt-4 meta uppercase tracking-[0.12em] text-muted">— Pressmark, on intent</footer>
       </section>
 
       <!-- Secondary palette circles -->
       <section class="col-span-3 card p-5">
         <div class="flex items-center justify-between mb-3">
           <span class="panel-label">Palette · Earth</span>
-          <span class="text-xs text-muted font-mono">06</span>
+          <span class="meta">06</span>
         </div>
         <div class="grid grid-cols-3 gap-3">
           {earthPalette.map((c) => (
             <div>
               <div class="aspect-square rounded-full mb-1.5" style={`background:${c}`}></div>
-              <div class="text-xs font-mono text-muted">{c}</div>
+              <div class="meta">{c}</div>
             </div>
           ))}
         </div>
       </section>
     </div>
 
-    <footer class="mt-8 mb-2 flex items-center justify-between text-xs text-muted font-mono">
+    <footer class="mt-8 mb-2 flex items-center justify-between meta">
       <span>pressmark / themes / light · editorial</span>
       <span>Crimson Pro · DM Mono</span>
     </footer>

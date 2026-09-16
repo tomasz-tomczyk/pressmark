@@ -81,22 +81,22 @@ const palette = [
         <div>
           <h4 class="panel-label mb-3">Currently</h4>
           <ul class="space-y-2 text-sm">
-            <li class="flex gap-3"><span class="font-mono text-xs text-muted w-10 shrink-0 pt-0.5 uppercase">Work</span><span class="text-ink">A small CLI for marginal notes</span></li>
-            <li class="flex gap-3"><span class="font-mono text-xs text-muted w-10 shrink-0 pt-0.5 uppercase">Read</span><span class="text-ink">Walks with Robert Walser · Berger's <em>Shape of a Pocket</em></span></li>
-            <li class="flex gap-3"><span class="font-mono text-xs text-muted w-10 shrink-0 pt-0.5 uppercase">Hear</span><span class="text-ink">Arvo Pärt · Tabula Rasa, on repeat</span></li>
-            <li class="flex gap-3"><span class="font-mono text-xs text-muted w-10 shrink-0 pt-0.5 uppercase">Place</span><span class="text-ink">Warsaw, mostly</span></li>
-            <li class="flex gap-3"><span class="font-mono text-xs text-muted w-10 shrink-0 pt-0.5 uppercase">Mood</span><span class="text-ink">Tentatively hopeful</span></li>
+            <li class="flex gap-3"><span class="meta w-10 shrink-0 pt-0.5 uppercase">Work</span><span class="text-ink">A small CLI for marginal notes</span></li>
+            <li class="flex gap-3"><span class="meta w-10 shrink-0 pt-0.5 uppercase">Read</span><span class="text-ink">Walks with Robert Walser · Berger's <em>Shape of a Pocket</em></span></li>
+            <li class="flex gap-3"><span class="meta w-10 shrink-0 pt-0.5 uppercase">Hear</span><span class="text-ink">Arvo Pärt · Tabula Rasa, on repeat</span></li>
+            <li class="flex gap-3"><span class="meta w-10 shrink-0 pt-0.5 uppercase">Place</span><span class="text-ink">Warsaw, mostly</span></li>
+            <li class="flex gap-3"><span class="meta w-10 shrink-0 pt-0.5 uppercase">Mood</span><span class="text-ink">Tentatively hopeful</span></li>
           </ul>
-          <p class="mt-3 text-xs font-mono text-muted">Last updated May 21, 2026.</p>
+          <p class="mt-3 meta">Last updated May 21, 2026.</p>
         </div>
 
         <div>
           <h4 class="panel-label mb-3">Elsewhere</h4>
           <ul class="space-y-1.5 text-sm">
-            <li class="flex justify-between"><a href="#" class="text-ink hover:text-accent">Email</a><span class="font-mono text-xs text-muted">me@tomasztomczyk.com</span></li>
-            <li class="flex justify-between"><a href="#" class="text-ink hover:text-accent">GitHub</a><span class="font-mono text-xs text-muted">@tomekt</span></li>
-            <li class="flex justify-between"><a href="#" class="text-ink hover:text-accent">Mastodon</a><span class="font-mono text-xs text-muted">@t@hachyderm</span></li>
-            <li class="flex justify-between"><a href="#" class="text-ink hover:text-accent">RSS</a><span class="font-mono text-xs text-muted">/feed.xml</span></li>
+            <li class="flex justify-between"><a href="#" class="text-ink hover:text-accent">Email</a><span class="meta">me@tomasztomczyk.com</span></li>
+            <li class="flex justify-between"><a href="#" class="text-ink hover:text-accent">GitHub</a><span class="meta">@tomekt</span></li>
+            <li class="flex justify-between"><a href="#" class="text-ink hover:text-accent">Mastodon</a><span class="meta">@t@hachyderm</span></li>
+            <li class="flex justify-between"><a href="#" class="text-ink hover:text-accent">RSS</a><span class="meta">/feed.xml</span></li>
           </ul>
         </div>
 
@@ -151,16 +151,16 @@ const palette = [
               <li class="flex items-center gap-3 text-xs">
                 <span class={`size-4 rounded-full ${c.hairline ? "hairline" : ""}`} style={`background:${c.bg}`}></span>
                 <span class="text-ink flex-1">{c.name}</span>
-                <span class="font-mono text-xs text-muted">{c.hex}</span>
+                <span class="meta">{c.hex}</span>
               </li>
             ))}
           </ul>
-          <p class="mt-3 text-xs font-mono text-muted">* raised pending confirmation</p>
+          <p class="mt-3 meta">* raised pending confirmation</p>
         </div>
       </div>
     </section>
 
-    <footer class="mt-10 mb-4 pl-2 pt-6 border-t border-raised flex items-center justify-between text-xs font-mono text-muted">
+    <footer class="mt-10 mb-4 pl-2 pt-6 border-t border-raised flex items-center justify-between meta">
       <span>© 2026 · pressmark · maintained in Warsaw</span>
       <div class="flex gap-4">
         <a href="#" class="hover:text-ink">RSS</a>

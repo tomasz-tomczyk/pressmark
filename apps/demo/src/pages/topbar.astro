@@ -1,0 +1,93 @@
+---
+/**
+ * The other shell.
+ *
+ * Every other page in this demo uses `Sidebar`. `Topbar` is its sibling, not
+ * its replacement — use it when a site has few enough destinations that a
+ * 260px rail is wasted space, and pair it with a centred column rather than a
+ * left-anchored one. Both read `src/lib/nav.ts`, so active state and base-path
+ * handling cannot drift between them.
+ */
+import { BaseLayout, Topbar, PanelLabel, AuthorCard, Badge } from "@pressmark/astro";
+import "../styles/main.css";
+
+const items = [
+  { href: "/", label: "Home" },
+  { href: "/post", label: "Notes" },
+  { href: "/components", label: "Components" },
+  { href: "/topbar", label: "Topbar" },
+];
+---
+
+<BaseLayout
+  title="Topbar — pressmark"
+  description="The horizontal shell, sibling to Sidebar."
+>
+  <Topbar brand="/P." items={items} currentPath={Astro.url.pathname} />
+
+  {/* pt-14 clears the fixed bar. */}
+  <main class="pt-14">
+    <div class="px-5 py-10 md:px-12">
+      <div class="mx-auto max-w-[46rem]">
+        <header class="mb-12">
+          <PanelLabel class="mb-7">Layout</PanelLabel>
+          <h1 class="font-display font-light text-4xl md:text-5xl leading-[1.04] text-ink tracking-[-0.015em]">
+            Topbar.
+          </h1>
+          <p class="dek mt-5 max-w-[36rem]">
+            The horizontal shell. Sidebar suits a left-anchored column and a long
+            list of destinations; this suits a centred one and a short list.
+          </p>
+        </header>
+
+        <div class="mt-10 pt-6 pb-6 border-t border-b border-line flex flex-wrap items-start justify-between gap-6">
+          <AuthorCard
+            name="Avery Quill"
+            bio="Writes about interfaces, tools and the quiet parts of software."
+            variant="inline"
+            eyebrow="Written by"
+            class="flex-1 min-w-[20rem]"
+            links={[
+              { label: "Email", href: "#" },
+              { label: "Notes", href: "#" },
+            ]}
+          />
+
+          <div class="shrink-0 pt-1">
+            <ul class="space-y-2">
+              <li class="meta">May 17, 2026</li>
+              <li class="meta">8 min read</li>
+            </ul>
+            <ul class="flex flex-wrap gap-2 mt-3 list-none p-0 m-0 max-w-[16rem]">
+              <li>
+                <a href="#" class="meta no-underline hover:text-accent">
+                  <Badge variant="meta">#layout</Badge>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="prose-pressmark mt-10">
+          <p>
+            Both shells take the same item shape and both delegate to
+            <code>src/lib/nav.ts</code>, so <code>isActive</code> behaves
+            identically — a section stays current on its descendants, with
+            <code>/</code> exempt.
+          </p>
+
+          <h2>Which to reach for</h2>
+          <ul>
+            <li><strong>Sidebar</strong> — many destinations, icons earn their space, content sits left</li>
+            <li><strong>Topbar</strong> — few destinations, content is centred, vertical space matters</li>
+          </ul>
+
+          <p>
+            Neither is the default. Pick the one that matches the shape of the
+            site, then stay with it.
+          </p>
+        </div>
+      </div>
+    </div>
+  </main>
+</BaseLayout>
