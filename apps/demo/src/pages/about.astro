@@ -80,7 +80,7 @@ const palette = [
       <aside class="col-span-4 space-y-10 pt-1">
         <div>
           <h4 class="panel-label mb-3">Currently</h4>
-          <ul class="space-y-2 text-sm">
+          <ul class="space-y-2">
             <li class="flex gap-3"><span class="meta w-10 shrink-0 pt-0.5 uppercase">Work</span><span class="text-ink">A small CLI for marginal notes</span></li>
             <li class="flex gap-3"><span class="meta w-10 shrink-0 pt-0.5 uppercase">Read</span><span class="text-ink">Walks with Robert Walser · Berger's <em>Shape of a Pocket</em></span></li>
             <li class="flex gap-3"><span class="meta w-10 shrink-0 pt-0.5 uppercase">Hear</span><span class="text-ink">Arvo Pärt · Tabula Rasa, on repeat</span></li>
@@ -92,7 +92,7 @@ const palette = [
 
         <div>
           <h4 class="panel-label mb-3">Elsewhere</h4>
-          <ul class="space-y-1.5 text-sm">
+          <ul class="space-y-1.5">
             <li class="flex justify-between"><a href="#" class="text-ink hover:text-accent">Email</a><span class="meta">me@tomasztomczyk.com</span></li>
             <li class="flex justify-between"><a href="#" class="text-ink hover:text-accent">GitHub</a><span class="meta">@tomekt</span></li>
             <li class="flex justify-between"><a href="#" class="text-ink hover:text-accent">Mastodon</a><span class="meta">@t@hachyderm</span></li>
@@ -102,11 +102,11 @@ const palette = [
 
         <div class="card p-4">
           <h4 class="panel-label mb-2">Letters</h4>
-          <p class="text-xs text-ink mb-3 leading-relaxed">
+          <p class="meta mb-3 leading-relaxed">
             One short letter on the last Sunday of each month. Easy in, easy out.
           </p>
           <form class="flex gap-2">
-            <input type="email" placeholder="you@elsewhere.com" aria-label="Email" class="flex-1 h-8 px-2.5 rounded-md hairline bg-surface text-xs placeholder-muted focus:outline-none focus:shadow-[var(--shadow-focus)]" />
+            <input type="email" placeholder="you@elsewhere.com" aria-label="Email" class="flex-1 h-8 px-2.5 rounded-md hairline bg-surface meta placeholder-muted focus:outline-none focus:shadow-[var(--shadow-focus)]" />
             <button class="btn btn-primary btn-sm">Sign up</button>
           </form>
         </div>
@@ -117,7 +117,7 @@ const palette = [
     <section class="mb-20 pl-2 pt-10 border-t border-raised">
       <h3 class="font-display text-2xl mb-6 text-ink">Colophon</h3>
       <div class="grid grid-cols-12 gap-8">
-        <dl class="col-span-8 grid grid-cols-2 gap-x-8 gap-y-4 text-sm">
+        <dl class="col-span-8 grid grid-cols-2 gap-x-8 gap-y-4">
           <div>
             <dt class="panel-label mb-1">Typography</dt>
             <dd class="text-ink">Crimson Pro · DM Mono</dd>
@@ -148,7 +148,7 @@ const palette = [
           <h4 class="panel-label mb-3">The six</h4>
           <ul class="space-y-1.5">
             {palette.map((c) => (
-              <li class="flex items-center gap-3 text-xs">
+              <li class="flex items-center gap-3 meta">
                 <span class={`size-4 rounded-full ${c.hairline ? "hairline" : ""}`} style={`background:${c.bg}`}></span>
                 <span class="text-ink flex-1">{c.name}</span>
                 <span class="meta">{c.hex}</span>

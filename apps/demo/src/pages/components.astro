@@ -54,6 +54,12 @@ const tableRows = [
         ))}
         <button class="badge text-muted hover:text-ink" aria-label="Add tag">+</button>
       </div>
+      <p class="meta mt-5 mb-2">meta — 13px mono, for a chip in a metadata row</p>
+      <div class="flex flex-wrap gap-2 max-w-[36rem]">
+        {tags.map((t) => (
+          <a class="meta no-underline hover:text-accent" href="#"><span class="badge-meta">{t}</span></a>
+        ))}
+      </div>
     </section>
 
     <hr class="border-raised mb-14" />
@@ -61,7 +67,7 @@ const tableRows = [
     <!-- Inline code -->
     <section class="mb-14">
       <SectionLabel class="mb-5">Inline code</SectionLabel>
-      <p class="text-sm text-ink max-w-[36rem]">
+      <p class="text-ink max-w-[36rem]">
         Inline code looks like <code>this</code>, or <code>that()</code>. Use it for short
         identifiers, file names, or short snippets — anything that should read as
         <em>literally code</em> inside flowing text.
@@ -76,10 +82,10 @@ const tableRows = [
       <div class="space-y-3 max-w-md">
         <label class="flex items-center gap-2.5 hairline rounded-lg px-3.5 py-2.5 bg-surface focus-within:shadow-[var(--shadow-focus)]">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="text-ink opacity-60 shrink-0"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
-          <input type="text" class="flex-1 bg-transparent focus:outline-none text-sm text-ink placeholder-muted" placeholder="Search notes…" />
+          <input type="text" class="flex-1 bg-transparent focus:outline-none text-ink placeholder-muted" placeholder="Search notes…" />
         </label>
         <textarea
-          class="hairline rounded-lg px-3.5 py-2.5 bg-surface w-full text-sm text-ink placeholder-muted focus:outline-none focus:shadow-[var(--shadow-focus)] resize-y min-h-[6.5rem]"
+          class="hairline rounded-lg px-3.5 py-2.5 bg-surface w-full text-ink placeholder-muted focus:outline-none focus:shadow-[var(--shadow-focus)] resize-y min-h-[6.5rem]"
           placeholder="Write something down…"
         ></textarea>
       </div>
@@ -91,7 +97,7 @@ const tableRows = [
     <section class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-10 mb-14">
       <div>
         <SectionLabel class="mb-5">Metadata</SectionLabel>
-        <ul class="space-y-2.5 text-sm">
+        <ul class="space-y-2.5">
           <li class="flex items-center gap-3 text-ink">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="opacity-70 shrink-0"><rect x="3" y="5" width="18" height="16" rx="1.5"/><path d="M3 9h18M8 3v4M16 3v4"/></svg>
             May 18, 2026
@@ -104,7 +110,7 @@ const tableRows = [
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="opacity-70 shrink-0"><circle cx="12" cy="12" r="9"/><path d="M12 7v6l4 2"/></svg>
             5 min read
           </li>
-          <li class="flex items-center gap-3 text-ink font-mono text-sm">
+          <li class="flex items-center gap-3 text-ink font-mono">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="opacity-70 shrink-0"><circle cx="12" cy="12" r="9"/></svg>
             #design  #writing
           </li>
@@ -131,7 +137,7 @@ const tableRows = [
       <div>
         <SectionLabel class="mb-5">Progress / reading</SectionLabel>
         <div>
-          <div class="flex items-center justify-between mb-2 text-sm">
+          <div class="flex items-center justify-between mb-2">
             <span class="text-ink">Reading Progress</span>
             <span class="meta opacity-60">45%</span>
           </div>
@@ -154,7 +160,7 @@ const tableRows = [
     <section class="grid grid-cols-1 lg:grid-cols-2 gap-10 mb-14">
       <div>
         <SectionLabel class="mb-5">Table example</SectionLabel>
-        <table class="w-full text-sm">
+        <table class="w-full">
           <thead>
             <tr class="border-b border-raised">
               <th class="text-left font-medium text-ink opacity-70 py-2.5 pl-1 pr-2">Title</th>
@@ -170,7 +176,7 @@ const tableRows = [
                   {r.title}
                 </td>
                 <td class="py-2.5 pr-2 text-ink opacity-70">{r.type}</td>
-                <td class="py-2.5 text-ink opacity-70 font-mono text-sm">{r.date}</td>
+                <td class="py-2.5 text-ink opacity-70 font-mono">{r.date}</td>
               </tr>
             ))}
           </tbody>
@@ -188,7 +194,7 @@ const tableRows = [
 
       <div>
         <SectionLabel class="mb-5">List item variants</SectionLabel>
-        <ul class="space-y-4 text-sm text-ink">
+        <ul class="space-y-4 text-ink">
           <li class="flex items-center gap-3">
             <Checkbox id="li-1" />
             <label for="li-1">A simple unchecked item</label>
@@ -224,14 +230,14 @@ const tableRows = [
       </div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         <Card as="article" class="p-5 flex flex-col gap-4">
-          <div class="flex items-start justify-between meta text-ink opacity-60">
+          <div class="flex items-start justify-between meta opacity-60">
             <span>May 18, 2026 <span class="mx-1 opacity-50">·</span> Notes</span>
             <button aria-label="Bookmark" class="text-ink opacity-70 hover:opacity-100">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h10v18l-5-3-5 3z"/></svg>
             </button>
           </div>
           <h3 class="font-display text-2xl leading-tight text-ink">On Designing Calm Interfaces</h3>
-          <p class="text-sm text-ink opacity-80 leading-relaxed">Thoughts on creating digital spaces that feel natural, quiet, and unobtrusive.</p>
+          <p class="text-ink opacity-80 leading-relaxed">Thoughts on creating digital spaces that feel natural, quiet, and unobtrusive.</p>
           <div class="flex flex-wrap gap-1.5">
             <Badge>#design</Badge>
           </div>
@@ -241,28 +247,28 @@ const tableRows = [
         </Card>
 
         <Card as="article" class="p-5 flex flex-col gap-4">
-          <div class="flex items-start justify-between meta text-ink opacity-60">
+          <div class="flex items-start justify-between meta opacity-60">
             <span>May 11, 2026 <span class="mx-1 opacity-50">·</span> Journal</span>
             <button aria-label="Bookmark" class="text-ink opacity-70 hover:opacity-100">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h10v18l-5-3-5 3z"/></svg>
             </button>
           </div>
           <h3 class="font-display text-2xl leading-tight text-ink">Building a Second Brain with Markdown</h3>
-          <p class="text-sm text-ink opacity-80 leading-relaxed">How simple text files and good structure scale with your thinking.</p>
+          <p class="text-ink opacity-80 leading-relaxed">How simple text files and good structure scale with your thinking.</p>
           <div class="flex flex-wrap gap-1.5">
             <Badge>#productivity</Badge>
           </div>
         </Card>
 
         <Card as="article" class="p-5 flex flex-col gap-4">
-          <div class="flex items-start justify-between meta text-ink opacity-60">
+          <div class="flex items-start justify-between meta opacity-60">
             <span>May 2, 2026 <span class="mx-1 opacity-50">·</span> Notes</span>
             <button aria-label="Bookmark" class="text-ink opacity-70 hover:opacity-100">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h10v18l-5-3-5 3z"/></svg>
             </button>
           </div>
           <h3 class="font-display text-2xl leading-tight text-ink">macOS Keyboard Shortcuts I Actually Use</h3>
-          <p class="text-sm text-ink opacity-80 leading-relaxed">A collection of shortcuts that make my everyday workflow smoother.</p>
+          <p class="text-ink opacity-80 leading-relaxed">A collection of shortcuts that make my everyday workflow smoother.</p>
           <div class="flex flex-wrap gap-1.5">
             <Badge>#macos</Badge>
             <Badge>#shortcuts</Badge>
@@ -274,7 +280,7 @@ const tableRows = [
       </div>
     </section>
 
-    <footer class="mt-10 mb-4 pt-6 border-t border-raised flex items-center justify-between meta text-ink opacity-60">
+    <footer class="mt-10 mb-4 pt-6 border-t border-raised flex items-center justify-between meta opacity-60">
       <span>© 2026 · pressmark / system</span>
       <div class="flex gap-4">
         <a href={import.meta.env.BASE_URL} class="hover:text-ink">Home</a>

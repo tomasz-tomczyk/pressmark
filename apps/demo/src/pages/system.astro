@@ -29,9 +29,9 @@ const earthPalette = ["#E05A24", "#ABA49A", "#1F1F1F", "#D9D6CC", "#ABA49A", "#1
     <header class="flex items-center justify-between mb-6 pl-2">
       <div class="flex items-center gap-3">
         <span class="panel-label">pressmark / themes /</span>
-        <span class="text-ink font-medium text-sm">Light · Editorial</span>
+        <span class="text-ink font-medium">Light · Editorial</span>
       </div>
-      <div class="flex items-center gap-2 text-xs text-muted">
+      <div class="flex items-center gap-2 meta">
         <span>v0.0.1</span>
         <span class="size-1 rounded-full bg-line"></span>
         <span>last edited <em class="not-italic text-ink">just now</em></span>
@@ -47,7 +47,7 @@ const earthPalette = ["#E05A24", "#ABA49A", "#1F1F1F", "#D9D6CC", "#ABA49A", "#1
             A thoughtfully<br />maintained personal<br />notebook.
           </h1>
           <div class="flex items-center gap-3 mt-4">
-            <button class="px-4 h-9 rounded-full bg-ink text-raised text-xs font-medium tracking-tight hover:bg-ink transition">Begin writing</button>
+            <button class="px-4 h-9 rounded-full bg-ink text-raised meta font-medium tracking-tight hover:bg-ink transition">Begin writing</button>
             <button class="btn btn-secondary">Browse archive</button>
           </div>
         </div>
@@ -96,7 +96,7 @@ const earthPalette = ["#E05A24", "#ABA49A", "#1F1F1F", "#D9D6CC", "#ABA49A", "#1
       <section class="col-span-7 card p-5">
         <div class="flex items-baseline justify-between mb-4">
           <span class="panel-label">Recent notes</span>
-          <a class="text-xs text-accent hover:text-ink" href="#">view all →</a>
+          <a class="meta text-accent hover:text-ink" href="#">view all →</a>
         </div>
         <div class="grid grid-cols-3 gap-3">
           {recentCards.map((c) => (
@@ -106,7 +106,7 @@ const earthPalette = ["#E05A24", "#ABA49A", "#1F1F1F", "#D9D6CC", "#ABA49A", "#1
               </div>
               <div class="p-3">
                 <div class="meta uppercase tracking-wider">{c.date}</div>
-                <h4 class="font-display text-base leading-tight mt-1.5">{c.title}</h4>
+                <h4 class="font-display leading-tight mt-1.5">{c.title}</h4>
               </div>
             </article>
           ))}
@@ -122,13 +122,13 @@ const earthPalette = ["#E05A24", "#ABA49A", "#1F1F1F", "#D9D6CC", "#ABA49A", "#1
 
         <div class="space-y-3">
           <label class="block">
-            <span class="text-xs text-muted font-medium">Title</span>
-            <input class="mt-1 w-full h-9 px-3 rounded-md hairline bg-surface text-sm text-ink placeholder-muted focus:outline-none focus:shadow-[var(--shadow-focus)]"
+            <span class="meta font-medium">Title</span>
+            <input class="mt-1 w-full h-9 px-3 rounded-md hairline bg-surface text-ink placeholder-muted focus:outline-none focus:shadow-[var(--shadow-focus)]"
               placeholder="An untitled entry" value="On Designing Calm Interfaces" />
           </label>
           <label class="block">
-            <span class="text-xs text-muted font-medium">Collection</span>
-            <div class="mt-1 w-full h-9 px-3 rounded-md hairline bg-surface flex items-center justify-between text-sm text-ink">
+            <span class="meta font-medium">Collection</span>
+            <div class="mt-1 w-full h-9 px-3 rounded-md hairline bg-surface flex items-center justify-between text-ink">
               Field Notebook · 2026
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="m6 9 6 6 6-6"/></svg>
             </div>
@@ -141,10 +141,10 @@ const earthPalette = ["#E05A24", "#ABA49A", "#1F1F1F", "#D9D6CC", "#ABA49A", "#1
           </div>
 
           <div class="flex flex-wrap gap-1.5 pt-2 border-t border-raised">
-            <span class="badge">Editorial</span>
-            <span class="badge">Daily notes</span>
-            <span class="badge">Slow reading</span>
-            <span class="badge bg-accent text-surface">Featured</span>
+            <span class="badge-meta">Editorial</span>
+            <span class="badge-meta">Daily notes</span>
+            <span class="badge-meta">Slow reading</span>
+            <span class="badge-meta bg-accent text-surface">Featured</span>
           </div>
         </div>
       </section>
@@ -170,10 +170,10 @@ const earthPalette = ["#E05A24", "#ABA49A", "#1F1F1F", "#D9D6CC", "#ABA49A", "#1
           <span class="panel-label">Schedule</span>
           <span class="meta">May</span>
         </div>
-        <div class="grid grid-cols-7 gap-1 text-xs text-center text-muted font-mono">
+        <div class="grid grid-cols-7 gap-1 meta text-center text-muted font-mono">
           <span>S</span><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span>
         </div>
-        <div class="grid grid-cols-7 gap-1 mt-1 text-xs text-center text-ink">
+        <div class="grid grid-cols-7 gap-1 mt-1 meta text-center text-ink">
           {cal.map((d) => (
             <span class={`aspect-square grid place-items-center ${d.cls ?? ""}`}>{d.d}</span>
           ))}
@@ -187,7 +187,7 @@ const earthPalette = ["#E05A24", "#ABA49A", "#1F1F1F", "#D9D6CC", "#ABA49A", "#1
         </div>
         <div class="flex flex-wrap gap-1.5">
           <button class="badge">All</button>
-          <button class="px-2.5 h-7 rounded-full text-xs bg-ink text-raised">Drafts</button>
+          <button class="px-2.5 h-7 rounded-full meta bg-ink text-raised">Drafts</button>
           <button class="badge">Published</button>
           <button class="badge">Archived</button>
           <button class="badge">Pinned</button>
@@ -195,15 +195,15 @@ const earthPalette = ["#E05A24", "#ABA49A", "#1F1F1F", "#D9D6CC", "#ABA49A", "#1
         <div class="grid grid-cols-3 gap-3 mt-4">
           <div class="rounded-md hairline p-3 bg-surface">
             <div class="font-display text-2xl leading-none text-ink">142</div>
-            <div class="text-xs text-muted mt-1">Entries</div>
+            <div class="meta mt-1">Entries</div>
           </div>
           <div class="rounded-md hairline p-3 bg-surface">
             <div class="font-display text-2xl leading-none text-accent">19</div>
-            <div class="text-xs text-muted mt-1">This month</div>
+            <div class="meta mt-1">This month</div>
           </div>
           <div class="rounded-md hairline p-3 bg-surface">
             <div class="font-display text-2xl leading-none text-ink">6</div>
-            <div class="text-xs text-muted mt-1">Collections</div>
+            <div class="meta mt-1">Collections</div>
           </div>
         </div>
       </section>

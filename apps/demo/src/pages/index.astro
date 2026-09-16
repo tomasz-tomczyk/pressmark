@@ -44,7 +44,7 @@ import SiteLayout from "../layouts/SiteLayout.astro";
           Most software wants more from us than it gives. Here's a quieter approach — one
           that earns its place on screen by saying less, and only when asked.
         </p>
-        <div class="mt-5 flex items-center gap-3 text-xs text-ink">
+        <div class="mt-5 flex items-center gap-3 meta">
           <span>by T. Tomczyk</span>
           <span class="size-1 rounded-full bg-line"></span>
           <a href={`post`} class="btn-link">Continue reading →</a>
@@ -74,10 +74,10 @@ import SiteLayout from "../layouts/SiteLayout.astro";
                 <h4 class="font-display text-xl leading-snug text-ink group-hover:text-accent">
                   <a href={`post`}>{n.title}</a>
                 </h4>
-                <p class="mt-1.5 text-sm text-ink leading-relaxed">{n.excerpt}</p>
+                <p class="mt-1.5 text-ink leading-relaxed">{n.excerpt}</p>
               </div>
-              <div class="hidden md:flex items-center gap-1.5 meta text-ink">
-                <span class="badge">{n.tag}</span>
+              <div class="hidden md:flex items-center gap-1.5 meta">
+                <span class="badge-meta">{n.tag}</span>
                 <span>{n.read}</span>
               </div>
             </li>
@@ -91,7 +91,7 @@ import SiteLayout from "../layouts/SiteLayout.astro";
       <aside class="md:col-span-4 space-y-8 pt-1">
         <div>
           <h4 class="panel-label mb-3">Archive</h4>
-          <ul class="space-y-1.5 text-sm">
+          <ul class="space-y-1.5">
             <li class="flex justify-between"><a href="#" class="text-ink hover:text-accent">2026</a><span class="meta">19</span></li>
             <li class="flex justify-between"><a href="#" class="text-ink hover:text-accent">2025</a><span class="meta">47</span></li>
             <li class="flex justify-between"><a href="#" class="text-ink hover:text-accent">2024</a><span class="meta">52</span></li>
@@ -101,7 +101,7 @@ import SiteLayout from "../layouts/SiteLayout.astro";
 
         <div>
           <h4 class="panel-label mb-3">Collections</h4>
-          <ul class="space-y-1.5 text-sm">
+          <ul class="space-y-1.5">
             <li><a href="#" class="text-ink hover:text-accent">Field notebook · 2026</a></li>
             <li><a href="#" class="text-ink hover:text-accent">On designing things</a></li>
             <li><a href="#" class="text-ink hover:text-accent">Slow reading</a></li>
@@ -116,8 +116,9 @@ import SiteLayout from "../layouts/SiteLayout.astro";
               ["design", 36], ["writing", 28], ["reading", 22],
               ["field notes", 18], ["typography", 12], ["tools", 9],
             ].map(([t, n]) => (
-              <a class="badge hover:bg-line/50" href="#">
-                {t} <span class="font-mono text-ink opacity-50">{n}</span>
+              <a class="meta no-underline inline-flex items-center gap-1.5 hover:text-accent" href="#">
+                <span class="badge-meta">{t}</span>
+                <span class="opacity-60">{n}</span>
               </a>
             ))}
           </div>
@@ -125,7 +126,7 @@ import SiteLayout from "../layouts/SiteLayout.astro";
 
         <div class="card p-4">
           <h4 class="panel-label mb-2">Newsletter</h4>
-          <p class="text-xs text-ink mb-3 leading-relaxed">
+          <p class="meta mb-3 leading-relaxed">
             A short letter on the last Sunday of each month. No tracking, easy to leave.
           </p>
           <form class="flex gap-2">
@@ -133,7 +134,7 @@ import SiteLayout from "../layouts/SiteLayout.astro";
               type="email"
               placeholder="you@elsewhere.com"
               aria-label="Email address"
-              class="flex-1 h-8 px-2.5 rounded-md bg-line text-xs placeholder-muted focus:outline-none focus:shadow-[var(--shadow-focus)]"
+              class="flex-1 h-8 px-2.5 rounded-md bg-line meta placeholder-muted focus:outline-none focus:shadow-[var(--shadow-focus)]"
             />
             <button class="btn btn-primary btn-sm">Sign up</button>
           </form>
@@ -161,14 +162,14 @@ import SiteLayout from "../layouts/SiteLayout.astro";
               <div class={`absolute inset-x-3 top-5 font-display text-sm leading-tight ${b.titleColor}`} set:html={b.title} />
               <div class={`absolute inset-x-3 bottom-4 meta uppercase tracking-[0.15em] ${b.authorColor ?? "text-accent"}`}>{b.author}</div>
             </div>
-            <div class="mt-2 text-xs text-ink">{b.status}</div>
+            <div class="mt-2 meta">{b.status}</div>
           </a>
         ))}
       </div>
     </section>
 
     <!-- Footer -->
-    <footer class="mt-20 mb-4 pl-2 pt-6 border-t border-raised flex items-center justify-between meta text-ink">
+    <footer class="mt-20 mb-4 pl-2 pt-6 border-t border-raised flex items-center justify-between meta">
       <span>© 2026 · pressmark · maintained in Warsaw</span>
       <div class="flex gap-4">
         <a href="#" class="hover:text-ink">RSS</a>
