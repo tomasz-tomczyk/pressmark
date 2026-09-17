@@ -69,6 +69,24 @@
      generates no utility. Page chrome that has to line up with the prose —
      a post header, a byline — uses `max-w-measure` rather than repeating the
      number. */
+  /* Tailwind's text-* ramp, re-pointed onto this scale. Its defaults are
+     built on a 16px idea of "base" and would otherwise sit a step under the
+     body copy they stand next to. Every step is Tailwind's default x1.048,
+     the same factor that carries reading size to 22px, so the ratios between
+     the steps are untouched. Line heights stay as ratios, so they track
+     whatever size a step ends up at. */
+  --text-xs:   0.786rem;  --text-xs--line-height:   calc(1 / 0.75);
+  --text-sm:   0.917rem;  --text-sm--line-height:   calc(1.25 / 0.875);
+  --text-base: 1.048rem;  --text-base--line-height: calc(1.5 / 1);
+  --text-lg:   1.179rem;  --text-lg--line-height:   calc(1.75 / 1.125);
+  --text-xl:   1.310rem;  --text-xl--line-height:   calc(1.75 / 1.25);
+  --text-2xl:  1.571rem;  --text-2xl--line-height:  calc(2 / 1.5);
+  --text-3xl:  1.964rem;  --text-3xl--line-height:  1.2;
+  --text-4xl:  2.357rem;  --text-4xl--line-height:  1.111;
+  --text-5xl:  3.143rem;  --text-5xl--line-height:  1;
+  --text-6xl:  3.929rem;  --text-6xl--line-height:  1;
+  --text-7xl:  4.714rem;  --text-7xl--line-height:  1;
+
   --container-measure:      54rem;
   --container-measure-wide: 64rem;
 
@@ -102,7 +120,7 @@
     background: var(--color-surface);
     color: var(--color-ink);
     font-family: var(--font-body);
-    font-size: 18px;
+    font-size: 19px;
     line-height: 1.55;
   }
   h1, h2, h3, h4, h5 {
@@ -174,7 +192,7 @@
   background: var(--color-raised);
   color: var(--color-ink);
   border-radius: 0.5rem;       /* 8px — soft, not pill */
-  font-size: 18px;             /* serif floor — no Crimson Pro below 18px */
+  font-size: 19px;             /* serif floor — no Crimson Pro below 18px */
   font-weight: 500;
   padding: 0.5rem 0.875rem;    /* 8/14 — comfortable tap target */
   display: inline-flex;
@@ -193,7 +211,7 @@
   color: inherit;
   border-radius: 0.5rem;
   font-family: var(--font-mono);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 400;
   letter-spacing: 0.01em;
   padding: 0.3rem 0.6rem;
@@ -210,7 +228,7 @@
   color: var(--color-ink);
   border-radius: 0.5rem;
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.04em;
   font-weight: 500;
   padding: 0.4rem 0.75rem;
@@ -231,7 +249,7 @@
   border-radius: 0.375rem;   /* rounded-md */
   color: var(--color-ink);
   transition: color 140ms ease;
-  font-size: 18px;
+  font-size: 19px;
   text-decoration: none;
   /* Nav links behave like links, not buttons — they pick up the accent and an
      underline on hover, matching links in prose rather than filling a pill. */
@@ -268,7 +286,7 @@
 /* panel-label — eyebrow / tiny mono caption (the 11px mono-caps step) */
 @utility panel-label {
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.11em;
@@ -281,7 +299,7 @@
    One grey for all small mono text (5.46:1 on paper). */
 @utility meta {
   font-family: var(--font-mono);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 400;
   letter-spacing: 0.01em;
   color: color-mix(in srgb, var(--color-ink) 68%, var(--color-surface));
@@ -294,7 +312,7 @@
    size reads as scale rather than emphasis. */
 @utility dek {
   font-family: var(--font-body);
-  font-size: 26px;
+  font-size: 27px;
   font-weight: 300;
   line-height: 1.42;
   color: var(--color-ink);
@@ -309,7 +327,7 @@
 @utility dek-voice {
   font-family: var(--font-display);
   font-style: italic;
-  font-size: 24px;
+  font-size: 25px;
   font-weight: 300;
   line-height: 1.3;
   color: var(--color-muted);
@@ -319,7 +337,7 @@
 /* section-label — accent-colored display heading for component groups */
 @utility section-label {
   font-family: var(--font-display);
-  font-size: 17px;
+  font-size: 18px;
   font-weight: 500;
   letter-spacing: -0.01em;
   color: var(--color-accent);
@@ -339,7 +357,7 @@
     padding: 0 1.25rem;
     border-radius: 0.5rem;      /* 8px — matches badge */
     font-family: var(--font-body);
-    font-size: 18px;
+    font-size: 19px;
     font-weight: 500;
     line-height: 1;
     border: none;
@@ -351,7 +369,7 @@
   .btn-sm {
     height: 2rem;               /* 32px */
     padding: 0 0.875rem;
-    font-size: 13px;
+    font-size: 14px;
   }
   .btn-primary {
     background: var(--color-accent);
@@ -366,14 +384,19 @@
   .btn-secondary:hover { background: var(--color-line); }
 
   /* Tertiary — text-only "ghost" link with optional trailing arrow */
+  /* Inline, not inline-flex. A flex container paints its hover underline per
+     flex item, so a trailing glyph got a detached stub of its own with the
+     gap unruled between them — one underline arriving as two. Inline makes
+     the label and the glyph a single run, and `.arrow` being inline-block
+     keeps it out of the underline entirely, since decorations do not
+     propagate into an atomic inline. The space between label and glyph is the
+     one in the markup, which is why there is no `gap` to replace it. */
   .btn-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
+    display: inline;
     background: transparent;
     color: var(--color-accent);
     font-family: var(--font-body);
-    font-size: 18px;
+    font-size: 19px;
     font-weight: 500;
     padding: 0;
     border: none;
@@ -382,8 +405,15 @@
     transition: color 140ms ease;
   }
   /* Lifts toward the accent like every other link, rather than dropping to
-     ink — a CTA that de-saturates on hover reads as going out of service. */
-  .btn-link:hover { color: color-mix(in srgb, var(--color-accent) 85%, var(--color-ink)); }
+     ink — a CTA that de-saturates on hover reads as going out of service.
+     The underline appears only on hover: at rest the colour alone keeps it
+     lighter than `.link`, which is the point of having both. */
+  .btn-link:hover {
+    color: color-mix(in srgb, var(--color-accent) 85%, var(--color-ink));
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 4px;
+  }
 }
 
 /* ============================================================================
@@ -393,7 +423,7 @@
   .prose-pressmark {
     font-family: var(--font-body);
     font-weight: 400;
-    font-size: 21px;
+    font-size: 22px;
     line-height: 1.62;
     color: var(--color-ink);
     max-width: var(--container-measure);
