@@ -11,6 +11,12 @@
  *
  * With no `avatar`, it draws a lettered placeholder from the name rather than
  * a stock face — honest about being a placeholder, and stable across renders.
+ *
+ * The parts carry stable class names — `.author-avatar`, `.author-name`,
+ * `.author-bio`, `.author-link` — so a consumer restyling the card targets a
+ * name rather than `p:first-of-type`. Structural selectors into a component's
+ * markup break silently the first time that markup gains an element; these are
+ * API, and listed as such in CLAUDE.md.
  */
 
 export type AuthorLink = {
@@ -33,6 +39,26 @@ type Props = {
   variant?: "rail" | "inline";
   /** Small label above the name, e.g. "Written by". */
   eyebrow?: string;
+  /**
+   * Makes the whole card a link — a byline usually wants to reach an about
+   * page. Only the NAME is a real anchor; it stretches over the card with a
+   * pseudo-element, so the click target is the whole block while the
+   * accessible name stays "Tomasz Tomczyk" rather than the entire bio.
+   *
+   * This is why it is a prop and not something a consumer does by wrapping the
+   * component: an `<a>` around the card nests anchors the moment `links` is
+   * non-empty, which is invalid. Here the two coexist — `links` sit above the
+   * stretched layer and stay independently clickable.
+   */
+  href?: string;
+  /**
+   * Avatar size. One default for both variants — the size is the consumer's
+   * call, not something the layout should infer. (Before this prop existed,
+   * `inline` silently drew 3.5rem and `rail` 4rem; nobody could see the 8px
+   * and no rationale was ever written down for it.) `lg` is for a byline where
+   * the portrait is the point rather than a thumbnail beside the name.
+   */
+  avatarSize?: "sm" | "md" | "lg";
   class?: string;
 };
 
@@ -43,6 +69,8 @@ const {
   links = [],
   variant = "rail",
   eyebrow,
+  href,
+  avatarSize,
   class: className = "",
 } = Astro.props as Props;
 
@@ -57,12 +85,14 @@ const initials =
     .map((part) => part[0]?.toUpperCase() ?? "")
     .join("") || name[0]?.toUpperCase() || "?";
 
-const avatarSize = inline ? "size-14" : "size-16";
+const AVATAR_SIZES = { sm: "size-14", md: "size-16", lg: "size-22" } as const;
+const avatarClass = AVATAR_SIZES[avatarSize ?? "md"];
 ---
 
 <div
   class:list={[
     "author-card",
+    href && "author-card-linked",
     inline ? "flex items-start gap-4" : "flex flex-col items-start gap-3",
     className,
   ]}
@@ -75,13 +105,16 @@ const avatarSize = inline ? "size-14" : "size-16";
       height="64"
       loading="lazy"
       decoding="async"
-      class:list={["rounded-full object-cover shrink-0 bg-raised", avatarSize]}
+      class:list={[
+        "author-avatar rounded-full object-cover shrink-0 bg-raised",
+        avatarClass,
+      ]}
     />
   ) : (
     <div
       class:list={[
-        "avatar-placeholder rounded-full shrink-0 grid place-items-center bg-raised border border-line",
-        avatarSize,
+        "author-avatar avatar-placeholder rounded-full shrink-0 grid place-items-center bg-raised border border-line",
+        avatarClass,
       ]}
       aria-hidden="true"
       title="Avatar placeholder"
@@ -96,20 +129,23 @@ const avatarSize = inline ? "size-14" : "size-16";
     {/* Inline puts the label and the name on one line in one face — the
         byline reads as a sentence. Rail stacks it, where the column is narrow. */}
     {inline ? (
-      <p class="font-display text-lg text-ink leading-snug">
-        {eyebrow && <span>{eyebrow} </span>}{name}
+      <p class="author-name font-display text-lg text-ink leading-snug">
+        {eyebrow && <span>{eyebrow} </span>}
+        {href ? <a href={href} class="author-name-link">{name}</a> : name}
       </p>
     ) : (
       <>
         {eyebrow && <p class="meta">{eyebrow}</p>}
-        <p class="font-display text-lg text-ink leading-snug">{name}</p>
+        <p class="author-name font-display text-lg text-ink leading-snug">
+          {href ? <a href={href} class="author-name-link">{name}</a> : name}
+        </p>
       </>
     )}
 
-    {bio && <p class="mt-1 text-ink/85 leading-relaxed">{bio}</p>}
+    {bio && <p class="author-bio mt-1 text-ink/85 leading-relaxed">{bio}</p>}
 
     {links.length > 0 && (
-      <ul class="flex flex-wrap items-center gap-4 mt-3 list-none p-0 m-0">
+      <ul class="author-links flex flex-wrap items-center gap-4 mt-3 list-none p-0 m-0">
         {links.map((link) => (
           <li>
             <a
@@ -161,12 +197,44 @@ const avatarSize = inline ? "size-14" : "size-16";
 <style>
   /* Matches the link convention: accent on hover, never a filled background.
      Icons sit at the same grey as .meta — at full ink a row of brand glyphs
-     reads as loud as the name above it, which is not the hierarchy. */
+     reads as loud as the name above it, which is not the hierarchy.
+
+     The underline on hover matches `.nav-item`: colour alone is a weak
+     affordance at this size, and it is the one cue that survives a consumer
+     re-pointing the accent token. Drawn as a border so it clears descenders. */
   .author-card :global(.author-link) {
     color: color-mix(in srgb, var(--color-ink) 68%, var(--color-surface));
-    transition: color 140ms ease;
+    border-bottom: 1px solid transparent;
+    transition: color 140ms ease, border-color 140ms ease;
   }
   .author-card :global(.author-link:hover) {
     color: var(--color-accent);
+    border-bottom-color: currentColor;
+  }
+
+  /* The stretched link. The anchor wraps only the name — so that is what a
+     screen reader announces — and its ::after covers the card to give pointers
+     the whole block. `.author-link` is raised above that layer so the social
+     row stays independently clickable. */
+  .author-card-linked {
+    position: relative;
+  }
+  .author-card :global(.author-name-link) {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: color 140ms ease, border-color 140ms ease;
+  }
+  .author-card :global(.author-name-link::after) {
+    content: "";
+    position: absolute;
+    inset: 0;
+  }
+  .author-card-linked:hover :global(.author-name-link) {
+    color: var(--color-accent);
+    border-bottom-color: currentColor;
+  }
+  .author-card :global(.author-links) {
+    position: relative;
   }
 </style>

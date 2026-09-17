@@ -198,6 +198,12 @@ The Google Fonts URL is baked into `BaseLayout.astro` head.
 - `.card`, `.hairline`, `.nav-item`, `.panel-label`, `.section-label`, `.dek`
 - `.checkbox`, `.progress` + `.progress-fill`
 - `.prose-pressmark` + `.dropcap`
+- `AuthorCard` parts: `.author-card`, `.author-avatar`, `.author-name`,
+  `.author-bio`, `.author-links`, `.author-link`, and — only with `href` —
+  `.author-card-linked` + `.author-name-link`. These exist so a consumer
+  restyling the card targets a name instead of `p:first-of-type`; a structural
+  selector into component markup breaks silently the first time that markup
+  gains an element.
 
 Renaming these is a breaking change — bump the major version.
 

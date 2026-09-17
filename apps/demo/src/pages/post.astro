@@ -2,6 +2,7 @@
 import type { MarkdownHeading } from "astro";
 import SiteLayout from "../layouts/SiteLayout.astro";
 import { TableOfContents, PostNav, AuthorCard, Badge } from "@pressmark/astro";
+import { withBase } from "@pressmark/astro/lib/nav";
 
 // Demo post is static HTML (no `render()` output to draw from), so the
 // headings array mirrors this page's actual h2 ids/text by hand.
@@ -97,6 +98,8 @@ const nextPost = { href: "#", title: "A short letter on small tools." };
       bio="Writes about interfaces, tools and the quiet parts of software."
       variant="rail"
       eyebrow="Written by"
+      href={withBase("/about")}
+      avatarSize="lg"
       links={[
         { label: "Email", href: "#" },
         { label: "Notes", href: "#" },
