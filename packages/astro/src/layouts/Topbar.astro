@@ -97,11 +97,19 @@ const {
   </div>
 </header>
 
+<style is:global>
+  /* The bar is fixed, so an anchor jump would otherwise land the heading
+     underneath it. 5rem is the 56px bar plus a line of air. */
+  html {
+    scroll-padding-top: 5rem;
+  }
+</style>
+
 <style>
   /* The current page is marked by a single accent slash in the gutter to the
-     left of the label, and it is the ONLY place the bar spends the accent.
-     The dotted underline it replaces sat directly above the page title and
-     competed with it; a mark in the margin points without underlining.
+     left of the label, and it is the ONLY place the bar spends the accent — a
+     mark in the margin points without underlining, so it never competes with
+     the page title below it.
 
      The gutter is reserved on every link, not just the active one, so nothing
      shifts sideways when the page changes. */

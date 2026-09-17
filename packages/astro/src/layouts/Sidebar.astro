@@ -114,3 +114,13 @@ const isActive = (href: string): boolean => isActiveHref(href, currentPath);
 
   <slot />
 </aside>
+
+<style is:global>
+  /* Below md the rail collapses to a fixed 56px bar, so an anchor jump would
+     land the heading underneath it. 5rem is that bar plus a line of air. */
+  @media (max-width: 767.98px) {
+    html {
+      scroll-padding-top: 5rem;
+    }
+  }
+</style>
