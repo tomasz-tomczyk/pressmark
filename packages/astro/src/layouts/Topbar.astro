@@ -63,15 +63,7 @@ const {
           return (
             <a
               href={withBase(item.href)}
-              class:list={[
-                "flex items-center gap-2 shrink-0 min-h-11 px-3 no-underline transition-colors",
-                "hover:text-accent hover:underline hover:decoration-solid hover:decoration-1 hover:underline-offset-4",
-                // Active is marked with a quiet dotted underline rather than the
-                // accent, which pulled the eye away from the page content.
-                // Hover still swaps to accent + a solid underline.
-                "text-ink",
-                active && "font-medium underline decoration-dotted decoration-1 underline-offset-[6px]",
-              ]}
+              class="topbar-link flex items-center gap-2 shrink-0 min-h-11 no-underline"
               aria-current={active ? "page" : undefined}
             >
               {showIcons && item.icon && (
@@ -104,3 +96,54 @@ const {
     </div>
   </div>
 </header>
+
+<style>
+  /* The current page is marked by a single accent slash in the gutter to the
+     left of the label, and it is the ONLY place the bar spends the accent.
+     The dotted underline it replaces sat directly above the page title and
+     competed with it; a mark in the margin points without underlining.
+
+     The gutter is reserved on every link, not just the active one, so nothing
+     shifts sideways when the page changes. */
+  .topbar-link {
+    position: relative;
+    padding: 0 14px 0 calc(14px + 0.72em);
+    color: color-mix(in srgb, var(--color-ink) 82%, var(--color-surface));
+    transition: color 140ms ease;
+  }
+  .topbar-link::before {
+    content: "/";
+    position: absolute;
+    left: 14px;
+    color: var(--color-accent);
+    opacity: 0;
+    transform: translateX(-2px);
+    transition: opacity 180ms ease, transform 180ms ease;
+  }
+
+  /* Hover is deliberately colourless: the text comes fully forward and takes a
+     hairline. The accent is already spoken for by the marker, and two accents
+     in one bar means neither one points at anything. */
+  .topbar-link:hover {
+    color: var(--color-ink);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-decoration-color: color-mix(in srgb, var(--color-ink) 30%, var(--color-surface));
+    text-underline-offset: 5px;
+  }
+
+  .topbar-link[aria-current="page"] {
+    color: var(--color-ink);
+    font-weight: 500;
+    text-decoration: none;
+  }
+  .topbar-link[aria-current="page"]::before {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .topbar-link,
+    .topbar-link::before { transition: none; }
+  }
+</style>
