@@ -1,6 +1,6 @@
 {
   "name": "@pressmark/theme",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "description": "Editorial, paper-bound Tailwind v4 design-system theme. CSS-only, drop-in.",
   "type": "module",
   "main": "./pressmark.css",
