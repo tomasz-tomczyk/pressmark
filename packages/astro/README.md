@@ -60,6 +60,7 @@ const items = [
 - `Progress` — `value: number` (0–100)
 - `TableOfContents` — `headings: MarkdownHeading[]` (Astro's `render()` output, filtered to h2 internally), `title?`. Progressive-enhancement scroll-spy via `IntersectionObserver`; links still jump to anchors without JS.
 - `PostNav` — `prev?: { href, title }`, `next?: { href, title }`. Renders nothing if both are omitted; a missing neighbour renders an empty placeholder to keep the flex layout balanced.
+- `DetailList` — `items: { label, value }[]`, `layout?: "inline" | "stacked"`, `labelWidth?`. Label/value rows for colophons, credits and "currently" blocks. `value` may contain inline HTML. `stacked` renders no grid of its own — pass one in `class`.
 
 ## Layouts
 

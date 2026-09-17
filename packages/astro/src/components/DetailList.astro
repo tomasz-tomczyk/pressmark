@@ -1,0 +1,71 @@
+---
+/**
+ * DetailList — a run of label/value pairs.
+ *
+ * The shape every editorial page ends up needing: a colophon, a "currently"
+ * block, spec rows under a photograph, credits in a footer. Written by hand it
+ * is always the same three decisions — mono caption for the label, ink for the
+ * value, and whether the label sits beside or above — so it is a component
+ * rather than a class string repeated down the page.
+ *
+ *   inline  — label in a fixed left column, value beside it. Reads as a list.
+ *   stacked — label above the value. Reads as a grid of cards; pass the grid
+ *             itself in `class`, since how many columns it wants is the page's
+ *             business, not the component's.
+ *
+ * Baselines are aligned rather than tops: the label is smaller than the value,
+ * so matching their boxes leaves the text looking a line out.
+ */
+
+export type DetailItem = {
+  label: string;
+  /**
+   * May contain inline HTML — values here are written in site config, and a
+   * title in the middle of one needs its `<em>`. Same trust as
+   * `SidebarItem.icon`; it is never user input.
+   */
+  value: string;
+};
+
+type Props = {
+  items: DetailItem[];
+  layout?: "inline" | "stacked";
+  /**
+   * Inline only. Width of the label column, as a CSS length. Wide enough for
+   * the longest label — a label that wraps stops reading as a caption.
+   */
+  labelWidth?: string;
+  class?: string;
+};
+
+const {
+  items,
+  layout = "inline",
+  labelWidth = "4.5rem",
+  class: className = "",
+} = Astro.props as Props;
+
+const stacked = layout === "stacked";
+---
+
+<dl
+  class:list={[
+    "detail-list",
+    stacked ? "" : "flex flex-col gap-2.5",
+    className,
+  ]}
+>
+  {
+    items.map((item) => (
+      <div class:list={[stacked ? "" : "flex items-baseline gap-3"]}>
+        <dt
+          class:list={["panel-label", stacked ? "mb-1.5" : "shrink-0"]}
+          style={stacked ? undefined : `width:${labelWidth}`}
+        >
+          {item.label}
+        </dt>
+        <dd class="text-ink leading-snug m-0" set:html={item.value} />
+      </div>
+    ))
+  }
+</dl>

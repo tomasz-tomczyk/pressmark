@@ -5,10 +5,24 @@ import {
   Button,
   Card,
   Checkbox,
+  DetailList,
   PanelLabel,
   Progress,
   SectionLabel,
 } from "@pressmark/astro";
+
+const shelf = [
+  { label: "Work", value: "A small CLI for marginal notes" },
+  { label: "Read", value: "Berger's <em>Shape of a Pocket</em>" },
+  { label: "Place", value: "Warsaw, mostly" },
+];
+
+const specs = [
+  { label: "Typography", value: "Crimson Pro · DM Mono" },
+  { label: "Built with", value: "Tailwind v4 · Astro" },
+  { label: "Hosted", value: "Somewhere quiet" },
+  { label: "License", value: "CC BY-NC 4.0" },
+];
 
 const tags = ["#design", "#programming", "#notes", "#writing", "#macos", "#productivity", "#books", "#journal"];
 
@@ -217,6 +231,25 @@ const tableRows = [
             <label for="li-5" class="line-through">Completed and archived</label>
           </li>
         </ul>
+      </div>
+    </section>
+
+    <hr class="border-raised mb-14" />
+
+    <!-- Detail lists -->
+    <section class="grid grid-cols-1 md:grid-cols-2 gap-10 mb-14">
+      <div>
+        <SectionLabel class="mb-5">Detail list — inline</SectionLabel>
+        <DetailList items={shelf} labelWidth="3.25rem" />
+      </div>
+
+      <div>
+        <SectionLabel class="mb-5">Detail list — stacked</SectionLabel>
+        <DetailList
+          items={specs}
+          layout="stacked"
+          class="grid grid-cols-2 gap-x-8 gap-y-4"
+        />
       </div>
     </section>
 

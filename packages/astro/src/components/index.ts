@@ -15,3 +15,5 @@ export { default as Hero } from "./Hero.astro";
 export type { HeroSource } from "./Hero.astro";
 export { default as AuthorCard } from "./AuthorCard.astro";
 export type { AuthorLink } from "./AuthorCard.astro";
+export { default as DetailList } from "./DetailList.astro";
+export type { DetailItem } from "./DetailList.astro";
