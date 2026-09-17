@@ -196,7 +196,7 @@ The Google Fonts URL is baked into `BaseLayout.astro` head.
 ### CSS classes published as API
 - `.btn` / `.btn-primary` / `.btn-secondary` / `.btn-link`
 - `.badge` / `.badge-mono`
-- `.card`, `.hairline`, `.nav-item`, `.panel-label`, `.section-label`, `.dek`
+- `.card`, `.hairline`, `.link`, `.nav-item`, `.panel-label`, `.section-label`, `.dek`, `.dek-voice`, `.arrow`
 - `.checkbox`, `.progress` + `.progress-fill`
 - `.prose-pressmark` + `.dropcap`
 - `AuthorCard` parts: `.author-card`, `.author-avatar`, `.author-name`,

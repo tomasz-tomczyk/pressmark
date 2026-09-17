@@ -24,7 +24,7 @@ const titleClass =
     >
       {prev ? (
         <a href={prev.href} class="group">
-          <span class={labelClass}>← Previous</span>
+          <span class={labelClass}><span class="arrow">←</span> Previous</span>
           <span class={titleClass}>{prev.title}</span>
         </a>
       ) : (
@@ -32,7 +32,7 @@ const titleClass =
       )}
       {next ? (
         <a href={next.href} class="group text-right">
-          <span class={labelClass}>Next →</span>
+          <span class={labelClass}>Next <span class="arrow">→</span></span>
           <span class={titleClass}>{next.title}</span>
         </a>
       ) : (

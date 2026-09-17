@@ -43,7 +43,7 @@ All text is `ink` except the `accent`. No gradients. No 7th color.
 ## Components
 
 `.btn` / `.btn-primary` / `.btn-secondary` / `.btn-link`, `.badge` / `.badge-mono`,
-`.card`, `.hairline`, `.nav-item`, `.panel-label`, `.section-label`, `.checkbox`,
+`.card`, `.hairline`, `.link`, `.nav-item`, `.panel-label`, `.section-label`, `.checkbox`,
 `.progress` + `.progress-fill`, `.prose-pressmark` + `.dropcap`.
 
 Inline `<code>` gets backticks and a raised pill automatically.

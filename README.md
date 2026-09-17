@@ -119,6 +119,8 @@ the Tailwind classes built from them (`bg-paper` → `bg-surface`, `text-charcoa
 - `BaseLayout` gained `htmlAttrs` and `bodyClass`, so a consumer can re-point
   roles on `<html>`.
 - `.dek` utility — the standfirst under a title.
+- `.arrow` utility — wrap a `→`/`←` sitting inline with text. The glyphs are drawn on the math axis and read ~2px high against lowercase; this nudges them onto the text axis.
+- `.dek-voice` utility — the same slot in the author's own voice: italic, muted, one step down. For a first-person line under a name, not for descriptive copy under a section title.
 
 ### Added in 0.5.0
 

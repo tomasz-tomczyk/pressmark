@@ -144,6 +144,18 @@
  * Utilities — small, opinionated additions to vanilla Tailwind
  * ============================================================================ */
 
+/* arrow — wraps a → or ← sitting inline with text.
+   These glyphs are drawn on the math axis, not the text axis: at 18px Crimson
+   Pro the arrow's ink spans +10.6px to -2.4px around the baseline, centring at
+   6.5px, while lowercase centres near 4.4px. So it reads ~2px high while also
+   dipping below the baseline. Nothing on the parent fixes this — flex
+   `align-items` and `vertical-align` both align boxes, and the box is correct;
+   it is the ink inside it that is off. The nudge has to be on the glyph. */
+@utility arrow {
+  display: inline-block;
+  transform: translateY(0.11em);
+}
+
 /* hairline — single-pixel border in raised. Soft by default. */
 @utility hairline {
   border: 1px solid var(--color-raised);
@@ -231,6 +243,28 @@
   }
 }
 
+/* link — the inline link: prose, captions, anywhere running text needs one.
+   Inherits font-family and font-size, so the same class is correct at meta's
+   13px mono and at reading size. Only colour and the underline are its
+   business. */
+@utility link {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--color-accent);
+  transition: color 140ms ease, text-decoration-color 140ms ease;
+  &:hover {
+    /* Stay on the accent and deepen it. Pressmark ships one palette and it is
+       light, so mixing toward white is mixing toward the page: the link loses
+       contrast against the surface at the exact moment it should gain it.
+       Toward ink it reads as richer, and the thicker underline confirms it. */
+    color: color-mix(in srgb, var(--color-accent) 85%, var(--color-ink));
+    text-decoration-color: color-mix(in srgb, var(--color-accent) 85%, var(--color-ink));
+    text-decoration-thickness: 2px;
+  }
+}
+
 /* panel-label — eyebrow / tiny mono caption (the 11px mono-caps step) */
 @utility panel-label {
   font-family: var(--font-mono);
@@ -264,6 +298,21 @@
   font-weight: 300;
   line-height: 1.42;
   color: var(--color-ink);
+  text-wrap: pretty;
+}
+
+/* dek-voice — the standfirst in the author's own voice, for a first-person
+   line under a name rather than descriptive copy under a section title.
+   Italic and muted, one step down from `.dek`: it has to read as an aside,
+   which means it must NOT be used where the page has no other standfirst —
+   ink-colored `.dek` is the default and this is the exception. */
+@utility dek-voice {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 24px;
+  font-weight: 300;
+  line-height: 1.3;
+  color: var(--color-muted);
   text-wrap: pretty;
 }
 
@@ -332,7 +381,9 @@
     text-decoration: none;
     transition: color 140ms ease;
   }
-  .btn-link:hover { color: var(--color-ink); }
+  /* Lifts toward the accent like every other link, rather than dropping to
+     ink — a CTA that de-saturates on hover reads as going out of service. */
+  .btn-link:hover { color: color-mix(in srgb, var(--color-accent) 85%, var(--color-ink)); }
 }
 
 /* ============================================================================
@@ -402,21 +453,7 @@
     margin-top: 1.5em;
     margin-bottom: 0.3em;
   }
-  .prose-pressmark a {
-    color: var(--color-accent);
-    text-decoration: underline;
-    text-decoration-thickness: 1px;
-    text-underline-offset: 3px;
-    text-decoration-color: var(--color-accent);
-  }
-  .prose-pressmark a:hover {
-    /* Stay on the accent and lift it, instead of dropping to ink. Mixing
-       toward white reads as "brighter" on a dark surface and as "lighter" on
-       a light one; the thicker underline carries the state either way. */
-    color: color-mix(in srgb, var(--color-accent) 80%, white);
-    text-decoration-color: color-mix(in srgb, var(--color-accent) 80%, white);
-    text-decoration-thickness: 2px;
-  }
+  .prose-pressmark a { @apply link; }
   .prose-pressmark em { font-style: italic; }
   .prose-pressmark strong { font-weight: 600; color: var(--color-ink); }
   .prose-pressmark blockquote {
