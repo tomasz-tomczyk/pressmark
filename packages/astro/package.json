@@ -1,6 +1,6 @@
 {
   "name": "@pressmark/astro",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "Astro components and layouts for the Pressmark editorial design system.",
   "type": "module",
   "main": "./src/index.ts",
@@ -37,7 +37,7 @@
   "bugs": "https://github.com/tomasz-tomczyk/pressmark/issues",
   "peerDependencies": {
     "astro": "^5.0.0 || ^6.0.0",
-    "@pressmark/theme": "^0.5.0",
+    "@pressmark/theme": "^0.6.0",
     "shiki": "^1.0.0 || ^3.0.0 || ^4.0.0"
   },
   "dependencies": {
