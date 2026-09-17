@@ -24,11 +24,27 @@ type Props = {
    * choice rather than the consumer's.
    */
   favicon?: string | false;
+  /**
+   * Where Crimson Pro and IBM Plex Mono come from. A string replaces the
+   * stylesheet URL, and drops the preconnects with it.
+   *
+   * Pass `false` to self-host. The link is render-blocking and points at an
+   * origin the page otherwise never touches, so it costs a DNS lookup, a TLS
+   * handshake and a round trip before first paint — then a second set for the
+   * font files on fonts.gstatic.com. A consumer that does this must declare
+   * the faces itself; the theme only ever names them through --font-display
+   * and --font-body.
+   */
+  fonts?: string | false;
 };
 
 /** Pressmark's own mark, so the demo has a tab icon. Consumers replace it. */
 const PLACEHOLDER_FAVICON =
   "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%23F6F4EE'/%3E%3Ctext x='50%25' y='62%25' text-anchor='middle' font-family='Georgia,serif' font-size='22' fill='%231F1F1F'%3EP%3C/text%3E%3C/svg%3E";
+
+/** The two faces the theme's type scale is drawn for. */
+const GOOGLE_FONTS_HREF =
+  "https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300..700;1,300..700&family=IBM+Plex+Mono:wght@400;500&display=swap";
 
 const {
   title,
@@ -36,6 +52,7 @@ const {
   htmlAttrs = {},
   bodyClass = "",
   favicon = PLACEHOLDER_FAVICON,
+  fonts = GOOGLE_FONTS_HREF,
 } = Astro.props as Props;
 ---
 
@@ -47,12 +64,16 @@ const {
     <title>{title}</title>
     {description && <meta name="description" content={description} />}
     {favicon && <link rel="icon" href={favicon} />}
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300..700;1,300..700&family=IBM+Plex+Mono:wght@400;500&display=swap"
-      rel="stylesheet"
-    />
+    {/* The preconnects warm up Google's two origins, so they are tied to that
+        URL rather than to `fonts` being set — pointed at a consumer's own host
+        they would open a connection nothing goes on to use. */}
+    {fonts === GOOGLE_FONTS_HREF && (
+      <>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+      </>
+    )}
+    {fonts && <link href={fonts} rel="stylesheet" />}
     <slot name="head" />
   </head>
   <body class:list={["min-h-screen", bodyClass]}>

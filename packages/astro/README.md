@@ -64,7 +64,8 @@ const items = [
 
 ## Layouts
 
-- `BaseLayout` — `<html>` shell with font links and three named slots: `head`, `sidebar`, and the default slot for main content. No baked-in chrome. Props: `title`, `description?`, `htmlAttrs?`, `bodyClass?`, `favicon?`.
+- `BaseLayout` — `<html>` shell with font links and three named slots: `head`, `sidebar`, and the default slot for main content. No baked-in chrome. Props: `title`, `description?`, `htmlAttrs?`, `bodyClass?`, `favicon?`, `fonts?`.
+  - `fonts` — the stylesheet Crimson Pro and IBM Plex Mono load from, defaulting to Google Fonts. A string replaces the URL and drops the Google preconnects with it. Pass `false` to self-host: the default link is render-blocking against an origin the page otherwise never touches, which costs a DNS lookup, a TLS handshake and a round trip before first paint, then the same again on `fonts.gstatic.com` for the files. Declare your own `@font-face` rules for both families — the theme only ever names them through `--font-display` and `--font-body`.
   - `favicon` — a string is the href of a single `<link rel="icon">`; it defaults to Pressmark's own mark so the tab is never blank. Pass `false` when shipping a real icon set (`.ico`, PNG sizes, apple-touch, manifest) and declare the set in the `head` slot instead. Adding those alongside the default rather than replacing it leaves two competing `rel="icon"` links and lets the browser pick.
 
 ```astro
