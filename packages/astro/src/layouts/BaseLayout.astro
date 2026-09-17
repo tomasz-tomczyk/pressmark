@@ -14,13 +14,28 @@ type Props = {
   htmlAttrs?: Record<string, string | undefined>;
   /** Extra classes for <body>. */
   bodyClass?: string;
+  /**
+   * The tab icon. A string is used as the href of a single <link rel="icon">.
+   *
+   * Pass `false` for a real icon set — an .ico, the PNG sizes, apple-touch,
+   * a manifest — and declare the whole set in the `head` slot. That is the
+   * only way to be rid of this one: a second `rel="icon"` does not replace
+   * the first, it competes with it, and which one the browser keeps is its
+   * choice rather than the consumer's.
+   */
+  favicon?: string | false;
 };
+
+/** Pressmark's own mark, so the demo has a tab icon. Consumers replace it. */
+const PLACEHOLDER_FAVICON =
+  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%23F6F4EE'/%3E%3Ctext x='50%25' y='62%25' text-anchor='middle' font-family='Georgia,serif' font-size='22' fill='%231F1F1F'%3EP%3C/text%3E%3C/svg%3E";
 
 const {
   title,
   description,
   htmlAttrs = {},
   bodyClass = "",
+  favicon = PLACEHOLDER_FAVICON,
 } = Astro.props as Props;
 ---
 
@@ -31,7 +46,7 @@ const {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     {description && <meta name="description" content={description} />}
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%23F6F4EE'/%3E%3Ctext x='50%25' y='62%25' text-anchor='middle' font-family='Georgia,serif' font-size='22' fill='%231F1F1F'%3EP%3C/text%3E%3C/svg%3E" />
+    {favicon && <link rel="icon" href={favicon} />}
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link

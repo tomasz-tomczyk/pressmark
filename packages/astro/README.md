@@ -64,7 +64,19 @@ const items = [
 
 ## Layouts
 
-- `BaseLayout` — `<html>` shell with font links and two named slots: `sidebar` and the default slot for main content. No baked-in chrome.
+- `BaseLayout` — `<html>` shell with font links and three named slots: `head`, `sidebar`, and the default slot for main content. No baked-in chrome. Props: `title`, `description?`, `htmlAttrs?`, `bodyClass?`, `favicon?`.
+  - `favicon` — a string is the href of a single `<link rel="icon">`; it defaults to Pressmark's own mark so the tab is never blank. Pass `false` when shipping a real icon set (`.ico`, PNG sizes, apple-touch, manifest) and declare the set in the `head` slot instead. Adding those alongside the default rather than replacing it leaves two competing `rel="icon"` links and lets the browser pick.
+
+```astro
+<BaseLayout title="Hello" favicon={false}>
+  <Fragment slot="head">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+  </Fragment>
+</BaseLayout>
+```
 - `Sidebar` — Editorial-style fixed left sidebar. Takes `items: SidebarItem[]`, optional `brand`, and a default slot for extras (search, theme toggle, image, quote, etc.). `SidebarItem` shape: `{ href, label, icon? }`, where `icon` is raw SVG inner content (paths/rects/circles).
 
 ## Content collections
