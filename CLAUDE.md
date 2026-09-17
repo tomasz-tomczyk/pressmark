@@ -157,7 +157,8 @@ Also renamed: `--shadow-paper` → `--shadow-soft` (it's a shadow, not a colour)
   body **21px**; all UI text **18px** (base body, nav, buttons, ToC, metadata).
   A subtitle under a title uses `.dek`, NOT `text-lg` — the UI size is below
   the reading size and inverts the hierarchy. Serif reads optically smaller than a
-  sans. Reading column is 46rem; `.wide-media` breaks media out to 54rem.
+  sans. Reading column is `--container-measure` (54rem); `.wide-media` breaks media
+  out to `--container-measure-wide` (64rem).
 - **IBM Plex Mono** (mono, 400/500) — used for both inline code and code blocks, and for tiny mono captions. Its slab terminals sit with Crimson Pro in a way a geometric mono does not; its x-height is much taller, which is why inline code is set well below the surrounding prose.
 
 Prose `h2`/`h3` state `--font-display` explicitly rather than inheriting, so a
@@ -189,7 +190,7 @@ The Google Fonts URL is baked into `BaseLayout.astro` head.
   - `Topbar` — fixed 14-unit horizontal bar. Main needs `pt-14`. Suits few destinations.
   - Both resolve hrefs and current-page state through `src/lib/nav.ts`. Put any
     nav logic there, never in one shell only.
-  - **Content pages (post/list/home) use a centered column**: `.prose-pressmark` caps at 46rem; the opt-in `.wide-media` variant (`.prose-pressmark.wide-media` in `pressmark.css`) centers a 54rem container via CSS grid and lets media — images, code blocks, tables — break out from the 46rem text measure to the full 54rem. List/home pages mirror the same centered column so content doesn't shift horizontally when navigating list ↔ post.
+  - **Content pages (post/list/home) use a centered column**: `.prose-pressmark` caps at `--container-measure`; the opt-in `.wide-media` variant (`.prose-pressmark.wide-media` in `pressmark.css`) centers a `--container-measure-wide` container via CSS grid and lets media — images, code blocks, tables — break out from the text measure to the full frame. Both are `@theme` tokens, so a consumer re-points the measure like any other role and gets `max-w-measure` / `max-w-measure-wide` for the page chrome that must line up with the prose. List/home pages mirror the same centered column so content doesn't shift horizontally when navigating list ↔ post.
   - **Other surfaces stay left-anchored** — no `mx-auto` centered max-width outside the content column above. Don't centered-column-ify chrome (sidebar, nav, non-editorial utility pages) without a specific reason.
 
 ### CSS classes published as API

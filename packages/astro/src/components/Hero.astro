@@ -27,8 +27,8 @@ type Props = {
   aspect?: string;
   /**
    * How far the image breaks out of the reading column:
-   *   column — stays at the 46rem text measure
-   *   wide   — 54rem, matching .wide-media
+   *   column — stays at the text measure
+   *   wide   — the wider frame, matching .wide-media
    *   full   — edge to edge
    */
   bleed?: "column" | "wide" | "full";
@@ -82,8 +82,8 @@ const width = typeof src === "string" ? undefined : src.width;
 const height = typeof src === "string" ? undefined : src.height;
 
 const bleedClass = {
-  column: "max-w-[46rem]",
-  wide: "max-w-[54rem]",
+  column: "max-w-measure",
+  wide: "max-w-measure-wide",
   full: "max-w-none",
 }[bleed];
 
@@ -98,7 +98,7 @@ const fetchPriority = priority ? "high" : "auto";
  * a second `opacity` — is what makes the falloff visible: otherwise the whole
  * layer scales together and it just reads as a slightly uneven flat wash.
  *
- * Clears by 72%, which is past the right edge of a centred 46rem column on a
+ * Clears by 72%, which is past the right edge of a centred text column on a
  * typical banner. Text laid out further right needs a higher `scrim`.
  */
 const mix = (pct: number) =>
