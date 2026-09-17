@@ -72,7 +72,7 @@ Keywords and types keep `accent`; comments keep `muted`; punctuation is derived
 from `ink` rather than taking a token of its own.
 
 Three type tokens — `--font-display` (headings), `--font-body` (prose and UI),
-`--font-mono` — filled by two faces: Crimson Pro for the first two, DM Mono for
+`--font-mono` — filled by two faces: Crimson Pro for the first two, IBM Plex Mono for
 the third.
 
 ## Re-pointing a role

@@ -10,7 +10,7 @@
  *   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
  *   <link href="https://fonts.googleapis.com/css2?
  *       family=Crimson+Pro:ital,wght@0,300..700;1,300..700
- *       &family=DM+Mono:wght@400;500
+ *       &family=IBM+Plex+Mono:wght@400;500
  *       &display=swap" rel="stylesheet">
  *
  * ---------------------------------------------------------------------------
@@ -18,8 +18,8 @@
  *
  * Pressmark ships exactly one palette — six colours, two typefaces, light.
  * Nothing here is themed, and there is no dark mode; that is deliberate.
- * What changed in 0.4.0 is that components no longer hardcode hex values,
- * so a consumer can re-point any role by redeclaring the custom property.
+ * Components never hardcode hex values, so a consumer can re-point any role
+ * by redeclaring the custom property.
  *
  * Because these are emitted as real CSS custom properties (plain `@theme`,
  * not `@theme inline`), utilities compile to `var(--color-*)` and a consumer
@@ -36,7 +36,7 @@
      so a consumer can set a different heading face without touching prose. */
   --font-display: "Crimson Pro", "Iowan Old Style", Georgia, serif;
   --font-body:    "Crimson Pro", "Iowan Old Style", Georgia, serif;
-  --font-mono:    "DM Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --font-mono:    "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
 
   /* ---------- The palette: six roles. No others. ----------
      Never introduce a seventh. Compose from these six. For "muted text",
@@ -112,20 +112,21 @@
     color: var(--color-surface);
   }
 
-  /* Inline code — raised pill with literal backticks visible.
-     `pre code` is excluded so large code blocks keep their own styling. */
+  /* Inline code — a tint hugging the glyphs rather than a pill around them.
+     Tight padding and a small radius mark the word without interrupting the
+     line; `pre code` is excluded so large code blocks keep their own styling.
+
+     0.74em reads far below the 0.875em above it and is not a typo: Plex Mono's
+     x-height is much taller than Crimson Pro's, so equal point sizes draw
+     visibly unequal letters. The ratio is matched by eye against the body face
+     — retune it if --font-mono or --font-body ever changes. */
   :where(:not(pre)) > code {
     background: var(--color-raised);
-    padding: 0.1em 0.4em;
-    border-radius: 0.25em;
+    padding: 0.05em 0.25em;
+    border-radius: 0.15em;
     font-family: var(--font-mono);
-    font-size: 0.8em;
+    font-size: 0.74em;
     color: var(--color-ink);
-  }
-  :where(:not(pre)) > code::before,
-  :where(:not(pre)) > code::after {
-    content: "`";
-    opacity: 0.55;
   }
 }
 
@@ -343,11 +344,11 @@
   .prose-pressmark > * + * { margin-top: 1.05em; }
   /* Headings hug the content that follows — keep their own margin-bottom as the gap. */
   .prose-pressmark > :where(h2, h3) + * { margin-top: 0; }
-  /* The owl gives the first child no top margin — but an image brings its own
-     1.6em (below), and that margin has nowhere to collapse to: in `.wide-media`
+  /* The owl gives the first child no top margin, but an image brings its own
+     1.6em (below) and that margin has nowhere to collapse to: in `.wide-media`
      the paragraph wrapping it is a grid item, and grid items do not
-     margin-collapse with their container. A post opening with an image
-     therefore started 1.6em lower than one opening with text. */
+     margin-collapse with their container. Without this, a post opening with an
+     image sits 1.6em lower than one opening with text. */
   .prose-pressmark > :first-child > img:only-child,
   .prose-pressmark > :first-child > a:only-child > img:only-child,
   .prose-pressmark > img:first-child {
@@ -429,17 +430,17 @@
   .prose-pressmark ul { list-style: none; }
   .prose-pressmark ul li::before {
     content: "\2022";
-    /* A marker, not a highlight. The accent pulled the eye to every bullet
-       instead of to the text, so it recedes to a derived ink tint — no new
-       token, and it re-points with the theme like everything else. */
+    /* A marker, not a highlight: on the accent it pulls the eye to every
+       bullet instead of to the text. A derived ink tint needs no new token and
+       re-points with the theme like everything else. */
     color: color-mix(in oklab, var(--color-ink) 55%, var(--color-surface));
     margin-left: -1.5em;
     margin-right: 0.6em;
     display: inline-block;
     width: 0.9em;
-    /* The box is sized for the em-dash this used to be. A bullet does not fill
-       it, so centre the glyph — left-aligned it opens a gap and the text stops
-       reading as attached to its marker. The hanging indent is unchanged. */
+    /* The box is em-dash width and a bullet does not fill it, so centre the
+       glyph — left-aligned it opens a gap and the text stops reading as
+       attached to its marker. */
     text-align: center;
   }
   .prose-pressmark ol { list-style: decimal; }

@@ -158,7 +158,7 @@ Also renamed: `--shadow-paper` → `--shadow-soft` (it's a shadow, not a colour)
   A subtitle under a title uses `.dek`, NOT `text-lg` — the UI size is below
   the reading size and inverts the hierarchy. Serif reads optically smaller than a
   sans. Reading column is 46rem; `.wide-media` breaks media out to 54rem.
-- **DM Mono** (mono, 400/500) — used for both inline code and code blocks, and for tiny mono captions. Note: max weight is 500 (no 600/700); heavier weights synthesise.
+- **IBM Plex Mono** (mono, 400/500) — used for both inline code and code blocks, and for tiny mono captions. Its slab terminals sit with Crimson Pro in a way a geometric mono does not; its x-height is much taller, which is why inline code is set well below the surrounding prose.
 
 Prose `h2`/`h3` state `--font-display` explicitly rather than inheriting, so a
 consumer's heading face still applies inside articles.
@@ -182,7 +182,7 @@ The Google Fonts URL is baked into `BaseLayout.astro` head.
     second `opacity` scales the layer uniformly and turns it back into a flat
     wash — that bug shipped once already.
 - **Image placeholders**: `https://picsum.photos/seed/{name}/{w}/{h}` with stable seeds. NEVER `source.unsplash.com` (deprecated). NEVER gradient `<div>`s.
-- **No arbitrary Tailwind sizes** like `text-[13px]`. Use the built-in scale (`text-xs/sm/base/lg/...`). Inline code is `0.8em`, baked into the theme.
+- **No arbitrary Tailwind sizes** like `text-[13px]`. Use the built-in scale (`text-xs/sm/base/lg/...`). Inline code is `0.74em`, baked into the theme (matched to Crimson Pro’s x-height, not to the mono’s point size).
 - **Badges/tags/pills**: `raised` bg, `ink` text, **no border**. Pre-built `.badge` / `.badge-mono` utilities — use them, don't repeat the class string.
 - **Two shells, pick one per site**:
   - `Sidebar` — 260px fixed left rail at `top-12 bottom-0`, right border `raised`. Main is `<main class="ml-[260px] px-12 py-10">`. Post page adds `xl:mr-[300px]` for the right rail. Suits many destinations.
@@ -235,6 +235,26 @@ Renaming these is a breaking change — bump the major version.
 
 - Trusted Publishing on npmjs.com is set up for both packages (validated by manual workflow_dispatch — OIDC auth passed, only blocked on "version already exists"). Future releases via `gh release create` will publish automatically without OTP.
 - The `apps/demo/src/styles/main.css` `@source` to `../../../../packages/astro/src/**/*` is a workspace-relative path. Real consumers must add a separate `@source "../../node_modules/@pressmark/astro/src/**/*.astro"` — documented in the astro README.
+
+## Comments
+
+A comment earns its place only if it is still useful a year from now, to
+someone who never saw the conversation that produced it. Write what is true of
+the code as it stands.
+
+- Explain the constraint, the gotcha, or the non-obvious mechanism — the thing
+  the code cannot say about itself.
+- No history: no "this replaces", "we used to", "before this prop existed",
+  "what changed in 0.4.0", no narration of a rejected alternative or of the
+  review that led here. That belongs in the commit message.
+- No design-review prose. One sentence on why a value is load-bearing beats a
+  paragraph defending it.
+- Don't restate the code, and don't leave TODOs addressed to a person about
+  work from a past session.
+
+When editing a file, fix the comments around your change to match this. When a
+comment above the code you touched narrates a past decision, delete it rather
+than adding a second one below it.
 
 ## Tooling notes
 
