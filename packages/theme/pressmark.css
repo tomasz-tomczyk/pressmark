@@ -343,6 +343,16 @@
   .prose-pressmark > * + * { margin-top: 1.05em; }
   /* Headings hug the content that follows — keep their own margin-bottom as the gap. */
   .prose-pressmark > :where(h2, h3) + * { margin-top: 0; }
+  /* The owl gives the first child no top margin — but an image brings its own
+     1.6em (below), and that margin has nowhere to collapse to: in `.wide-media`
+     the paragraph wrapping it is a grid item, and grid items do not
+     margin-collapse with their container. A post opening with an image
+     therefore started 1.6em lower than one opening with text. */
+  .prose-pressmark > :first-child > img:only-child,
+  .prose-pressmark > :first-child > a:only-child > img:only-child,
+  .prose-pressmark > img:first-child {
+    margin-top: 0;
+  }
   /* Wide-media reading layout (opt-in via `.wide-media`): a centered ~46rem text
      column that lets media — images, code blocks, tables — break out to a wider
      ~54rem measure. Uses a content/breakout grid so it never overflows narrow
